@@ -1,6 +1,7 @@
+// @ts-nocheck
 /** Striver's A2Z DSA Course Sheet — all 454 problems */
 
-const STRIVERS_SHEET = [
+const STRIVERS_SHEET: any[] = [
   { // Step 1
     stepNo: 1,
     stepTitle: "Learn the basics",
