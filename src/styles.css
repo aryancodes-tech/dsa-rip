@@ -2,8 +2,6 @@
 @source "../src";
 @import "tw-animate-css";
 
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:wght@500;600;700&display=swap");
-
 @custom-variant dark (&:is(.dark *));
 
 /*
@@ -152,15 +150,29 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+    font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
     font-feature-settings: "ss01", "cv01";
     -webkit-font-smoothing: antialiased;
     transition: background-color 0.4s ease, color 0.4s ease;
   }
 
+  /** Headings and hero titles — same family, heavier weights for hierarchy. */
   .font-display {
-    font-family: "Fraunces", ui-serif, Georgia, serif;
+    font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
     letter-spacing: -0.02em;
+  }
+
+  button:not(:disabled),
+  a[href],
+  select,
+  summary,
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [aria-disabled="true"] {
+    cursor: not-allowed;
   }
 }
 

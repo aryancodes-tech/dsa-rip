@@ -1,7 +1,11 @@
 // @ts-nocheck
-/** Striver's A2Z DSA Course Sheet — all 454 problems */
+/**
+ *
+ * Optional `articleLink` / `youtubeLink` may be inlined here; otherwise they are merged at runtime from
+ * `webArchive.json` (Wayback-derived takeuforward + YouTube links, sanitized — see `@/constants/url-sanitize`).
+ */
 
-const STRIVERS_SHEET: any[] = [
+const DSA_SHEET: any[] = [
   { // Step 1
     stepNo: 1,
     stepTitle: "Learn the basics",
@@ -375,13 +379,13 @@ const STRIVERS_SHEET: any[] = [
             title: "Longest subarray with given sum K(positives)",
             difficulty: "Medium",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=longest-sub-array-with-sum-k",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=longest-sub-array-with-sum-k",
           },
           {
             title: "Longest subarray with sum K (Positives + Negatives)",
             difficulty: "Medium",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=longest-sub-array-with-sum-k",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=longest-sub-array-with-sum-k",
           },
         ],
       },
@@ -471,7 +475,7 @@ const STRIVERS_SHEET: any[] = [
             title: "Count subarrays with given sum",
             difficulty: "Easy",
             lcLink: "https://leetcode.com/problems/subarray-sum-equals-k/",
-            gfgLink: "https://www.codingninjas.com/codestudio/problems/subarray-sums-i_1467103?utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_Arrayproblems",
+            gfgLink: "https://www.codingninjas.com/codestudio/problems/subarray-sums-i_1467103?utm_source=youtube&utm_medium=affiliate&utm_campaign=aryan_Arrayproblems",
           },
         ],
       },
@@ -1383,7 +1387,7 @@ const STRIVERS_SHEET: any[] = [
             title: "All Divisors of a Number",
             difficulty: "Easy",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/all-divisors-of-a-number/1?utm_source=youtube&amp;utm_medium=collab_striver_ytdescription&amp;utm_campaign=all-divisors-of-a-number",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/all-divisors-of-a-number/1?utm_source=youtube&amp;utm_medium=collab_aryan_ytdescription&amp;utm_campaign=all-divisors-of-a-number",
           },
           {
             title: "Sieve of Eratosthenes",
@@ -1401,7 +1405,7 @@ const STRIVERS_SHEET: any[] = [
             title: "Power(n, x)",
             difficulty: "Medium",
             lcLink: "https://leetcode.com/problems/powx-n/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/power-of-numbers-1587115620/1?utm_source=youtube&amp;utm_medium=collab_striver_ytdescription&amp;utm_campaign=power-of-numbers",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/power-of-numbers-1587115620/1?utm_source=youtube&amp;utm_medium=collab_aryan_ytdescription&amp;utm_campaign=power-of-numbers",
           },
         ],
       },
@@ -2355,13 +2359,13 @@ const STRIVERS_SHEET: any[] = [
             title: "BFS",
             difficulty: "Medium",
             lcLink: "https://practice.geeksforgeeks.org/problems/bfs-traversal-of-graph/1",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/bfs-traversal-of-graph/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=bfs_of_graph",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/bfs-traversal-of-graph/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=bfs_of_graph",
           },
           {
             title: "DFS",
             difficulty: "Hard",
             lcLink: "https://practice.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=dfs_of_graph",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=dfs_of_graph",
           },
         ],
       },
@@ -2373,7 +2377,7 @@ const STRIVERS_SHEET: any[] = [
             title: "Number of provinces (leetcode)",
             difficulty: "Medium",
             lcLink: "https://leetcode.com/problems/number-of-provinces/#:~:text=A%20province%20is%20a%20group,the%20total%20number%20of%20provinces.",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/number-of-provinces/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=number_of_provinces",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/number-of-provinces/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=number_of_provinces",
           },
           {
             title: "Connected Components Problem in Matrix",
@@ -2391,19 +2395,19 @@ const STRIVERS_SHEET: any[] = [
             title: "Flood fill",
             difficulty: "Hard",
             lcLink: "https://leetcode.com/problems/flood-fill/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/flood-fill-algorithm1856/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=flood-fill-algorithm",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/flood-fill-algorithm1856/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=flood-fill-algorithm",
           },
           {
             title: "Cycle Detection in unirected Graph (bfs)",
             difficulty: "Hard",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=detect-cycle-in-an-undirected-graph",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=detect-cycle-in-an-undirected-graph",
           },
           {
             title: "Cycle Detection in undirected Graph (dfs)",
             difficulty: "Hard",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=detect-cycle-in-an-undirected-graph",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=detect-cycle-in-an-undirected-graph",
           },
           {
             title: "0/1 Matrix (Bfs Problem)",
@@ -3209,4 +3213,4 @@ const STRIVERS_SHEET: any[] = [
   },
 ];
 
-export default STRIVERS_SHEET;
+export default DSA_SHEET;

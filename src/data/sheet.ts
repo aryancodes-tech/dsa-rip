@@ -1,5 +1,6 @@
 // @ts-nocheck
-import STRIVERS_SHEET from "./striversSheet";
+import DSA_SHEET from "./dataSheet";
+import { getArchiveExtraLinksForProblem } from "./web-archive-links";
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
 
@@ -8,6 +9,10 @@ export interface Problem {
   title: string;
   difficulty: Difficulty;
   lcLink: string | null;
+  /** TakeUForward article/blog URL merged from scrape (`webArchive.json`), when present. */
+  articleLink: string | null;
+  /** Canonical YouTube explainer merged from scrape (`webArchive.json`), when present. */
+  youtubeLink: string | null;
   others: { label: string; url: string }[];
   stepNo: number;
   subStepNo: number;
@@ -34,7 +39,7 @@ function flattenLinks(value: any, label: string): { label: string; url: string }
   return [];
 }
 
-export const SHEET: Step[] = STRIVERS_SHEET.map((step: any) => ({
+export const SHEET: Step[] = DSA_SHEET.map((step: any) => ({
   stepNo: step.stepNo,
   stepTitle: step.stepTitle,
   subSteps: step.subSteps.map((sub: any) => ({
@@ -46,11 +51,14 @@ export const SHEET: Step[] = STRIVERS_SHEET.map((step: any) => ({
         ...flattenLinks(p.cnLink, "Coding Ninjas"),
         ...flattenLinks(p.ibLink, "InterviewBit"),
       ];
+      const extra = getArchiveExtraLinksForProblem(step.stepNo, sub.subStepNo, p.title);
       return {
         id: `s${step.stepNo}-ss${sub.subStepNo}-${idx}-${p.title}`.replace(/\s+/g, "_"),
         title: p.title,
         difficulty: (p.difficulty || "Easy") as Difficulty,
         lcLink: p.lcLink || null,
+        articleLink: p.articleLink ?? extra.articleLink,
+        youtubeLink: p.youtubeLink ?? extra.youtubeLink,
         others,
         stepNo: step.stepNo,
         subStepNo: sub.subStepNo,
@@ -62,6 +70,21 @@ export const SHEET: Step[] = STRIVERS_SHEET.map((step: any) => ({
 export const ALL_PROBLEMS: Problem[] = SHEET.flatMap((s) =>
   s.subSteps.flatMap((ss) => ss.problems)
 );
+
+/**
+ * Step and sub-step titles keyed by {@link Problem.id}; used when searching sheet scope (not problem title alone).
+ */
+export const PROBLEM_TOPIC_LABELS_BY_ID: Record<string, { stepTitle: string; subStepTitle: string }> =
+  Object.fromEntries(
+    SHEET.flatMap((step) =>
+      step.subSteps.flatMap((sub) =>
+        sub.problems.map((p) => [
+          p.id,
+          { stepTitle: step.stepTitle, subStepTitle: sub.subStepTitle },
+        ] as const),
+      ),
+    ),
+  );
 
 export const TOTAL = ALL_PROBLEMS.length;
 export const TOTAL_BY_DIFF = {
