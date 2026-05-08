@@ -20,6 +20,8 @@ export const DSA_LS_KEYS = {
   rev: "dsa.rev",
   notes: "dsa.notes",
   theme: "dsa.theme",
+  /** Plain string shown in the page header (“Welcome back, …”). */
+  displayName: "dsa.ui.displayName",
   /** Bitmask 0–31: optional columns YouTube, Article, Note, Revision, Difficulty (see `sheet-columns.ts`). */
   optionalColumnMask: "dsa.ui.colm",
 } as const;

@@ -3,7 +3,7 @@ import { useMemo, useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search, Moon, Sun, Star, StickyNote, ChevronDown,
-  RotateCcw, Shuffle, Check, X, Globe, FilterX, FileText, LayoutGrid,
+  RotateCcw, Shuffle, Check, X, Globe, FilterX, FileText, LayoutGrid, Settings, User,
 } from "lucide-react";
 import {
   SHEET,
@@ -44,7 +44,26 @@ import {
   type OptionalSheetColumnVisibility,
   visibilityToOptionalColumnMask,
 } from "@/constants/sheet-columns";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { DSA_DEFAULT_DISPLAY_NAME } from "@/constants/display-name";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -193,6 +212,91 @@ function ConfirmReset({ onClose, onConfirm }: { onClose: () => void; onConfirm: 
   );
 }
 
+type DisplayNameDialogMode = "onboarding" | "edit";
+
+/**
+ * Asks for the header greeting name; {@link onCommit} receives the raw field value (parent applies trim and default).
+ */
+function DisplayNameDialog({
+  open,
+  mode,
+  onOpenChange,
+  seedDraft,
+  onCommit,
+}: {
+  open: boolean;
+  mode: DisplayNameDialogMode;
+  onOpenChange: (open: boolean) => void;
+  /** Shown in the text field whenever the dialog opens. */
+  seedDraft: string;
+  onCommit: (draft: string) => void;
+}) {
+  const [draft, setDraft] = useState(seedDraft);
+
+  useEffect(() => {
+    if (!open) return;
+    setDraft(seedDraft);
+  }, [open, seedDraft]);
+
+  const handlePrimary = () => {
+    onCommit(draft);
+    onOpenChange(false);
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="rounded-2xl sm:rounded-2xl">
+        <DialogHeader>
+          <DialogTitle className="font-display text-xl">
+            {mode === "onboarding" ? "Welcome!" : "Your name"}
+          </DialogTitle>
+          <DialogDescription>
+            {mode === "onboarding"
+              ? "What should we call you? You can change this anytime from Settings."
+              : "This is shown next to “Welcome back” at the top of the page."}
+          </DialogDescription>
+        </DialogHeader>
+        <div className="space-y-2 py-1">
+          <Label htmlFor="dsa-display-name" className="">Display name</Label>
+          <Input
+            id="dsa-display-name"
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            placeholder={DSA_DEFAULT_DISPLAY_NAME}
+            autoComplete="nickname"
+            autoFocus
+            className="rounded-xl"
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                handlePrimary();
+              }
+            }}
+          />
+        </div>
+        <DialogFooter className="gap-2 sm:gap-2">
+          {mode === "edit" && (
+            <button
+              type="button"
+              onClick={() => onOpenChange(false)}
+              className="cursor-pointer rounded-xl border border-border bg-background px-4 py-2 text-sm font-medium hover:bg-muted"
+            >
+              Cancel
+            </button>
+          )}
+          <button
+            type="button"
+            onClick={handlePrimary}
+            className="cursor-pointer rounded-xl bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:opacity-90"
+          >
+            {mode === "onboarding" ? "Continue" : "Save"}
+          </button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 /**
  * Problem row — fixed column order (`youtube`→`leetcode`→`others`→`article`→`note`→`revision`→`difficulty`);
  * togglable cols omit their cell when hidden. LeetCode & Others stay on.
@@ -234,15 +338,15 @@ function ProblemRow({
     <motion.div
       layout
       initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}
-      className="grid grid-cols-12 gap-3 items-center px-5 py-3.5 sm:px-6 border-t border-border/60 hover:bg-muted/40 transition-colors"
+      className="grid grid-cols-12 items-center gap-2 border-t border-border/60 px-4 py-3 transition-colors hover:bg-muted/40 sm:gap-3 sm:px-6"
     >
-      <div className="col-span-1 flex justify-center">
+      <div className="col-span-1 flex justify-center self-center">
         <button
           type="button"
           onClick={onToggleDone}
           aria-label="Toggle solved"
           className={cn(
-            "cursor-pointer size-5 rounded-md border flex items-center justify-center transition-all",
+            "box-border inline-flex aspect-square h-5 w-5 max-h-5 max-w-5 min-h-0 min-w-[1.25rem] shrink-0 cursor-pointer items-center justify-center rounded-md border p-0 touch-manipulation appearance-none transition-all [-webkit-tap-highlight-color:transparent]",
             isDone ? "bg-primary border-primary" : "border-border hover:border-primary/60",
           )}
         >
@@ -355,15 +459,29 @@ function ProblemRow({
       )}
       {columnVisibility.note && (
         <div className={cell}>
-          <button type="button" onClick={onOpenNote} className={cn("cursor-pointer p-1.5 rounded-md hover:bg-muted", hasNote ? "text-primary" : "text-muted-foreground")} title="Note">
-            <StickyNote className="size-4" />
+          <button
+            type="button"
+            onClick={onOpenNote}
+            className={cn(
+              "inline-flex size-9 cursor-pointer items-center justify-center rounded-md touch-manipulation [-webkit-tap-highlight-color:transparent] sm:size-auto sm:p-1.5",
+              hasNote ? "text-primary" : "text-muted-foreground",
+              "hover:bg-muted",
+            )}
+            title="Note"
+          >
+            <StickyNote className="size-4 shrink-0" />
           </button>
         </div>
       )}
       {columnVisibility.revision && (
         <div className={cell}>
-          <button type="button" onClick={onToggleRev} className="cursor-pointer p-1.5 rounded-md hover:bg-muted" title="Mark for revision">
-            <Star className={cn("size-4 transition-all", isRev ? "fill-amber-400 text-amber-400" : "text-muted-foreground")} />
+          <button
+            type="button"
+            onClick={onToggleRev}
+            className="inline-flex size-9 cursor-pointer items-center justify-center rounded-md touch-manipulation [-webkit-tap-highlight-color:transparent] sm:size-auto sm:p-1.5 hover:bg-muted"
+            title="Mark for revision"
+          >
+            <Star className={cn("size-4 shrink-0 transition-all", isRev ? "fill-amber-400 text-amber-400" : "text-muted-foreground")} />
           </button>
         </div>
       )}
@@ -397,6 +515,37 @@ function Index() {
   const flashRef = useRef<HTMLDivElement | null>(null);
   const [optionalColumnVisibility, setOptionalColumnVisibility] =
     useState<OptionalSheetColumnVisibility>(DEFAULT_OPTIONAL_SHEET_COLUMN_VISIBILITY);
+  const [displayName, setDisplayName] = useState(DSA_DEFAULT_DISPLAY_NAME);
+  const [nameDialogOpen, setNameDialogOpen] = useState(false);
+  const [nameDialogMode, setNameDialogMode] = useState<DisplayNameDialogMode>("onboarding");
+
+  const persistAndSetDisplayName = useCallback((raw: string) => {
+    const t = raw.trim();
+    const next = t.length > 0 ? t : DSA_DEFAULT_DISPLAY_NAME;
+    setDisplayName(next);
+    try {
+      localStorage.setItem(DSA_LS_KEYS.displayName, next);
+    } catch {
+      /** ignore quota / private mode */
+    }
+  }, []);
+
+  const handleNameDialogOpenChange = useCallback(
+    (next: boolean) => {
+      if (!next && nameDialogMode === "onboarding") {
+        try {
+          const existing = localStorage.getItem(DSA_LS_KEYS.displayName);
+          if (existing === null || existing.length === 0) {
+            persistAndSetDisplayName(DSA_DEFAULT_DISPLAY_NAME);
+          }
+        } catch {
+          persistAndSetDisplayName(DSA_DEFAULT_DISPLAY_NAME);
+        }
+      }
+      setNameDialogOpen(next);
+    },
+    [nameDialogMode, persistAndSetDisplayName],
+  );
 
   const problemTitleSpanSm = useMemo(
     () => computeProblemTitleColSpanSm(optionalColumnVisibility),
@@ -442,6 +591,21 @@ function Index() {
       }
     } catch {
       /** ignore */
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(DSA_LS_KEYS.displayName);
+      if (raw !== null && raw.length > 0) {
+        setDisplayName(raw);
+      } else {
+        setNameDialogMode("onboarding");
+        setNameDialogOpen(true);
+      }
+    } catch {
+      setNameDialogMode("onboarding");
+      setNameDialogOpen(true);
     }
   }, []);
 
@@ -529,13 +693,60 @@ function Index() {
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-6 sm:py-10 lg:py-12">
         <motion.div
           initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-          className="grid grid-cols-[1fr_auto_1fr] items-center gap-x-3 sm:gap-x-4"
+          className="flex flex-col items-center gap-4 sm:grid sm:grid-cols-[1fr_auto_1fr] sm:items-center sm:gap-x-4"
         >
-          <span className="min-w-0" aria-hidden />
-          <h1 className="font-display min-w-0 justify-self-center text-center text-5xl font-bold tracking-tight sm:text-6xl">
-          Welcome back, <span className="text-primary font-semibold">Aryan</span>
+          <span className="hidden min-w-0 sm:block" aria-hidden />
+          <h1 className="font-display max-w-[min(100%,22rem)] justify-self-center text-center text-4xl font-bold leading-tight tracking-tight text-balance sm:max-w-none sm:text-5xl lg:text-6xl">
+            Welcome back,{" "}
+            <span className="text-primary font-semibold">{displayName}</span>
           </h1>
-          <div className="flex min-w-0 items-center justify-end">
+          <div className="flex w-full min-w-0 flex-wrap items-center justify-center gap-2 sm:w-auto sm:justify-end">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button
+                  type="button"
+                  aria-label="Settings"
+                  className={cn(
+                    "cursor-pointer flex shrink-0 items-center gap-2 rounded-full border border-border bg-card/90 p-2 text-xs shadow-sm backdrop-blur-sm hover:bg-muted transition-colors",
+                  )}
+                >
+                  <Settings className="size-3.5" aria-hidden />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" sideOffset={8} className="w-[min(92vw,18rem)]">
+                <DropdownMenuLabel className="text-xs font-normal text-muted-foreground">
+                  Preferences
+                </DropdownMenuLabel>
+                <DropdownMenuItem
+                  className="cursor-pointer gap-2 text-sm"
+                  onSelect={() => {
+                    setNameDialogMode("edit");
+                    setNameDialogOpen(true);
+                  }}
+                >
+                  <User className="size-4 shrink-0" aria-hidden />
+                  Change name…
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuLabel className="flex items-center gap-2 text-xs font-normal text-muted-foreground">
+                  <LayoutGrid className="size-3.5" aria-hidden />
+                  Sheet columns
+                </DropdownMenuLabel>
+                <p className="px-2 pb-1 text-[10px] leading-snug text-muted-foreground">
+                  Order: YouTube → LeetCode → Others → Article → Note → Revision → Difficulty. LeetCode & Others stay on.
+                </p>
+                {OPTIONAL_SHEET_COLUMNS_IN_ORDER.map((key) => (
+                  <DropdownMenuCheckboxItem
+                    key={key}
+                    className="text-sm"
+                    checked={optionalColumnVisibility[key]}
+                    onCheckedChange={(checked) => updateOptionalColumn(key, checked === true)}
+                  >
+                    {OPTIONAL_SHEET_COLUMN_LABEL[key]}
+                  </DropdownMenuCheckboxItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             <button
               type="button"
               onClick={toggle}
@@ -647,7 +858,7 @@ function Index() {
             type="button"
             onClick={() => setRevOnly((v) => !v)}
             className={cn(
-              "cursor-pointer inline-flex items-center gap-1.5 rounded-xl border px-3 py-2 text-xs font-medium transition-all",
+              "cursor-pointer inline-flex min-h-10 items-center gap-1.5 rounded-xl border px-3 py-2 text-xs font-medium transition-all touch-manipulation sm:min-h-0",
               revOnly ? "border-primary/40 bg-primary/10 text-primary" : "border-border bg-card hover:bg-muted",
             )}
           >
@@ -663,7 +874,7 @@ function Index() {
               setSearch("");
             }}
             className={cn(
-              "cursor-pointer inline-flex items-center gap-1.5 rounded-xl border border-border bg-card px-3 py-2 text-xs font-medium transition-colors hover:bg-muted",
+              "cursor-pointer inline-flex min-h-10 items-center gap-1.5 rounded-xl border border-border bg-card px-3 py-2 text-xs font-medium transition-colors hover:bg-muted touch-manipulation sm:min-h-0",
               "disabled:cursor-not-allowed disabled:opacity-40 disabled:pointer-events-none disabled:hover:bg-card",
             )}
             title={
@@ -675,48 +886,16 @@ function Index() {
           <button
             type="button"
             onClick={randomProblem}
-            className="cursor-pointer inline-flex items-center gap-1.5 rounded-xl border border-border bg-card hover:bg-muted px-3 py-2 text-xs font-medium"
+            className="cursor-pointer inline-flex min-h-10 items-center gap-1.5 rounded-xl border border-border bg-card px-3 py-2 text-xs font-medium hover:bg-muted touch-manipulation sm:min-h-0"
           >
             <Shuffle className="size-3.5" /> Random
           </button>
-          <Popover>
-            <PopoverTrigger asChild>
-              <button
-                type="button"
-                className="cursor-pointer inline-flex items-center gap-1.5 rounded-xl border border-border bg-card px-3 py-2 text-xs font-medium hover:bg-muted"
-              >
-                <LayoutGrid className="size-3.5" aria-hidden /> Columns
-              </button>
-            </PopoverTrigger>
-            <PopoverContent align="start" sideOffset={6} className="w-[min(92vw,16rem)] p-4">
-              <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Show columns</p>
-              <p className="mt-1 text-[10px] text-muted-foreground leading-snug">
-                Order is fixed: YouTube → LeetCode → Others → Article → Note → Revision → Difficulty.
-                LeetCode & Others stay on.
-              </p>
-              <ul className="mt-3 flex flex-col gap-2">
-                {OPTIONAL_SHEET_COLUMNS_IN_ORDER.map((key) => (
-                  <li key={key}>
-                    <label className="flex cursor-pointer items-center gap-2 text-xs font-medium">
-                      <input
-                        type="checkbox"
-                        checked={optionalColumnVisibility[key]}
-                        onChange={(e) => updateOptionalColumn(key, e.target.checked)}
-                        className="accent-primary size-3.5 shrink-0 rounded border-border"
-                      />
-                      {OPTIONAL_SHEET_COLUMN_LABEL[key]}
-                    </label>
-                  </li>
-                ))}
-              </ul>
-            </PopoverContent>
-          </Popover>
-          <div className="ml-auto relative w-full sm:w-72">
+          <div className="relative order-first w-full basis-full sm:order-none sm:ml-auto sm:w-72 sm:basis-auto">
             <Search className="size-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <input
               value={search} onChange={(e) => setSearch(e.target.value)}
               placeholder="Search topics, subtopics & problems…"
-              className="w-full rounded-xl border border-border bg-card py-2 pl-9 pr-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+              className="min-h-10 w-full rounded-xl border border-border bg-card py-2 pl-9 pr-3 text-base sm:min-h-0 sm:text-sm focus:outline-none focus:ring-2 focus:ring-ring"
             />
           </div>
         </div>
@@ -799,7 +978,11 @@ function Index() {
                                     className="overflow-hidden"
                                   >
                                     <div className="px-4 pb-5 pt-4 sm:px-6 sm:pb-6 sm:pt-5">
-                                      <div className="hidden sm:grid grid-cols-12 gap-3 px-2 py-3 text-[11px] uppercase tracking-wider text-muted-foreground border-t border-border/60 items-center">
+                                      <div className="relative -mx-4 sm:mx-0">
+                                        <div className="overflow-x-auto overscroll-x-contain px-4 [-webkit-overflow-scrolling:touch] sm:overflow-visible sm:px-0">
+                                          {/* min width: see DSA_PROBLEM_GRID_MIN_WIDTH_REM in constants/layout.ts */}
+                                          <div className="min-w-[34rem] sm:min-w-0">
+                                            <div className="hidden grid-cols-12 items-center gap-3 border-t border-border/60 px-2 py-3 text-[11px] uppercase tracking-wider text-muted-foreground sm:grid">
                                         <div className="col-span-1 text-center">Status</div>
                                         <div
                                           className={cn(
@@ -843,6 +1026,9 @@ function Index() {
                                         />
                                       </div>
                                     ))}
+                                          </div>
+                                        </div>
+                                      </div>
                                     </div>
                                   </motion.div>
                                 )}
@@ -867,6 +1053,14 @@ function Index() {
         </p>
       </div>
 
+      <DisplayNameDialog
+        open={nameDialogOpen}
+        mode={nameDialogMode}
+        onOpenChange={handleNameDialogOpenChange}
+        seedDraft={nameDialogMode === "edit" ? displayName : DSA_DEFAULT_DISPLAY_NAME}
+        onCommit={persistAndSetDisplayName}
+      />
+
       <AnimatePresence>
         {noteFor && <NoteModal problem={noteFor} onClose={() => setNoteFor(null)} />}
         {confirmReset && <ConfirmReset onClose={() => setConfirmReset(false)} onConfirm={doReset} />}
@@ -882,7 +1076,7 @@ function Select({ value, onChange, options, placeholder }: {
     <div className="relative">
       <select
         value={value} onChange={(e) => onChange(e.target.value)}
-        className="appearance-none rounded-xl border border-border bg-card pl-3 pr-8 py-2 text-xs font-medium hover:bg-muted cursor-pointer focus:outline-none focus:ring-2 focus:ring-ring"
+        className="min-h-10 w-full min-w-[9.5rem] cursor-pointer appearance-none rounded-xl border border-border bg-card py-2 pl-3 pr-8 text-sm font-medium hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring touch-manipulation sm:min-h-0 sm:w-auto sm:text-xs"
       >
         {options.map((o) => <option key={o} value={o}>{o === "All" ? placeholder : o}</option>)}
       </select>
