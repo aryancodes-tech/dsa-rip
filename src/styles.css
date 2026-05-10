@@ -3,6 +3,7 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant lavender (&:is(.lavender *));
 
 /*
  * Design system definition.
@@ -10,7 +11,7 @@
  * The @theme inline block maps CSS custom properties to Tailwind utility
  * classes (e.g. --color-primary -> bg-primary, text-primary).
  *
- * The :root and .dark blocks define the actual color values using oklch.
+ * The :root, .dark, and .lavender blocks define the actual color values using oklch.
  * All colors MUST use oklch format.
  *
  * To add a new semantic color:
@@ -140,6 +141,46 @@
   --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
+}
+
+/* Soft lavender / lilac (light); distinct from cream light and charcoal dark. */
+.lavender {
+  --background: oklch(0.96 0.022 302);
+  --foreground: oklch(0.3 0.055 292);
+  --card: oklch(0.99 0.018 300);
+  --card-foreground: oklch(0.3 0.055 292);
+  --popover: oklch(0.99 0.02 300);
+  --popover-foreground: oklch(0.3 0.055 292);
+  --primary: oklch(0.56 0.16 292);
+  --primary-foreground: oklch(0.99 0.01 300);
+  --secondary: oklch(0.92 0.04 298);
+  --secondary-foreground: oklch(0.34 0.07 292);
+  --muted: oklch(0.93 0.035 300);
+  --muted-foreground: oklch(0.48 0.06 292);
+  --accent: oklch(0.9 0.06 305);
+  --accent-foreground: oklch(0.32 0.08 292);
+  --destructive: oklch(0.52 0.19 25);
+  --destructive-foreground: oklch(0.99 0.01 300);
+  --border: oklch(0.88 0.045 302);
+  --input: oklch(0.9 0.04 300);
+  --ring: oklch(0.62 0.14 292);
+  --easy: oklch(0.6 0.12 155);
+  --medium: oklch(0.68 0.14 78);
+  --hard: oklch(0.58 0.14 25);
+  --surface-2: oklch(0.94 0.03 302);
+  --chart-1: oklch(0.58 0.18 292);
+  --chart-2: oklch(0.62 0.14 260);
+  --chart-3: oklch(0.55 0.12 320);
+  --chart-4: oklch(0.72 0.12 200);
+  --chart-5: oklch(0.65 0.16 310);
+  --sidebar: oklch(0.97 0.025 300);
+  --sidebar-foreground: oklch(0.3 0.06 292);
+  --sidebar-primary: oklch(0.56 0.16 292);
+  --sidebar-primary-foreground: oklch(0.99 0.01 300);
+  --sidebar-accent: oklch(0.92 0.05 302);
+  --sidebar-accent-foreground: oklch(0.32 0.08 292);
+  --sidebar-border: oklch(0.88 0.05 302);
+  --sidebar-ring: oklch(0.62 0.14 292);
 }
 
 @layer base {

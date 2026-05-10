@@ -13,6 +13,12 @@ import {
   notesStoredAsLegacyObject,
   problemSetStoredAsLegacyFlatIds,
 } from "./dsa-local-storage-schema";
+import {
+  type AppTheme,
+  APP_THEME_CYCLE_ORDER,
+  DSA_THEME_DEFAULT,
+  DSA_THEME_WIRE,
+} from "@/constants/theme";
 
 /** localStorage keys; export for deliberate clears (e.g. reset flows). */
 export const DSA_LS_KEYS = {
@@ -41,14 +47,23 @@ const SSR_SNAPSHOT_NOTES = Object.freeze({}) as Record<string, string>;
 /** Per-store hydrate callbacks registered below; invoked from {@link hydratePersistedTrackerShell}. */
 const trackerHydrationTasks: Array<() => void> = [];
 
-function normalizeThemeStored(value: string | null): "light" | "dark" {
-  if (value === null || value.length === 0) return "light";
+function normalizeThemeStored(value: string | null): AppTheme {
+  if (value === null || value.length === 0) return DSA_THEME_DEFAULT;
   if (value === "d" || value === "dark") return "dark";
+  if (value === "v" || value === "lavender") return "lavender";
   return "light";
 }
 
-function themeToWire(mode: "light" | "dark"): string {
-  return mode === "dark" ? "d" : "l";
+function themeToWire(mode: AppTheme): string {
+  return DSA_THEME_WIRE[mode];
+}
+
+/** Applies `dark` / `lavender` classes on `<html>` (mutually exclusive with default light). */
+function applyThemeClassToDocument(mode: AppTheme) {
+  if (typeof document === "undefined") return;
+  const root = document.documentElement;
+  root.classList.toggle("dark", mode === "dark");
+  root.classList.toggle("lavender", mode === "lavender");
 }
 
 function createSetStore(key: string, ssrSnapshotForHook: ReadonlySet<string>) {
@@ -196,14 +211,25 @@ export function useNotesStore() {
 }
 
 export function useTheme() {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setThemeState] = useState<AppTheme>(DSA_THEME_DEFAULT);
+
+  const setTheme = useCallback((mode: AppTheme) => {
+    setThemeState(mode);
+    try {
+      localStorage.setItem(DSA_LS_KEYS.theme, themeToWire(mode));
+    } catch {
+      /** ignore quota / private mode */
+    }
+    applyThemeClassToDocument(mode);
+  }, []);
+
   useEffect(() => {
     const raw = localStorage.getItem(DSA_LS_KEYS.theme);
     const saved = normalizeThemeStored(raw);
-    setTheme(saved);
-    document.documentElement.classList.toggle("dark", saved === "dark");
-    /** Shrink legacy `dark`/`light` strings once to `d`/`l`. */
-    if (raw === "dark" || raw === "light") {
+    setThemeState(saved);
+    applyThemeClassToDocument(saved);
+    /** Normalize legacy full-name tokens once to wire form (`l` / `d` / `v`). */
+    if (raw === "dark" || raw === "light" || raw === "lavender") {
       try {
         localStorage.setItem(DSA_LS_KEYS.theme, themeToWire(saved));
       } catch {
@@ -211,13 +237,20 @@ export function useTheme() {
       }
     }
   }, []);
-  const toggle = useCallback(() => {
-    setTheme((t) => {
-      const next = t === "dark" ? "light" : "dark";
-      localStorage.setItem(DSA_LS_KEYS.theme, themeToWire(next));
-      document.documentElement.classList.toggle("dark", next === "dark");
+
+  const cycleTheme = useCallback(() => {
+    setThemeState((t) => {
+      const i = APP_THEME_CYCLE_ORDER.indexOf(t);
+      const next = APP_THEME_CYCLE_ORDER[(i + 1) % APP_THEME_CYCLE_ORDER.length];
+      try {
+        localStorage.setItem(DSA_LS_KEYS.theme, themeToWire(next));
+      } catch {
+        /** ignore */
+      }
+      applyThemeClassToDocument(next);
       return next;
     });
   }, []);
-  return { theme, toggle };
+
+  return { theme, setTheme, cycleTheme };
 }

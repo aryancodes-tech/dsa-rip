@@ -1,3 +1,5 @@
+import type { AppTheme } from "@/constants/theme";
+
 /**
  * Google Fonts stylesheet for the UI body/display family (loaded from document head; not via CSS `@import`
  * so PostCSS does not require it before Tailwind’s expanded output).
@@ -17,9 +19,10 @@ export const LOGO_GEEKSFORGEEKS_PATH = "/logos/geeksforgeeks.png";
 export const LOGO_YOUTUBE_PATH = "/logos/youtube.png";
 
 /**
- * Which LeetCode raster to show for the tracker theme toggle (`useTheme`).
+ * Which LeetCode raster to show for the tracker theme (`useTheme`).
+ * Lavender uses the light artwork (lavender shell is a light palette).
  */
-export function leetCodeLogoPublicPath(theme: "light" | "dark"): string {
+export function leetCodeLogoPublicPath(theme: AppTheme): string {
   if (theme === "dark") return LOGO_LEETCODE_DARK_PATH;
   return LOGO_LEETCODE_LIGHT_PATH;
 }

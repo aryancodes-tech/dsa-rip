@@ -3,7 +3,7 @@ import { useMemo, useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search, Moon, Sun, Star, StickyNote, ChevronDown,
-  RotateCcw, Shuffle, Check, X, Globe, FilterX, FileText, LayoutGrid, Settings, User,
+  RotateCcw, Shuffle, Check, X, Globe, FilterX, FileText, LayoutGrid, Settings, User, Sparkles,
 } from "lucide-react";
 import {
   SHEET,
@@ -45,6 +45,7 @@ import {
   visibilityToOptionalColumnMask,
 } from "@/constants/sheet-columns";
 import { DSA_DEFAULT_DISPLAY_NAME } from "@/constants/display-name";
+import type { AppTheme } from "@/constants/theme";
 import {
   Dialog,
   DialogContent,
@@ -61,6 +62,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
@@ -319,7 +322,7 @@ function ProblemRow({
   isDone: boolean;
   isRev: boolean;
   hasNote: boolean;
-  /** Raster URL for LeetCode (light vs dark artwork). */
+  /** Raster URL for LeetCode (light vs dark artwork). Lavender uses the light asset. */
   leetcodeLogoSrc: string;
   /** Which optional columns (YouTube / article / …) are visible. */
   columnVisibility: OptionalSheetColumnVisibility;
@@ -417,7 +420,7 @@ function ProblemRow({
             rel="noreferrer"
             className={cn(
               SHEET_PLATFORM_ICON_LINK_BASE_CLASSES,
-              "text-emerald-600 dark:text-emerald-400",
+              "text-emerald-600 dark:text-emerald-400 lavender:text-emerald-700",
             )}
             title={primaryOther.label}
             aria-label={primaryOther.label}
@@ -498,7 +501,7 @@ function ProblemRow({
 }
 
 function Index() {
-  const { theme, toggle } = useTheme();
+  const { theme, setTheme, cycleTheme } = useTheme();
   const leetcodeLogoSrc = leetCodeLogoPublicPath(theme);
   const done = useSetStore(doneStore);
   const rev = useSetStore(revStore);
@@ -728,6 +731,22 @@ function Index() {
                   Change name…
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
+                <DropdownMenuLabel className="text-xs font-normal text-muted-foreground">Theme</DropdownMenuLabel>
+                <DropdownMenuRadioGroup
+                  value={theme}
+                  onValueChange={(v) => setTheme(v as AppTheme)}
+                >
+                  <DropdownMenuRadioItem value="light" className="text-sm">
+                    Light
+                  </DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="dark" className="text-sm">
+                    Dark
+                  </DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="lavender" className="text-sm">
+                    Lavender
+                  </DropdownMenuRadioItem>
+                </DropdownMenuRadioGroup>
+                <DropdownMenuSeparator />
                 <DropdownMenuLabel className="flex items-center gap-2 text-xs font-normal text-muted-foreground">
                   <LayoutGrid className="size-3.5" aria-hidden />
                   Sheet columns
@@ -749,14 +768,20 @@ function Index() {
             </DropdownMenu>
             <button
               type="button"
-              onClick={toggle}
-              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              onClick={cycleTheme}
+              aria-label={`Theme: ${theme}. Activate to cycle to next theme.`}
               className={cn(
                 "cursor-pointer flex shrink-0 items-center gap-2 rounded-full border border-border bg-card/90 px-3 py-1.5 text-xs shadow-sm backdrop-blur-sm hover:bg-muted transition-colors",
               )}
             >
-              {theme === "dark" ? <Sun className="size-3.5" aria-hidden /> : <Moon className="size-3.5" aria-hidden />}
-              <span className="hidden sm:inline">{theme === "dark" ? "Light" : "Dark"} Mode</span>
+              {theme === "dark" ? (
+                <Moon className="size-3.5" aria-hidden />
+              ) : theme === "lavender" ? (
+                <Sparkles className="size-3.5" aria-hidden />
+              ) : (
+                <Sun className="size-3.5" aria-hidden />
+              )}
+              <span className="hidden sm:inline capitalize">{theme}</span>
             </button>
           </div>
         </motion.div>
@@ -838,7 +863,7 @@ function Index() {
 
             <div className="border-t border-border/60 pt-5">
               <div className="flex items-start gap-2.5 text-sm leading-snug text-muted-foreground sm:items-center">
-                <Star className="mt-0.5 size-4 shrink-0 fill-amber-400/90 text-amber-500 dark:text-amber-400 sm:mt-0" aria-hidden />
+                <Star className="mt-0.5 size-4 shrink-0 fill-amber-400/90 text-amber-500 dark:text-amber-400 lavender:text-amber-600 sm:mt-0" aria-hidden />
                 <p>
                   <span className="font-semibold tabular-nums text-foreground">{stats.revCount}</span>
                   <span className="text-muted-foreground"> of </span>
