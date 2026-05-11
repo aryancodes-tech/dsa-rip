@@ -6,7 +6,8 @@
  */
 
 const DSA_SHEET: any[] = [
-  { // Step 1
+  {
+    // Step 1
     stepNo: 1,
     stepTitle: "Learn the basics",
     subSteps: [
@@ -20,7 +21,7 @@ const DSA_SHEET: any[] = [
             lcLink: null,
             gfgLink: {
               "C++": "https://www.geeksforgeeks.org/problems/c-input-output2432/1",
-              "Java": "https://www.geeksforgeeks.org/problems/java-inputoutput0118/1",
+              Java: "https://www.geeksforgeeks.org/problems/java-inputoutput0118/1",
             },
           },
           {
@@ -34,7 +35,8 @@ const DSA_SHEET: any[] = [
             title: "If Else statements",
             difficulty: "Easy",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/java-if-else-decision-making0924/0?category%5B%5D=Java&category%5B%5D=Java&difficulty%5B%5D=-2&page=1&query=category%5B%5DJavadifficulty%5B%5D-2page1category%5B%5DJava",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/java-if-else-decision-making0924/0?category%5B%5D=Java&category%5B%5D=Java&difficulty%5B%5D=-2&page=1&query=category%5B%5DJavadifficulty%5B%5D-2page1category%5B%5DJava",
             cnLink: "https://www.naukri.com/code360/problems/if-else-decision-making_8357235",
           },
           {
@@ -143,7 +145,8 @@ const DSA_SHEET: any[] = [
             title: "Print all Divisors",
             difficulty: "Easy",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/sum-of-all-divisors-from-1-to-n4738/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/sum-of-all-divisors-from-1-to-n4738/1",
           },
           {
             title: "Check for Prime",
@@ -168,7 +171,8 @@ const DSA_SHEET: any[] = [
             title: "Print 1 to N using recursion",
             difficulty: "Easy",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/print-1-to-n-without-using-loops-1587115620/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/print-1-to-n-without-using-loops-1587115620/1",
           },
           {
             title: "Print N to 1 using recursion",
@@ -187,7 +191,8 @@ const DSA_SHEET: any[] = [
             title: "Factorial of N numbers",
             difficulty: "Easy",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/find-all-factorial-numbers-less-than-or-equal-to-n3548/0?problemType=functional&difficulty%5B%5D=-1&page=1&query=problemTypefunctionaldifficulty%5B%5D-1page1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/find-all-factorial-numbers-less-than-or-equal-to-n3548/0?problemType=functional&difficulty%5B%5D=-1&page=1&query=problemTypefunctionaldifficulty%5B%5D-1page1",
           },
           {
             title: "Reverse an array",
@@ -223,7 +228,8 @@ const DSA_SHEET: any[] = [
             title: "Counting frequencies of array elements",
             difficulty: "Easy",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/frequency-of-array-elements-1587115620/0",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/frequency-of-array-elements-1587115620/0",
           },
           {
             title: "Find the highest/lowest frequency element",
@@ -235,7 +241,8 @@ const DSA_SHEET: any[] = [
       },
     ],
   },
-  { // Step 2
+  {
+    // Step 2
     stepNo: 2,
     stepTitle: "Learn Important Sorting Techniques",
     subSteps: [
@@ -295,7 +302,8 @@ const DSA_SHEET: any[] = [
       },
     ],
   },
-  { // Step 3
+  {
+    // Step 3
     stepNo: 3,
     stepTitle: "Solve Problems on Arrays [Easy -> Medium -> Hard]",
     subSteps: [
@@ -318,13 +326,15 @@ const DSA_SHEET: any[] = [
           {
             title: "Check if the array is sorted",
             difficulty: "Easy",
-            lcLink: "https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/#:~:text=Input%3A%20nums%20%3D%20%5B2%2C,no%20rotation)%20to%20make%20nums.",
+            lcLink:
+              "https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/#:~:text=Input%3A%20nums%20%3D%20%5B2%2C,no%20rotation)%20to%20make%20nums.",
             gfgLink: "https://bit.ly/3Ap9U6F",
           },
           {
             title: "Remove duplicates from Sorted array",
             difficulty: "Easy",
-            lcLink: "https://leetcode.com/problems/remove-duplicates-from-sorted-array/#:~:text=Input%3A%20nums%20%3D%20%5B0%2C,%2C%203%2C%20and%204%20respectively.",
+            lcLink:
+              "https://leetcode.com/problems/remove-duplicates-from-sorted-array/#:~:text=Input%3A%20nums%20%3D%20%5B0%2C,%2C%203%2C%20and%204%20respectively.",
             gfgLink: "https://bit.ly/3w7b6ck",
           },
           {
@@ -379,13 +389,15 @@ const DSA_SHEET: any[] = [
             title: "Longest subarray with given sum K(positives)",
             difficulty: "Medium",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=longest-sub-array-with-sum-k",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=longest-sub-array-with-sum-k",
           },
           {
             title: "Longest subarray with sum K (Positives + Negatives)",
             difficulty: "Medium",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=longest-sub-array-with-sum-k",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=longest-sub-array-with-sum-k",
           },
         ],
       },
@@ -475,7 +487,8 @@ const DSA_SHEET: any[] = [
             title: "Count subarrays with given sum",
             difficulty: "Easy",
             lcLink: "https://leetcode.com/problems/subarray-sum-equals-k/",
-            gfgLink: "https://www.codingninjas.com/codestudio/problems/subarray-sums-i_1467103?utm_source=youtube&utm_medium=affiliate&utm_campaign=aryan_Arrayproblems",
+            gfgLink:
+              "https://www.codingninjas.com/codestudio/problems/subarray-sums-i_1467103?utm_source=youtube&utm_medium=affiliate&utm_campaign=aryan_Arrayproblems",
           },
         ],
       },
@@ -559,7 +572,8 @@ const DSA_SHEET: any[] = [
       },
     ],
   },
-  { // Step 4
+  {
+    // Step 4
     stepNo: 4,
     stepTitle: "Binary Search [1D, 2D Arrays, Search Space]",
     subSteps: [
@@ -588,19 +602,22 @@ const DSA_SHEET: any[] = [
           {
             title: "Search Insert Position",
             difficulty: "Easy",
-            lcLink: "https://leetcode.com/problems/search-insert-position/#:~:text=Search%20Insert%20Position%20%2D%20LeetCode&text=Given%20a%20sorted%20array%20of,(log%20n)%20runtime%20complexity.",
+            lcLink:
+              "https://leetcode.com/problems/search-insert-position/#:~:text=Search%20Insert%20Position%20%2D%20LeetCode&text=Given%20a%20sorted%20array%20of,(log%20n)%20runtime%20complexity.",
             gfgLink: "https://bit.ly/3pFDbUN",
           },
           {
             title: "Floor/Ceil in Sorted Array",
             difficulty: "Medium",
             lcLink: null,
-            gfgLink: "https://www.codingninjas.com/codestudio/problems/ceiling-in-a-sorted-array_1825401",
+            gfgLink:
+              "https://www.codingninjas.com/codestudio/problems/ceiling-in-a-sorted-array_1825401",
           },
           {
             title: "Find the first or last occurrence of a given number in a sorted array",
             difficulty: "Easy",
-            lcLink: "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
+            lcLink:
+              "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
             gfgLink: "https://bit.ly/3QuCFEP",
           },
           {
@@ -642,7 +659,8 @@ const DSA_SHEET: any[] = [
           {
             title: "Find peak element",
             difficulty: "Hard",
-            lcLink: "https://leetcode.com/problems/find-peak-element/#:~:text=Find%20Peak%20Element%20%2D%20LeetCode&text=A%20peak%20element%20is%20an,to%20any%20of%20the%20peaks.",
+            lcLink:
+              "https://leetcode.com/problems/find-peak-element/#:~:text=Find%20Peak%20Element%20%2D%20LeetCode&text=A%20peak%20element%20is%20an,to%20any%20of%20the%20peaks.",
             gfgLink: "https://bit.ly/3Apsuf3",
           },
         ],
@@ -690,7 +708,8 @@ const DSA_SHEET: any[] = [
           {
             title: "Kth Missing Positive Number",
             difficulty: "Easy",
-            lcLink: "https://leetcode.com/problems/kth-missing-positive-number/#:~:text=Given%20an%20array%20arr%20of,13%2C...%5D.",
+            lcLink:
+              "https://leetcode.com/problems/kth-missing-positive-number/#:~:text=Given%20an%20array%20arr%20of,13%2C...%5D.",
             gfgLink: "https://bit.ly/3bUFY9l",
           },
           {
@@ -757,7 +776,8 @@ const DSA_SHEET: any[] = [
             title: "Search in a row and column wise sorted matrix",
             difficulty: "Medium",
             lcLink: "https://leetcode.com/problems/search-a-2d-matrix-ii/",
-            gfgLink: "https://www.codingninjas.com/codestudio/problems/search-in-a-row-wise-and-column-wise-sorted-matrix_839811",
+            gfgLink:
+              "https://www.codingninjas.com/codestudio/problems/search-in-a-row-wise-and-column-wise-sorted-matrix_839811",
           },
           {
             title: "Find Peak Element (2D Matrix)",
@@ -775,7 +795,8 @@ const DSA_SHEET: any[] = [
       },
     ],
   },
-  { // Step 5
+  {
+    // Step 5
     stepNo: 5,
     stepTitle: "Strings [Basic and Medium]",
     subSteps: [
@@ -822,7 +843,8 @@ const DSA_SHEET: any[] = [
           {
             title: "Check if two strings are anagram of each other",
             difficulty: "Medium",
-            lcLink: "https://leetcode.com/problems/valid-anagram/#:~:text=Given%20two%20strings%20s%20and,the%20original%20letters%20exactly%20once.&text=Constraints%3A,.length%20%3C%3D%205%20*%2010",
+            lcLink:
+              "https://leetcode.com/problems/valid-anagram/#:~:text=Given%20two%20strings%20s%20and,the%20original%20letters%20exactly%20once.&text=Constraints%3A,.length%20%3C%3D%205%20*%2010",
             gfgLink: "https://bit.ly/3CcQTWs",
           },
         ],
@@ -877,13 +899,15 @@ const DSA_SHEET: any[] = [
             title: "Reverse Every Word in A String",
             difficulty: "Easy",
             lcLink: "https://leetcode.com/problems/reverse-words-in-a-string/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/reverse-words-in-a-given-string5459/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/reverse-words-in-a-given-string5459/1",
           },
         ],
       },
     ],
   },
-  { // Step 6
+  {
+    // Step 6
     stepNo: 6,
     stepTitle: "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
     subSteps: [
@@ -919,7 +943,8 @@ const DSA_SHEET: any[] = [
             title: "Inserting a node in LinkedList at a given position",
             difficulty: "Easy",
             lcLink: null,
-            gfgLink: "https://www.geeksforgeeks.org/problems/insertion-at-a-given-position-in-a-linked-list/1",
+            gfgLink:
+              "https://www.geeksforgeeks.org/problems/insertion-at-a-given-position-in-a-linked-list/1",
           },
           {
             title: "Delete Head of Linked List",
@@ -931,7 +956,8 @@ const DSA_SHEET: any[] = [
             title: "Deletion at the end of a Linked List",
             difficulty: "Easy",
             lcLink: null,
-            gfgLink: "https://www.geeksforgeeks.org/problems/deletion-at-the-end-of-a-linked-list/1",
+            gfgLink:
+              "https://www.geeksforgeeks.org/problems/deletion-at-the-end-of-a-linked-list/1",
           },
           {
             title: "Deleting a node in from a given position",
@@ -1050,7 +1076,8 @@ const DSA_SHEET: any[] = [
           {
             title: "Delete the middle node of LL",
             difficulty: "Medium",
-            lcLink: "https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/#:~:text=You%20are%20given%20the%20head,than%20or%20equal%20to%20x%20.",
+            lcLink:
+              "https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/#:~:text=You%20are%20given%20the%20head,than%20or%20equal%20to%20x%20.",
             gfgLink: "https://bit.ly/3QzoU7W",
           },
           {
@@ -1141,7 +1168,8 @@ const DSA_SHEET: any[] = [
       },
     ],
   },
-  { // Step 7
+  {
+    // Step 7
     stepNo: 7,
     stepTitle: "Recursion [PatternWise]",
     subSteps: [
@@ -1315,7 +1343,8 @@ const DSA_SHEET: any[] = [
       },
     ],
   },
-  { // Step 8
+  {
+    // Step 8
     stepNo: 8,
     stepTitle: "Bit Manipulation [Concepts & Problems]",
     subSteps: [
@@ -1333,7 +1362,8 @@ const DSA_SHEET: any[] = [
             title: "Check if the i-th bit is set or not",
             difficulty: "Easy",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/check-whether-k-th-bit-is-set-or-not-1587115620/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/check-whether-k-th-bit-is-set-or-not-1587115620/1",
           },
           {
             title: "Check if a number is odd or not",
@@ -1351,13 +1381,15 @@ const DSA_SHEET: any[] = [
             title: "Count the number of set bits",
             difficulty: "Easy",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/count-total-set-bits-1587115620/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/count-total-set-bits-1587115620/1",
           },
           {
             title: "Set/Unset the rightmost unset bit",
             difficulty: "Easy",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/set-the-rightmost-unset-bit4436/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/set-the-rightmost-unset-bit4436/1",
           },
           {
             title: "Swap two numbers",
@@ -1369,7 +1401,8 @@ const DSA_SHEET: any[] = [
             title: "Divide two integers without using multiplication, division and mod operator",
             difficulty: "Medium",
             lcLink: "https://leetcode.com/problems/divide-two-integers/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/division-without-using-multiplication-division-and-mod-operator/0",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/division-without-using-multiplication-division-and-mod-operator/0",
           },
         ],
       },
@@ -1405,7 +1438,8 @@ const DSA_SHEET: any[] = [
             title: "Find the two numbers appearing odd number of times",
             difficulty: "Easy",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/two-numbers-with-odd-occurrences5846/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/two-numbers-with-odd-occurrences5846/1",
           },
         ],
       },
@@ -1423,7 +1457,8 @@ const DSA_SHEET: any[] = [
             title: "All Divisors of a Number",
             difficulty: "Easy",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/all-divisors-of-a-number/1?utm_source=youtube&amp;utm_medium=collab_aryan_ytdescription&amp;utm_campaign=all-divisors-of-a-number",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/all-divisors-of-a-number/1?utm_source=youtube&amp;utm_medium=collab_aryan_ytdescription&amp;utm_campaign=all-divisors-of-a-number",
           },
           {
             title: "Sieve of Eratosthenes",
@@ -1441,13 +1476,15 @@ const DSA_SHEET: any[] = [
             title: "Power(n, x)",
             difficulty: "Medium",
             lcLink: "https://leetcode.com/problems/powx-n/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/power-of-numbers-1587115620/1?utm_source=youtube&amp;utm_medium=collab_aryan_ytdescription&amp;utm_campaign=power-of-numbers",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/power-of-numbers-1587115620/1?utm_source=youtube&amp;utm_medium=collab_aryan_ytdescription&amp;utm_campaign=power-of-numbers",
           },
         ],
       },
     ],
   },
-  { // Step 9
+  {
+    // Step 9
     stepNo: 9,
     stepTitle: "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
     subSteps: [
@@ -1657,7 +1694,8 @@ const DSA_SHEET: any[] = [
       },
     ],
   },
-  { // Step 10
+  {
+    // Step 10
     stepNo: 10,
     stepTitle: "Sliding Window & Two Pointer Combined Problems",
     subSteps: [
@@ -1704,7 +1742,8 @@ const DSA_SHEET: any[] = [
           {
             title: "Number of substring containing all three characters",
             difficulty: "Medium",
-            lcLink: "https://leetcode.com/problems/number-of-substrings-containing-all-three-characters/",
+            lcLink:
+              "https://leetcode.com/problems/number-of-substrings-containing-all-three-characters/",
             gfgLink: "https://bit.ly/3xVYTZa",
           },
           {
@@ -1722,7 +1761,8 @@ const DSA_SHEET: any[] = [
           {
             title: "Longest Substring with At Most K Distinct Characters",
             difficulty: "Medium",
-            lcLink: "https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/",
+            lcLink:
+              "https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/",
             gfgLink: "https://bit.ly/3T12HRu",
           },
           {
@@ -1735,7 +1775,8 @@ const DSA_SHEET: any[] = [
             title: "Minimum Window Substring",
             difficulty: "Hard",
             lcLink: "https://leetcode.com/problems/minimum-window-substring/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/smallest-window-in-a-string-containing-all-the-characters-of-another-string-1587115621/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/smallest-window-in-a-string-containing-all-the-characters-of-another-string-1587115621/1",
           },
           {
             title: "Minimum Window Subsequence",
@@ -1747,7 +1788,8 @@ const DSA_SHEET: any[] = [
       },
     ],
   },
-  { // Step 11
+  {
+    // Step 11
     stepNo: 11,
     stepTitle: "Heaps [Learning, Medium, Hard Problems]",
     subSteps: [
@@ -1848,7 +1890,8 @@ const DSA_SHEET: any[] = [
           {
             title: "Kth largest element in a stream of running integers",
             difficulty: "Easy",
-            lcLink: "https://leetcode.com/problems/kth-largest-element-in-a-stream/#:~:text=Implement%20KthLargest%20class%3A,largest%20element%20in%20the%20stream.",
+            lcLink:
+              "https://leetcode.com/problems/kth-largest-element-in-a-stream/#:~:text=Implement%20KthLargest%20class%3A,largest%20element%20in%20the%20stream.",
             gfgLink: "https://bit.ly/3JZPqEV",
           },
           {
@@ -1873,7 +1916,8 @@ const DSA_SHEET: any[] = [
       },
     ],
   },
-  { // Step 12
+  {
+    // Step 12
     stepNo: 12,
     stepTitle: "Greedy Algorithms [Easy, Medium/Hard]",
     subSteps: [
@@ -1896,7 +1940,8 @@ const DSA_SHEET: any[] = [
           {
             title: "Greedy algorithm to find minimum number of coins",
             difficulty: "Medium",
-            lcLink: "https://www.geeksforgeeks.org/find-minimum-number-of-coins-that-make-a-change/",
+            lcLink:
+              "https://www.geeksforgeeks.org/find-minimum-number-of-coins-that-make-a-change/",
             gfgLink: "https://bit.ly/3Ka7xYU",
           },
           {
@@ -1920,7 +1965,8 @@ const DSA_SHEET: any[] = [
           {
             title: "N meetings in one room",
             difficulty: "Medium",
-            lcLink: "https://practice.geeksforgeeks.org/problems/n-meetings-in-one-room-1587115620/1",
+            lcLink:
+              "https://practice.geeksforgeeks.org/problems/n-meetings-in-one-room-1587115620/1",
             gfgLink: "https://bit.ly/3A6Ob1Y",
           },
           {
@@ -1944,7 +1990,8 @@ const DSA_SHEET: any[] = [
           {
             title: "Job sequencing Problem",
             difficulty: "Medium",
-            lcLink: "https://practice.geeksforgeeks.org/problems/job-sequencing-problem-1587115620/1#",
+            lcLink:
+              "https://practice.geeksforgeeks.org/problems/job-sequencing-problem-1587115620/1#",
             gfgLink: "https://bit.ly/3Pttpzj",
           },
           {
@@ -1987,7 +2034,8 @@ const DSA_SHEET: any[] = [
       },
     ],
   },
-  { // Step 13
+  {
+    // Step 13
     stepNo: 13,
     stepTitle: "Binary Trees [Traversals, Medium and Hard Problems]",
     subSteps: [
@@ -2208,13 +2256,15 @@ const DSA_SHEET: any[] = [
           {
             title: "Construct Binary Tree from inorder and preorder",
             difficulty: "Hard",
-            lcLink: "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/",
+            lcLink:
+              "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/",
             gfgLink: "https://bit.ly/3AoZ4N5",
           },
           {
             title: "Construct the Binary Tree from Postorder and Inorder Traversal",
             difficulty: "Hard",
-            lcLink: "https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/",
+            lcLink:
+              "https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/",
             gfgLink: "https://bit.ly/3wbFiTI",
           },
           {
@@ -2245,7 +2295,8 @@ const DSA_SHEET: any[] = [
       },
     ],
   },
-  { // Step 14
+  {
+    // Step 14
     stepNo: 14,
     stepTitle: "Binary Search Trees [Concept and Problems]",
     subSteps: [
@@ -2305,7 +2356,8 @@ const DSA_SHEET: any[] = [
             title: "Find K-th smallest/largest element in BST",
             difficulty: "Medium",
             lcLink: "https://leetcode.com/problems/kth-smallest-element-in-a-bst/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/find-k-th-smallest-element-in-bst/1#:~:text=Find%20the%20Kth%20Smallest%20element%20in%20the%20BST.&text=Your%20Task%3A,such%20element%20exists%20return%20%2D1.",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/find-k-th-smallest-element-in-bst/1#:~:text=Find%20the%20Kth%20Smallest%20element%20in%20the%20BST.&text=Your%20Task%3A,such%20element%20exists%20return%20%2D1.",
           },
           {
             title: "Check if a tree is a BST or BT",
@@ -2317,12 +2369,14 @@ const DSA_SHEET: any[] = [
             title: "LCA in Binary Search Tree",
             difficulty: "Medium",
             lcLink: "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/lowest-common-ancestor-in-a-bst/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/lowest-common-ancestor-in-a-bst/1",
           },
           {
             title: "Construct a BST from a preorder traversal",
             difficulty: "Medium",
-            lcLink: "https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/",
+            lcLink:
+              "https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/",
             gfgLink: "https://practice.geeksforgeeks.org/problems/preorder-to-postorder4423/1",
           },
           {
@@ -2341,7 +2395,8 @@ const DSA_SHEET: any[] = [
             title: "Two Sum In BST | Check if there exists a pair with Sum K",
             difficulty: "Medium",
             lcLink: "https://leetcode.com/problems/two-sum-iv-input-is-a-bst/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/find-a-pair-with-given-target-in-bst/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/find-a-pair-with-given-target-in-bst/1",
           },
           {
             title: "Recover BST | Correct BST with two nodes swapped",
@@ -2359,7 +2414,8 @@ const DSA_SHEET: any[] = [
       },
     ],
   },
-  { // Step 15
+  {
+    // Step 15
     stepNo: 15,
     stepTitle: "Graphs [Concepts & Problems]",
     subSteps: [
@@ -2388,20 +2444,24 @@ const DSA_SHEET: any[] = [
           {
             title: "Connected Components | Logic Explanation",
             difficulty: "Hard",
-            lcLink: "https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/",
+            lcLink:
+              "https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/",
             gfgLink: "https://bit.ly/3AxzhDG",
           },
           {
             title: "BFS",
             difficulty: "Medium",
             lcLink: "https://practice.geeksforgeeks.org/problems/bfs-traversal-of-graph/1",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/bfs-traversal-of-graph/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=bfs_of_graph",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/bfs-traversal-of-graph/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=bfs_of_graph",
           },
           {
             title: "DFS",
             difficulty: "Hard",
-            lcLink: "https://practice.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=dfs_of_graph",
+            lcLink:
+              "https://practice.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=dfs_of_graph",
           },
         ],
       },
@@ -2412,8 +2472,10 @@ const DSA_SHEET: any[] = [
           {
             title: "Number of provinces (leetcode)",
             difficulty: "Medium",
-            lcLink: "https://leetcode.com/problems/number-of-provinces/#:~:text=A%20province%20is%20a%20group,the%20total%20number%20of%20provinces.",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/number-of-provinces/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=number_of_provinces",
+            lcLink:
+              "https://leetcode.com/problems/number-of-provinces/#:~:text=A%20province%20is%20a%20group,the%20total%20number%20of%20provinces.",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/number-of-provinces/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=number_of_provinces",
           },
           {
             title: "Connected Components Problem in Matrix",
@@ -2431,25 +2493,29 @@ const DSA_SHEET: any[] = [
             title: "Flood fill",
             difficulty: "Hard",
             lcLink: "https://leetcode.com/problems/flood-fill/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/flood-fill-algorithm1856/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=flood-fill-algorithm",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/flood-fill-algorithm1856/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=flood-fill-algorithm",
           },
           {
             title: "Cycle Detection in unirected Graph (bfs)",
             difficulty: "Hard",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=detect-cycle-in-an-undirected-graph",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=detect-cycle-in-an-undirected-graph",
           },
           {
             title: "Cycle Detection in undirected Graph (dfs)",
             difficulty: "Hard",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=detect-cycle-in-an-undirected-graph",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=detect-cycle-in-an-undirected-graph",
           },
           {
             title: "0/1 Matrix (Bfs Problem)",
             difficulty: "Medium",
             lcLink: "https://leetcode.com/problems/01-matrix/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/distance-of-nearest-cell-having-1-1587115620/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/distance-of-nearest-cell-having-1-1587115620/1",
           },
           {
             title: "Surrounded Regions (dfs)",
@@ -2490,8 +2556,10 @@ const DSA_SHEET: any[] = [
           {
             title: "Cycle Detection in Directed Graph (DFS)",
             difficulty: "Hard",
-            lcLink: "https://leetcode.com/problems/course-schedule-ii/discuss/293048/detecting-cycle-in-directed-graph-problem",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1",
+            lcLink:
+              "https://leetcode.com/problems/course-schedule-ii/discuss/293048/detecting-cycle-in-directed-graph-problem",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1",
           },
         ],
       },
@@ -2515,7 +2583,8 @@ const DSA_SHEET: any[] = [
             title: "Cycle Detection in Directed Graph (BFS)",
             difficulty: "Hard",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1",
           },
           {
             title: "Course Schedule - I",
@@ -2563,7 +2632,8 @@ const DSA_SHEET: any[] = [
             title: "Djisktra's Algorithm",
             difficulty: "Hard",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/implementing-dijkstra-set-1-adjacency-matrix/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/implementing-dijkstra-set-1-adjacency-matrix/1",
           },
           {
             title: "Why priority Queue is used in Djisktra's Algorithm",
@@ -2599,10 +2669,12 @@ const DSA_SHEET: any[] = [
             title: "Number of ways to arrive at destination",
             difficulty: "Medium",
             lcLink: "https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/number-of-ways-to-arrive-at-destination/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/number-of-ways-to-arrive-at-destination/1",
           },
           {
-            title: "Minimum steps to reach end from start by performing multiplication and mod operations with array elements",
+            title:
+              "Minimum steps to reach end from start by performing multiplication and mod operations with array elements",
             difficulty: "Hard",
             lcLink: null,
             gfgLink: "https://bit.ly/3QAEsrY",
@@ -2611,19 +2683,23 @@ const DSA_SHEET: any[] = [
             title: "Bellman Ford Algorithm",
             difficulty: "Hard",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/distance-from-the-source-bellman-ford-algorithm/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/distance-from-the-source-bellman-ford-algorithm/1",
           },
           {
             title: "Floyd Warshal Algorithm",
             difficulty: "Hard",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/implementing-floyd-warshall2042/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/implementing-floyd-warshall2042/1",
           },
           {
             title: "Find the city with the smallest number of neighbors in a threshold distance",
             difficulty: "Hard",
-            lcLink: "https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/0/?category[]=Shortest%20Path&category[]=Shortest%20Path&page=1&query=category[]Shortest%20Pathpage1category[]Shortest%20Path",
+            lcLink:
+              "https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/0/?category[]=Shortest%20Path&category[]=Shortest%20Path&page=1&query=category[]Shortest%20Pathpage1category[]Shortest%20Path",
           },
         ],
       },
@@ -2706,7 +2782,8 @@ const DSA_SHEET: any[] = [
           {
             title: "Bridges in Graph",
             difficulty: "Hard",
-            lcLink: "https://leetcode.com/problems/critical-connections-in-a-network/discuss/382385/find-bridges-in-a-graph",
+            lcLink:
+              "https://leetcode.com/problems/critical-connections-in-a-network/discuss/382385/find-bridges-in-a-graph",
             gfgLink: "https://bit.ly/3dFdvVe",
           },
           {
@@ -2725,7 +2802,8 @@ const DSA_SHEET: any[] = [
       },
     ],
   },
-  { // Step 16
+  {
+    // Step 16
     stepNo: 16,
     stepTitle: "Dynamic Programming [Patterns and Problems]",
     subSteps: [
@@ -2749,7 +2827,8 @@ const DSA_SHEET: any[] = [
             title: "Climbing Stars",
             difficulty: "Medium",
             lcLink: "https://leetcode.com/problems/climbing-stairs/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/count-ways-to-reach-the-nth-stair-1587115620/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/count-ways-to-reach-the-nth-stair-1587115620/1",
           },
           {
             title: "Frog Jump(DP-3)",
@@ -2844,7 +2923,8 @@ const DSA_SHEET: any[] = [
           {
             title: "Partition Set Into 2 Subsets With Min Absolute Sum Diff (DP- 16)",
             difficulty: "Medium",
-            lcLink: "https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/",
+            lcLink:
+              "https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/",
             gfgLink: "https://practice.geeksforgeeks.org/problems/minimum-sum-partition3317/1",
           },
           {
@@ -2905,7 +2985,8 @@ const DSA_SHEET: any[] = [
             title: "Longest Common Subsequence | (DP - 25)",
             difficulty: "Hard",
             lcLink: "https://leetcode.com/problems/longest-common-subsequence/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/longest-common-subsequence-1587115620/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/longest-common-subsequence-1587115620/1",
           },
           {
             title: "Print Longest Common Subsequence | (DP - 26)",
@@ -2923,31 +3004,36 @@ const DSA_SHEET: any[] = [
             title: "Longest Palindromic Subsequence | (DP-28)",
             difficulty: "Hard",
             lcLink: "https://leetcode.com/problems/longest-palindromic-subsequence/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/longest-palindromic-subsequence-1612327878/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/longest-palindromic-subsequence-1612327878/1",
           },
           {
             title: "Minimum insertions to make string palindrome | DP-29",
             difficulty: "Hard",
-            lcLink: "https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/",
+            lcLink:
+              "https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/",
             gfgLink: "https://practice.geeksforgeeks.org/problems/form-a-palindrome1455/1",
           },
           {
             title: "Minimum Insertions/Deletions to Convert String | (DP- 30)",
             difficulty: "Hard",
             lcLink: "https://leetcode.com/problems/delete-operation-for-two-strings/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/minimum-number-of-deletions-and-insertions0209/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/minimum-number-of-deletions-and-insertions0209/1",
           },
           {
             title: "Shortest Common Supersequence | (DP - 31)",
             difficulty: "Hard",
             lcLink: "https://leetcode.com/problems/shortest-common-supersequence/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/shortest-common-supersequence0322/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/shortest-common-supersequence0322/1",
           },
           {
             title: "Distinct Subsequences| (DP-32)",
             difficulty: "Hard",
             lcLink: "https://leetcode.com/problems/distinct-subsequences/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/number-of-distinct-subsequences0909/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/number-of-distinct-subsequences0909/1",
           },
           {
             title: "Edit Distance | (DP-33)",
@@ -2982,8 +3068,10 @@ const DSA_SHEET: any[] = [
           {
             title: "Buy and Sell Stocks III|(DP-37)",
             difficulty: "Hard",
-            lcLink: "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/description/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/buy-and-sell-a-share-at-most-twice/1",
+            lcLink:
+              "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/description/",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/buy-and-sell-a-share-at-most-twice/1",
           },
           {
             title: "Buy and Stock Sell IV |(DP-38)",
@@ -3000,7 +3088,8 @@ const DSA_SHEET: any[] = [
           {
             title: "Buy and Sell Stocks With Transaction Fee|(DP-40)",
             difficulty: "Hard",
-            lcLink: "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/",
+            lcLink:
+              "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/",
             gfgLink: "https://bit.ly/3AwUkpe",
           },
         ],
@@ -3013,7 +3102,8 @@ const DSA_SHEET: any[] = [
             title: "Longest Increasing Subsequence |(DP-41)",
             difficulty: "Hard",
             lcLink: "https://leetcode.com/problems/longest-increasing-subsequence/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/longest-increasing-subsequence-1587115620/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/longest-increasing-subsequence-1587115620/1",
           },
           {
             title: "Printing Longest Increasing Subsequence|(DP-42)",
@@ -3043,7 +3133,8 @@ const DSA_SHEET: any[] = [
             title: "Longest Bitonic Subsequence |(DP-46)",
             difficulty: "Hard",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/longest-bitonic-subsequence0824/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/longest-bitonic-subsequence0824/1",
           },
           {
             title: "Number of Longest Increasing Subsequences|(DP-47)",
@@ -3121,7 +3212,8 @@ const DSA_SHEET: any[] = [
       },
     ],
   },
-  { // Step 17
+  {
+    // Step 17
     stepNo: 17,
     stepTitle: "Tries",
     subSteps: [
@@ -3169,7 +3261,8 @@ const DSA_SHEET: any[] = [
             title: "Maximum XOR of two numbers in an array",
             difficulty: "Medium",
             lcLink: "https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/maximum-xor-of-two-numbers-in-an-array/0",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/maximum-xor-of-two-numbers-in-an-array/0",
           },
           {
             title: "Maximum XOR With an Element From Array",
@@ -3181,7 +3274,8 @@ const DSA_SHEET: any[] = [
       },
     ],
   },
-  { // Step 18
+  {
+    // Step 18
     stepNo: 18,
     stepTitle: "Strings",
     subSteps: [
@@ -3210,14 +3304,17 @@ const DSA_SHEET: any[] = [
           {
             title: "Rabin Karp",
             difficulty: "Hard",
-            lcLink: "https://leetcode.com/problems/repeated-string-match/discuss/416144/Rabin-Karp-algorithm-C%2B%2B-implementation",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/31272eef104840f7430ad9fd1d43b434a4b9596b/1",
+            lcLink:
+              "https://leetcode.com/problems/repeated-string-match/discuss/416144/Rabin-Karp-algorithm-C%2B%2B-implementation",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/31272eef104840f7430ad9fd1d43b434a4b9596b/1",
           },
           {
             title: "Z-Function",
             difficulty: "Easy",
             lcLink: "https://leetcode.com/problems/implement-strstr/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/8dcd25918295847b4ced54055eae35a8501181c1/1",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/8dcd25918295847b4ced54055eae35a8501181c1/1",
           },
           {
             title: "KMP algo / LPS(pi) array",
@@ -3241,7 +3338,8 @@ const DSA_SHEET: any[] = [
             title: "Count palindromic subsequence in given string",
             difficulty: "Hard",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/count-palindromic-subsequences/1#:~:text=Given%20a%20string%20str%20of,formed%20from%20the%20string%20str.&text=Your%20Task%3A,read%20input%20or%20print%20anything.",
+            gfgLink:
+              "https://practice.geeksforgeeks.org/problems/count-palindromic-subsequences/1#:~:text=Given%20a%20string%20str%20of,formed%20from%20the%20string%20str.&text=Your%20Task%3A,read%20input%20or%20print%20anything.",
           },
         ],
       },

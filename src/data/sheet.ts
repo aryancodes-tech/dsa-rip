@@ -68,23 +68,24 @@ export const SHEET: Step[] = DSA_SHEET.map((step: any) => ({
 }));
 
 export const ALL_PROBLEMS: Problem[] = SHEET.flatMap((s) =>
-  s.subSteps.flatMap((ss) => ss.problems)
+  s.subSteps.flatMap((ss) => ss.problems),
 );
 
 /**
  * Step and sub-step titles keyed by {@link Problem.id}; used when searching sheet scope (not problem title alone).
  */
-export const PROBLEM_TOPIC_LABELS_BY_ID: Record<string, { stepTitle: string; subStepTitle: string }> =
-  Object.fromEntries(
-    SHEET.flatMap((step) =>
-      step.subSteps.flatMap((sub) =>
-        sub.problems.map((p) => [
-          p.id,
-          { stepTitle: step.stepTitle, subStepTitle: sub.subStepTitle },
-        ] as const),
+export const PROBLEM_TOPIC_LABELS_BY_ID: Record<
+  string,
+  { stepTitle: string; subStepTitle: string }
+> = Object.fromEntries(
+  SHEET.flatMap((step) =>
+    step.subSteps.flatMap((sub) =>
+      sub.problems.map(
+        (p) => [p.id, { stepTitle: step.stepTitle, subStepTitle: sub.subStepTitle }] as const,
       ),
     ),
-  );
+  ),
+);
 
 export const TOTAL = ALL_PROBLEMS.length;
 export const TOTAL_BY_DIFF = {

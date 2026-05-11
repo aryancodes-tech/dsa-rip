@@ -3,8 +3,7 @@
  *
  * Capture ids are digits optionally followed by letters (e.g. `20250304100116`).
  */
-export const INTERNET_ARCHIVE_REPLAY_PREFIX_RE =
-  /^https?:\/\/web\.archive\.org\/web\/[^/]+\//i;
+export const INTERNET_ARCHIVE_REPLAY_PREFIX_RE = /^https?:\/\/web\.archive\.org\/web\/[^/]+\//i;
 
 /**
  * Strips Wayback replay host + capture segment so URLs open on the original site (takeuforward, YouTube, etc.).

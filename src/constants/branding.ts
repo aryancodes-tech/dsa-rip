@@ -106,7 +106,9 @@ export function isGeeksforGeeksResource(link: { url: string; label: string }): b
 /**
  * Picks the single “other resource” link shown in the grid (first entry).
  */
-export function getPrimaryOtherLink(others: { label: string; url: string }[]): { label: string; url: string } | null {
+export function getPrimaryOtherLink(
+  others: { label: string; url: string }[],
+): { label: string; url: string } | null {
   if (others.length === 0) return null;
   return others[0];
 }

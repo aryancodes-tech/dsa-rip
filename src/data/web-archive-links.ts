@@ -75,7 +75,11 @@ export function getArchiveExtraLinksForProblem(
   subStepNo: number,
   sheetTitle: string,
 ): ArchiveExtraLinks {
-  const key = composeArchiveLinkKey(stepNo, subStepNo, normalizeProblemTitleForArchiveMatch(sheetTitle));
+  const key = composeArchiveLinkKey(
+    stepNo,
+    subStepNo,
+    normalizeProblemTitleForArchiveMatch(sheetTitle),
+  );
   const links = ARCHIVE_LINK_INDEX.get(key);
   return links ?? { articleLink: null, youtubeLink: null };
 }

@@ -2,8 +2,23 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Search, Moon, Sun, Star, StickyNote, ChevronDown,
-  RotateCcw, Shuffle, Check, X, Globe, FilterX, FileText, LayoutGrid, Settings, User, Sparkles,
+  Search,
+  Moon,
+  Sun,
+  Star,
+  StickyNote,
+  ChevronDown,
+  RotateCcw,
+  Shuffle,
+  Check,
+  X,
+  Globe,
+  FilterX,
+  FileText,
+  LayoutGrid,
+  Settings,
+  User,
+  Sparkles,
 } from "lucide-react";
 import {
   SHEET,
@@ -72,7 +87,11 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "DSA Progress Tracker — Master Data Structures & Algorithms" },
-      { name: "description", content: "Track your DSA journey through DSA sheet. Mark progress, save notes, and revise — all in one elegant tracker." },
+      {
+        name: "description",
+        content:
+          "Track your DSA journey through DSA sheet. Mark progress, save notes, and revise — all in one elegant tracker.",
+      },
       { property: "og:title", content: "DSA Progress Tracker" },
       { property: "og:description", content: "Your personal coding roadmap." },
     ],
@@ -117,7 +136,10 @@ function ProgressBar({
   return (
     <div className={cn("h-1.5 w-full rounded-full bg-muted overflow-hidden", className)}>
       <motion.div
-        className={cn("h-full rounded-full bg-gradient-to-r from-primary/70 to-primary", fillClassName)}
+        className={cn(
+          "h-full rounded-full bg-gradient-to-r from-primary/70 to-primary",
+          fillClassName,
+        )}
         initial={{ width: 0 }}
         animate={{ width: `${value}%` }}
         transition={{ type: "spring", stiffness: 90, damping: 20 }}
@@ -130,11 +152,28 @@ function Ring({ value, size = 56 }: { value: number; size?: number }) {
   const r = (size - 8) / 2;
   const c = 2 * Math.PI * r;
   return (
-    <div className="relative inline-flex items-center justify-center" style={{ width: size, height: size }}>
+    <div
+      className="relative inline-flex items-center justify-center"
+      style={{ width: size, height: size }}
+    >
       <svg width={size} height={size} className="-rotate-90">
-        <circle cx={size / 2} cy={size / 2} r={r} stroke="currentColor" strokeWidth="4" fill="none" className="text-muted" />
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={r}
+          stroke="currentColor"
+          strokeWidth="4"
+          fill="none"
+          className="text-muted"
+        />
         <motion.circle
-          cx={size / 2} cy={size / 2} r={r} stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round"
+          cx={size / 2}
+          cy={size / 2}
+          r={r}
+          stroke="currentColor"
+          strokeWidth="4"
+          fill="none"
+          strokeLinecap="round"
           className="text-primary"
           strokeDasharray={c}
           initial={{ strokeDashoffset: c }}
@@ -157,12 +196,16 @@ function NoteModal({ problem, onClose }: { problem: Problem; onClose: () => void
   return (
     <motion.div
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
-      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       onClick={onClose}
     >
       <motion.div
         className="w-full max-w-lg rounded-2xl bg-card p-6 shadow-2xl border border-border"
-        initial={{ scale: 0.95, y: 10 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, y: 10 }}
+        initial={{ scale: 0.95, y: 10 }}
+        animate={{ scale: 1, y: 0 }}
+        exit={{ scale: 0.95, y: 10 }}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-start justify-between mb-3">
@@ -170,10 +213,18 @@ function NoteModal({ problem, onClose }: { problem: Problem; onClose: () => void
             <p className="text-xs uppercase tracking-wider text-muted-foreground">Note</p>
             <h3 className="font-display text-xl mt-1">{problem.title}</h3>
           </div>
-          <button type="button" onClick={onClose} className="cursor-pointer p-1 rounded-md hover:bg-muted"><X className="size-4" /></button>
+          <button
+            type="button"
+            onClick={onClose}
+            className="cursor-pointer p-1 rounded-md hover:bg-muted"
+          >
+            <X className="size-4" />
+          </button>
         </div>
         <textarea
-          value={val} onChange={(e) => setVal(e.target.value)} autoFocus
+          value={val}
+          onChange={(e) => setVal(e.target.value)}
+          autoFocus
           placeholder="Approach, complexity, tricks…"
           className="w-full h-48 resize-none rounded-lg bg-muted/50 border border-border p-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
         />
@@ -183,17 +234,27 @@ function NoteModal({ problem, onClose }: { problem: Problem; onClose: () => void
   );
 }
 
-function ConfirmReset({ onClose, onConfirm }: { onClose: () => void; onConfirm: (keepNotes: boolean) => void }) {
+function ConfirmReset({
+  onClose,
+  onConfirm,
+}: {
+  onClose: () => void;
+  onConfirm: (keepNotes: boolean) => void;
+}) {
   const [keep, setKeep] = useState(true);
   return (
     <motion.div
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
-      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       onClick={onClose}
     >
       <motion.div
         className="w-full max-w-md rounded-2xl bg-card p-6 shadow-2xl border border-border"
-        initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }}
+        initial={{ scale: 0.95 }}
+        animate={{ scale: 1 }}
+        exit={{ scale: 0.95 }}
         onClick={(e) => e.stopPropagation()}
       >
         <h3 className="font-display text-2xl">Reset all progress?</h3>
@@ -201,12 +262,27 @@ function ConfirmReset({ onClose, onConfirm }: { onClose: () => void; onConfirm: 
           This clears completed and revision-marked questions. This cannot be undone.
         </p>
         <label className="mt-4 flex items-center gap-2 text-sm cursor-pointer">
-          <input type="checkbox" checked={keep} onChange={(e) => setKeep(e.target.checked)} className="accent-primary" />
+          <input
+            type="checkbox"
+            checked={keep}
+            onChange={(e) => setKeep(e.target.checked)}
+            className="accent-primary"
+          />
           Keep my notes
         </label>
         <div className="mt-6 flex justify-end gap-2">
-          <button type="button" onClick={onClose} className="cursor-pointer px-4 py-2 text-sm rounded-lg border border-border hover:bg-muted">Cancel</button>
-          <button type="button" onClick={() => onConfirm(keep)} className="cursor-pointer px-4 py-2 text-sm rounded-lg bg-destructive text-destructive-foreground hover:opacity-90">
+          <button
+            type="button"
+            onClick={onClose}
+            className="cursor-pointer px-4 py-2 text-sm rounded-lg border border-border hover:bg-muted"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            onClick={() => onConfirm(keep)}
+            className="cursor-pointer px-4 py-2 text-sm rounded-lg bg-destructive text-destructive-foreground hover:opacity-90"
+          >
             Reset
           </button>
         </div>
@@ -260,7 +336,9 @@ function DisplayNameDialog({
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-2 py-1">
-          <Label htmlFor="dsa-display-name" className="">Display name</Label>
+          <Label htmlFor="dsa-display-name" className="">
+            Display name
+          </Label>
           <Input
             id="dsa-display-name"
             value={draft}
@@ -333,14 +411,17 @@ function ProblemRow({
   onOpenNote: () => void;
 }) {
   const primaryOther = getPrimaryOtherLink(problem.others);
-  const cell =
-    "col-span-2 flex justify-center sm:col-span-1";
-  const problemTitleCls = cn(problemTitleGridClassName(problemTitleSpanSm), isDone && "text-muted-foreground");
+  const cell = "col-span-2 flex justify-center sm:col-span-1";
+  const problemTitleCls = cn(
+    problemTitleGridClassName(problemTitleSpanSm),
+    isDone && "text-muted-foreground",
+  );
 
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 4 }}
+      animate={{ opacity: 1, y: 0 }}
       className="grid grid-cols-12 items-center gap-2 border-t border-border/60 px-4 py-3 transition-colors hover:bg-muted/40 sm:gap-3 sm:px-6"
     >
       <div className="col-span-1 flex justify-center self-center">
@@ -484,13 +565,20 @@ function ProblemRow({
             className="inline-flex size-9 cursor-pointer items-center justify-center rounded-md touch-manipulation [-webkit-tap-highlight-color:transparent] sm:size-auto sm:p-1.5 hover:bg-muted"
             title="Mark for revision"
           >
-            <Star className={cn("size-4 shrink-0 transition-all", isRev ? "fill-amber-400 text-amber-400" : "text-muted-foreground")} />
+            <Star
+              className={cn(
+                "size-4 shrink-0 transition-all",
+                isRev ? "fill-amber-400 text-amber-400" : "text-muted-foreground",
+              )}
+            />
           </button>
         </div>
       )}
       {columnVisibility.difficulty && (
         <div className="col-span-4 flex justify-end sm:col-span-2 sm:justify-center">
-          <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium border ${diffColor[problem.difficulty]}`}>
+          <span
+            className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium border ${diffColor[problem.difficulty]}`}
+          >
             <span className={`size-1.5 rounded-full ${diffDot[problem.difficulty]}`} />
             {problem.difficulty}
           </span>
@@ -587,7 +675,10 @@ function Index() {
         };
         setOptionalColumnVisibility(next);
         try {
-          localStorage.setItem(DSA_LS_KEYS.optionalColumnMask, String(visibilityToOptionalColumnMask(next)));
+          localStorage.setItem(
+            DSA_LS_KEYS.optionalColumnMask,
+            String(visibilityToOptionalColumnMask(next)),
+          );
         } catch {
           /** ignore */
         }
@@ -627,10 +718,7 @@ function Index() {
   const filteredIds = useMemo(() => new Set(filtered.map((p) => p.id)), [filtered]);
 
   const hasActiveProblemFilters =
-    diffFilter !== "All" ||
-    statusFilter !== "All" ||
-    revOnly ||
-    search.trim().length > 0;
+    diffFilter !== "All" || statusFilter !== "All" || revOnly || search.trim().length > 0;
 
   const stats = useMemo(() => {
     const solved = ALL_PROBLEMS.filter((p) => done.has(p.id));
@@ -648,14 +736,16 @@ function Index() {
   const toggleStep = (n: number) => {
     setOpenSteps((s) => {
       const next = new Set(s);
-      if (next.has(n)) next.delete(n); else next.add(n);
+      if (next.has(n)) next.delete(n);
+      else next.add(n);
       return next;
     });
   };
   const toggleSub = (k: string) => {
     setOpenSubs((s) => {
       const next = new Set(s);
-      if (next.has(k)) next.delete(k); else next.add(k);
+      if (next.has(k)) next.delete(k);
+      else next.add(k);
       return next;
     });
   };
@@ -670,8 +760,11 @@ function Index() {
       if (el) {
         el.scrollIntoView({ behavior: "smooth", block: "center" });
         el.animate(
-          [{ background: "color-mix(in oklab, var(--primary) 20%, transparent)" }, { background: "transparent" }],
-          { duration: 1400 }
+          [
+            { background: "color-mix(in oklab, var(--primary) 20%, transparent)" },
+            { background: "transparent" },
+          ],
+          { duration: 1400 },
         );
       }
     }, 300);
@@ -695,13 +788,14 @@ function Index() {
     <div className="min-h-screen bg-background text-foreground">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-6 sm:py-10 lg:py-12">
         <motion.div
-          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
           className="flex flex-col items-center gap-4 sm:grid sm:grid-cols-[1fr_auto_1fr] sm:items-center sm:gap-x-4"
         >
           <span className="hidden min-w-0 sm:block" aria-hidden />
           <h1 className="font-display max-w-[min(100%,22rem)] justify-self-center text-center text-4xl font-bold leading-tight tracking-tight text-balance sm:max-w-none sm:text-5xl lg:text-6xl">
-            Welcome back,{" "}
-            <span className="text-primary font-semibold">{displayName}</span>
+            Welcome back, <span className="text-primary font-semibold">{displayName}</span>
           </h1>
           <div className="flex w-full min-w-0 flex-wrap items-center justify-center gap-2 sm:w-auto sm:justify-end">
             <DropdownMenu>
@@ -731,7 +825,9 @@ function Index() {
                   Change name…
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuLabel className="text-xs font-normal text-muted-foreground">Theme</DropdownMenuLabel>
+                <DropdownMenuLabel className="text-xs font-normal text-muted-foreground">
+                  Theme
+                </DropdownMenuLabel>
                 <DropdownMenuRadioGroup
                   value={theme}
                   onValueChange={(v) => setTheme(v as AppTheme)}
@@ -752,7 +848,8 @@ function Index() {
                   Sheet columns
                 </DropdownMenuLabel>
                 <p className="px-2 pb-1 text-[10px] leading-snug text-muted-foreground">
-                  Order: YouTube → LeetCode → Others → Article → Note → Revision → Difficulty. LeetCode & Others stay on.
+                  Order: YouTube → LeetCode → Others → Article → Note → Revision → Difficulty.
+                  LeetCode & Others stay on.
                 </p>
                 {OPTIONAL_SHEET_COLUMNS_IN_ORDER.map((key) => (
                   <DropdownMenuCheckboxItem
@@ -788,7 +885,9 @@ function Index() {
 
         {/* Stats overview — spaced sections instead of one dense grid */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           className="mt-10 overflow-hidden rounded-2xl border border-border bg-card shadow-sm"
         >
           <div className="space-y-6 p-5 sm:p-7">
@@ -796,12 +895,18 @@ function Index() {
               <div className="flex min-w-0 items-start gap-4 sm:gap-5">
                 <Ring value={stats.pct} size={52} />
                 <div className="min-w-0 space-y-1 pt-0.5">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">Overall progress</p>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                    Overall progress
+                  </p>
                   <p className="truncate text-2xl font-bold tabular-nums tracking-tight sm:text-3xl">
                     {stats.solved}{" "}
-                    <span className="font-medium text-muted-foreground text-xl sm:text-2xl">/ {stats.total}</span>
+                    <span className="font-medium text-muted-foreground text-xl sm:text-2xl">
+                      / {stats.total}
+                    </span>
                   </p>
-                  <p className="text-sm text-muted-foreground tabular-nums">{Math.round(stats.pct)}% complete</p>
+                  <p className="text-sm text-muted-foreground tabular-nums">
+                    {Math.round(stats.pct)}% complete
+                  </p>
                 </div>
               </div>
               <button
@@ -819,7 +924,9 @@ function Index() {
             <ProgressBar value={stats.pct} className="h-2" />
 
             <div className="space-y-3">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">By difficulty</p>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                By difficulty
+              </p>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                 {(
                   [
@@ -838,7 +945,10 @@ function Index() {
                     )}
                   >
                     <div className="flex items-center gap-2 text-xs font-semibold text-foreground">
-                      <span className={cn("size-2 shrink-0 rounded-full", diffDot[key])} aria-hidden />
+                      <span
+                        className={cn("size-2 shrink-0 rounded-full", diffDot[key])}
+                        aria-hidden
+                      />
                       {key}
                     </div>
                     <div className="flex items-end justify-between gap-2 tabular-nums">
@@ -863,9 +973,14 @@ function Index() {
 
             <div className="border-t border-border/60 pt-5">
               <div className="flex items-start gap-2.5 text-sm leading-snug text-muted-foreground sm:items-center">
-                <Star className="mt-0.5 size-4 shrink-0 fill-amber-400/90 text-amber-500 dark:text-amber-400 lavender:text-amber-600 sm:mt-0" aria-hidden />
+                <Star
+                  className="mt-0.5 size-4 shrink-0 fill-amber-400/90 text-amber-500 dark:text-amber-400 lavender:text-amber-600 sm:mt-0"
+                  aria-hidden
+                />
                 <p>
-                  <span className="font-semibold tabular-nums text-foreground">{stats.revCount}</span>
+                  <span className="font-semibold tabular-nums text-foreground">
+                    {stats.revCount}
+                  </span>
                   <span className="text-muted-foreground"> of </span>
                   <span className="tabular-nums text-muted-foreground">{stats.total}</span>
                   <span className="text-muted-foreground"> problems marked for revision</span>
@@ -877,14 +992,26 @@ function Index() {
 
         {/* Filters */}
         <div ref={flashRef} className="mt-6 flex flex-wrap items-center gap-2">
-          <Select value={diffFilter} onChange={setDiffFilter} options={["All", "Easy", "Medium", "Hard"]} placeholder="All Difficulty" />
-          <Select value={statusFilter} onChange={setStatusFilter} options={["All", "Solved", "Unsolved"]} placeholder="All Status" />
+          <Select
+            value={diffFilter}
+            onChange={setDiffFilter}
+            options={["All", "Easy", "Medium", "Hard"]}
+            placeholder="All Difficulty"
+          />
+          <Select
+            value={statusFilter}
+            onChange={setStatusFilter}
+            options={["All", "Solved", "Unsolved"]}
+            placeholder="All Status"
+          />
           <button
             type="button"
             onClick={() => setRevOnly((v) => !v)}
             className={cn(
               "cursor-pointer inline-flex min-h-10 items-center gap-1.5 rounded-xl border px-3 py-2 text-xs font-medium transition-all touch-manipulation sm:min-h-0",
-              revOnly ? "border-primary/40 bg-primary/10 text-primary" : "border-border bg-card hover:bg-muted",
+              revOnly
+                ? "border-primary/40 bg-primary/10 text-primary"
+                : "border-border bg-card hover:bg-muted",
             )}
           >
             <Star className={`size-3.5 ${revOnly ? "fill-primary" : ""}`} /> Revision
@@ -903,7 +1030,9 @@ function Index() {
               "disabled:cursor-not-allowed disabled:opacity-40 disabled:pointer-events-none disabled:hover:bg-card",
             )}
             title={
-              hasActiveProblemFilters ? "Clear difficulty, status, revision-only, and search" : "No filters applied"
+              hasActiveProblemFilters
+                ? "Clear difficulty, status, revision-only, and search"
+                : "No filters applied"
             }
           >
             <FilterX className="size-3.5" /> Reset filters
@@ -918,7 +1047,8 @@ function Index() {
           <div className="relative order-first w-full basis-full sm:order-none sm:ml-auto sm:w-72 sm:basis-auto">
             <Search className="size-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <input
-              value={search} onChange={(e) => setSearch(e.target.value)}
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
               placeholder="Search topics, subtopics & problems…"
               className="min-h-10 w-full rounded-xl border border-border bg-card py-2 pl-9 pr-3 text-base sm:min-h-0 sm:text-sm focus:outline-none focus:ring-2 focus:ring-ring"
             />
@@ -936,8 +1066,16 @@ function Index() {
             const stepPct = stepFilteredTotal ? (stepDoneInFilter / stepFilteredTotal) * 100 : 0;
             const isOpen = openSteps.has(step.stepNo);
             return (
-              <motion.div layout key={step.stepNo} className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm">
-                <ProgressBar value={stepPct} className="h-1.5 rounded-none" fillClassName="rounded-none" />
+              <motion.div
+                layout
+                key={step.stepNo}
+                className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm"
+              >
+                <ProgressBar
+                  value={stepPct}
+                  className="h-1.5 rounded-none"
+                  fillClassName="rounded-none"
+                />
                 <button
                   type="button"
                   onClick={() => toggleStep(step.stepNo)}
@@ -945,13 +1083,17 @@ function Index() {
                 >
                   <span className="text-sm leading-snug">
                     <span className="font-normal text-muted-foreground">Step {step.stepNo}:</span>{" "}
-                    <span className="font-display text-base sm:text-lg font-medium text-foreground">{step.stepTitle}</span>
+                    <span className="font-display text-base sm:text-lg font-medium text-foreground">
+                      {step.stepTitle}
+                    </span>
                   </span>
                   <div className="ml-auto flex items-center gap-4 shrink-0">
                     <span className="text-xs font-medium tabular-nums text-muted-foreground hidden sm:inline">
                       {stepDoneInFilter} / {stepFilteredTotal}
                     </span>
-                    <span className="text-xs font-medium tabular-nums text-primary w-9 text-right">{Math.round(stepPct)}%</span>
+                    <span className="text-xs font-medium tabular-nums text-primary w-9 text-right">
+                      {Math.round(stepPct)}%
+                    </span>
                     <motion.span animate={{ rotate: isOpen ? 180 : 0 }}>
                       <ChevronDown className="size-4 text-muted-foreground" />
                     </motion.span>
@@ -960,8 +1102,10 @@ function Index() {
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
-                      initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.25, ease: "easeOut" }}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25, ease: "easeOut" }}
                       className="overflow-hidden"
                     >
                       <div className="px-4 pb-6 pt-4 space-y-4 sm:px-6 sm:pb-7 sm:pt-5">
@@ -970,26 +1114,41 @@ function Index() {
                           if (visible.length === 0) return null;
                           const subFilteredTotal = visible.length;
                           const subDoneInFilter = visible.filter((p) => done.has(p.id)).length;
-                          const subPct = subFilteredTotal ? (subDoneInFilter / subFilteredTotal) * 100 : 0;
+                          const subPct = subFilteredTotal
+                            ? (subDoneInFilter / subFilteredTotal) * 100
+                            : 0;
                           const k = `${step.stepNo}-${sub.subStepNo}`;
                           const subOpen = openSubs.has(k);
                           return (
-                            <div key={k} className="rounded-xl border border-border bg-background/50 overflow-hidden">
-                              <ProgressBar value={subPct} className="h-1 rounded-none bg-muted/60" fillClassName="rounded-none" />
+                            <div
+                              key={k}
+                              className="rounded-xl border border-border bg-background/50 overflow-hidden"
+                            >
+                              <ProgressBar
+                                value={subPct}
+                                className="h-1 rounded-none bg-muted/60"
+                                fillClassName="rounded-none"
+                              />
                               <button
                                 type="button"
                                 onClick={() => toggleSub(k)}
                                 className="cursor-pointer w-full flex items-center gap-3 px-5 py-4 sm:px-6 sm:py-4 text-left hover:bg-muted/40 transition-colors"
                               >
                                 <span className="text-sm leading-snug">
-                                  <span className="font-medium text-muted-foreground tabular-nums">{step.stepNo}.{sub.subStepNo}</span>{" "}
-                                  <span className="font-semibold text-foreground">{sub.subStepTitle}</span>
+                                  <span className="font-medium text-muted-foreground tabular-nums">
+                                    {step.stepNo}.{sub.subStepNo}
+                                  </span>{" "}
+                                  <span className="font-semibold text-foreground">
+                                    {sub.subStepTitle}
+                                  </span>
                                 </span>
                                 <div className="ml-auto flex items-center gap-3 shrink-0">
                                   <span className="text-xs font-medium tabular-nums text-muted-foreground">
                                     {subDoneInFilter} / {subFilteredTotal}
                                   </span>
-                                  <span className="text-xs font-semibold tabular-nums text-primary w-9 text-right">{Math.round(subPct)}%</span>
+                                  <span className="text-xs font-semibold tabular-nums text-primary w-9 text-right">
+                                    {Math.round(subPct)}%
+                                  </span>
                                   <motion.span animate={{ rotate: subOpen ? 180 : 0 }}>
                                     <ChevronDown className="size-4 text-muted-foreground" />
                                   </motion.span>
@@ -998,8 +1157,10 @@ function Index() {
                               <AnimatePresence initial={false}>
                                 {subOpen && (
                                   <motion.div
-                                    initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }}
-                                    exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.25 }}
+                                    initial={{ height: 0, opacity: 0 }}
+                                    animate={{ height: "auto", opacity: 1 }}
+                                    exit={{ height: 0, opacity: 0 }}
+                                    transition={{ duration: 0.25 }}
                                     className="overflow-hidden"
                                   >
                                     <div className="px-4 pb-5 pt-4 sm:px-6 sm:pb-6 sm:pt-5">
@@ -1008,49 +1169,57 @@ function Index() {
                                           {/* min width: see DSA_PROBLEM_GRID_MIN_WIDTH_REM in constants/layout.ts */}
                                           <div className="min-w-[34rem] sm:min-w-0">
                                             <div className="hidden grid-cols-12 items-center gap-3 border-t border-border/60 px-2 py-3 text-[11px] uppercase tracking-wider text-muted-foreground sm:grid">
-                                        <div className="col-span-1 text-center">Status</div>
-                                        <div
-                                          className={cn(
-                                            problemTitleGridClassName(problemTitleSpanSm),
-                                            "font-semibold text-muted-foreground",
-                                          )}
-                                        >
-                                          Problem
-                                        </div>
-                                        {optionalColumnVisibility.youtube && (
-                                          <div className="col-span-1 text-center">YouTube</div>
-                                        )}
-                                        <div className="col-span-1 text-center">LeetCode</div>
-                                        <div className="col-span-1 text-center">Others</div>
-                                        {optionalColumnVisibility.article && (
-                                          <div className="col-span-1 text-center">Article</div>
-                                        )}
-                                        {optionalColumnVisibility.note && (
-                                          <div className="col-span-1 text-center">Note</div>
-                                        )}
-                                        {optionalColumnVisibility.revision && (
-                                          <div className="col-span-1 text-center">Revision</div>
-                                        )}
-                                        {optionalColumnVisibility.difficulty && (
-                                          <div className="col-span-2 text-center">Difficulty</div>
-                                        )}
-                                      </div>
-                                    {visible.map((p) => (
-                                      <div id={p.id} key={p.id}>
-                                        <ProblemRow
-                                          problem={p}
-                                          isDone={done.has(p.id)}
-                                          isRev={rev.has(p.id)}
-                                          hasNote={!!notes[p.id]}
-                                          leetcodeLogoSrc={leetcodeLogoSrc}
-                                          columnVisibility={optionalColumnVisibility}
-                                          problemTitleSpanSm={problemTitleSpanSm}
-                                          onToggleDone={() => doneStore.toggle(p.id)}
-                                          onToggleRev={() => revStore.toggle(p.id)}
-                                          onOpenNote={() => setNoteFor(p)}
-                                        />
-                                      </div>
-                                    ))}
+                                              <div className="col-span-1 text-center">Status</div>
+                                              <div
+                                                className={cn(
+                                                  problemTitleGridClassName(problemTitleSpanSm),
+                                                  "font-semibold text-muted-foreground",
+                                                )}
+                                              >
+                                                Problem
+                                              </div>
+                                              {optionalColumnVisibility.youtube && (
+                                                <div className="col-span-1 text-center">
+                                                  YouTube
+                                                </div>
+                                              )}
+                                              <div className="col-span-1 text-center">LeetCode</div>
+                                              <div className="col-span-1 text-center">Others</div>
+                                              {optionalColumnVisibility.article && (
+                                                <div className="col-span-1 text-center">
+                                                  Article
+                                                </div>
+                                              )}
+                                              {optionalColumnVisibility.note && (
+                                                <div className="col-span-1 text-center">Note</div>
+                                              )}
+                                              {optionalColumnVisibility.revision && (
+                                                <div className="col-span-1 text-center">
+                                                  Revision
+                                                </div>
+                                              )}
+                                              {optionalColumnVisibility.difficulty && (
+                                                <div className="col-span-2 text-center">
+                                                  Difficulty
+                                                </div>
+                                              )}
+                                            </div>
+                                            {visible.map((p) => (
+                                              <div id={p.id} key={p.id}>
+                                                <ProblemRow
+                                                  problem={p}
+                                                  isDone={done.has(p.id)}
+                                                  isRev={rev.has(p.id)}
+                                                  hasNote={!!notes[p.id]}
+                                                  leetcodeLogoSrc={leetcodeLogoSrc}
+                                                  columnVisibility={optionalColumnVisibility}
+                                                  problemTitleSpanSm={problemTitleSpanSm}
+                                                  onToggleDone={() => doneStore.toggle(p.id)}
+                                                  onToggleRev={() => revStore.toggle(p.id)}
+                                                  onOpenNote={() => setNoteFor(p)}
+                                                />
+                                              </div>
+                                            ))}
                                           </div>
                                         </div>
                                       </div>
@@ -1069,7 +1238,9 @@ function Index() {
             );
           })}
           {filtered.length === 0 && (
-            <div className="text-center py-12 text-muted-foreground text-sm">No problems match your filters.</div>
+            <div className="text-center py-12 text-muted-foreground text-sm">
+              No problems match your filters.
+            </div>
           )}
         </div>
 
@@ -1088,22 +1259,37 @@ function Index() {
 
       <AnimatePresence>
         {noteFor && <NoteModal problem={noteFor} onClose={() => setNoteFor(null)} />}
-        {confirmReset && <ConfirmReset onClose={() => setConfirmReset(false)} onConfirm={doReset} />}
+        {confirmReset && (
+          <ConfirmReset onClose={() => setConfirmReset(false)} onConfirm={doReset} />
+        )}
       </AnimatePresence>
     </div>
   );
 }
 
-function Select({ value, onChange, options, placeholder }: {
-  value: string; onChange: (v: string) => void; options: string[]; placeholder: string;
+function Select({
+  value,
+  onChange,
+  options,
+  placeholder,
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  options: string[];
+  placeholder: string;
 }) {
   return (
     <div className="relative">
       <select
-        value={value} onChange={(e) => onChange(e.target.value)}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         className="min-h-10 w-full min-w-[9.5rem] cursor-pointer appearance-none rounded-xl border border-border bg-card py-2 pl-3 pr-8 text-sm font-medium hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring touch-manipulation sm:min-h-0 sm:w-auto sm:text-xs"
       >
-        {options.map((o) => <option key={o} value={o}>{o === "All" ? placeholder : o}</option>)}
+        {options.map((o) => (
+          <option key={o} value={o}>
+            {o === "All" ? placeholder : o}
+          </option>
+        ))}
       </select>
       <ChevronDown className="size-3.5 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground" />
     </div>

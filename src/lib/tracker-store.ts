@@ -1,10 +1,4 @@
-import {
-  useEffect,
-  useState,
-  useCallback,
-  useSyncExternalStore,
-  useLayoutEffect,
-} from "react";
+import { useEffect, useState, useCallback, useSyncExternalStore, useLayoutEffect } from "react";
 import {
   decodeNotesMap,
   decodeProblemIdSet,
@@ -122,7 +116,10 @@ function createSetStore(key: string, ssrSnapshotForHook: ReadonlySet<string>) {
   };
 }
 
-function createCompactNotesStore(key: string, ssrSnapshotForHook: Readonly<Record<string, string>>) {
+function createCompactNotesStore(
+  key: string,
+  ssrSnapshotForHook: Readonly<Record<string, string>>,
+) {
   const listeners = new Set<Listener>();
   let state: Record<string, string> = {};
   let storageHydrated = false;
@@ -200,13 +197,17 @@ export function useHydratePersistedTracker() {
 }
 
 export function useSetStore(store: ReturnType<typeof createSetStore>) {
-  return useSyncExternalStore(store.subscribe, () => store.get(), () =>
-    store.getServerSnapshot(),
+  return useSyncExternalStore(
+    store.subscribe,
+    () => store.get(),
+    () => store.getServerSnapshot(),
   );
 }
 export function useNotesStore() {
-  return useSyncExternalStore(notesStore.subscribe, () => notesStore.get(), () =>
-    notesStore.getServerSnapshot(),
+  return useSyncExternalStore(
+    notesStore.subscribe,
+    () => notesStore.get(),
+    () => notesStore.getServerSnapshot(),
   );
 }
 

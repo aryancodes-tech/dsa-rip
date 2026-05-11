@@ -119,11 +119,7 @@ export function decodeProblemIdSet(raw: string | null): Set<string> {
     const parsed: unknown = JSON.parse(raw);
     if (!Array.isArray(parsed)) return out;
 
-    if (
-      parsed.length === 2 &&
-      parsed[0] === DSA_LS_SCHEMA_VERSION &&
-      Array.isArray(parsed[1])
-    ) {
+    if (parsed.length === 2 && parsed[0] === DSA_LS_SCHEMA_VERSION && Array.isArray(parsed[1])) {
       for (const row of parsed[1]) {
         const t = coerceTriple(row);
         if (t === null) continue;
