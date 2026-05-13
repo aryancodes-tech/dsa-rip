@@ -183,6 +183,43 @@ function NoteModal({ problem, onClose }: { problem: Problem; onClose: () => void
   );
 }
 
+/** Enlarged view for sheet row preview images (e.g. Striver pattern diagrams). */
+function PatternDiagramDialog({
+  open,
+  onOpenChange,
+  imageUrl,
+  title,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  imageUrl: string | null;
+  title: string;
+}) {
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-h-[92vh] w-[min(96vw,56rem)] max-w-[min(96vw,56rem)] gap-0 overflow-y-auto rounded-2xl p-4 sm:rounded-2xl sm:p-6">
+        <DialogHeader className="space-y-1 pr-6 text-left">
+          <DialogTitle className="font-display text-base leading-snug sm:text-lg">{title}</DialogTitle>
+          <DialogDescription className="sr-only">
+            Enlarged pattern diagram. Close with the button or Escape.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="mt-3 flex justify-center rounded-xl border border-border/60 bg-white p-2 sm:p-4 dark:bg-zinc-950">
+          {imageUrl ? (
+            <img
+              src={imageUrl}
+              alt=""
+              className="h-auto max-h-[min(78vh,720px)] w-full max-w-full object-contain"
+              loading="eager"
+              decoding="async"
+            />
+          ) : null}
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 function ConfirmReset({ onClose, onConfirm }: { onClose: () => void; onConfirm: (keepNotes: boolean) => void }) {
   const [keep, setKeep] = useState(true);
   return (
@@ -317,6 +354,7 @@ function ProblemRow({
   onToggleDone,
   onToggleRev,
   onOpenNote,
+  onExpandPatternImage,
 }: {
   problem: Problem;
   isDone: boolean;
@@ -331,6 +369,8 @@ function ProblemRow({
   onToggleDone: () => void;
   onToggleRev: () => void;
   onOpenNote: () => void;
+  /** When set and {@link problem.imageUrl} is present, thumbnail opens enlarged preview. */
+  onExpandPatternImage?: () => void;
 }) {
   const primaryOther = getPrimaryOtherLink(problem.others);
   const cell =
@@ -362,7 +402,45 @@ function ProblemRow({
           </AnimatePresence>
         </button>
       </div>
-      <div className={problemTitleCls}>{problem.title}</div>
+      <div className={problemTitleCls}>
+        <div className="flex min-w-0 items-center gap-2">
+          {problem.imageUrl ? (
+            onExpandPatternImage ? (
+              <button
+                type="button"
+                onClick={onExpandPatternImage}
+                title="View larger pattern"
+                aria-label={`View larger pattern diagram: ${problem.title}`}
+                className={cn(
+                  "shrink-0 rounded-md border border-neutral-200/90 bg-white p-0 shadow-sm touch-manipulation dark:border-zinc-700 dark:bg-zinc-950",
+                  "cursor-zoom-in transition-[box-shadow,transform] hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                )}
+              >
+                <img
+                  src={problem.imageUrl}
+                  alt=""
+                  width={36}
+                  height={36}
+                  className="size-9 rounded-[inherit] object-contain"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </button>
+            ) : (
+              <img
+                src={problem.imageUrl}
+                alt=""
+                width={36}
+                height={36}
+                className="size-9 shrink-0 rounded-md border border-neutral-200/90 bg-white object-contain shadow-sm dark:border-zinc-700 dark:bg-zinc-950"
+                loading="lazy"
+                decoding="async"
+              />
+            )
+          ) : null}
+          <span className="min-w-0">{problem.title}</span>
+        </div>
+      </div>
       {columnVisibility.youtube && (
         <div className={cell}>
           {problem.youtubeLink ? (
@@ -466,13 +544,22 @@ function ProblemRow({
             type="button"
             onClick={onOpenNote}
             className={cn(
-              "inline-flex size-9 cursor-pointer items-center justify-center rounded-md touch-manipulation [-webkit-tap-highlight-color:transparent] sm:size-auto sm:p-1.5",
+              "relative inline-flex size-9 cursor-pointer items-center justify-center rounded-md touch-manipulation [-webkit-tap-highlight-color:transparent] sm:size-auto sm:p-1.5",
               hasNote ? "text-primary" : "text-muted-foreground",
               "hover:bg-muted",
             )}
-            title="Note"
+            title={hasNote ? "Has note — click to view or edit" : "Add note"}
+            aria-label={hasNote ? "This question has a saved note. Open note editor." : "Add a note for this question"}
           >
-            <StickyNote className="size-4 shrink-0" />
+            <span className="relative inline-flex shrink-0">
+              <StickyNote className="size-4 shrink-0" aria-hidden />
+              {hasNote ? (
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute -right-1 -top-1 size-2 rounded-full bg-primary shadow-sm ring-2 ring-background dark:ring-zinc-950"
+                />
+              ) : null}
+            </span>
           </button>
         </div>
       )}
@@ -514,6 +601,7 @@ function Index() {
   const [openSteps, setOpenSteps] = useState<Set<number>>(new Set([1]));
   const [openSubs, setOpenSubs] = useState<Set<string>>(new Set());
   const [noteFor, setNoteFor] = useState<Problem | null>(null);
+  const [patternImagePreview, setPatternImagePreview] = useState<{ url: string; title: string } | null>(null);
   const [confirmReset, setConfirmReset] = useState(false);
   const flashRef = useRef<HTMLDivElement | null>(null);
   const [optionalColumnVisibility, setOptionalColumnVisibility] =
@@ -974,7 +1062,7 @@ function Index() {
                           const k = `${step.stepNo}-${sub.subStepNo}`;
                           const subOpen = openSubs.has(k);
                           return (
-                            <div key={k} className="rounded-xl border border-border bg-background/50 overflow-hidden">
+                            <div key={k} className="rounded-xl border border-border bg-card overflow-hidden">
                               <ProgressBar value={subPct} className="h-1 rounded-none bg-muted/60" fillClassName="rounded-none" />
                               <button
                                 type="button"
@@ -1048,6 +1136,11 @@ function Index() {
                                           onToggleDone={() => doneStore.toggle(p.id)}
                                           onToggleRev={() => revStore.toggle(p.id)}
                                           onOpenNote={() => setNoteFor(p)}
+                                          onExpandPatternImage={
+                                            p.imageUrl
+                                              ? () => setPatternImagePreview({ url: p.imageUrl!, title: p.title })
+                                              : undefined
+                                          }
                                         />
                                       </div>
                                     ))}
@@ -1077,6 +1170,15 @@ function Index() {
           Built for focused learners. All progress is saved locally in your browser.
         </p>
       </div>
+
+      <PatternDiagramDialog
+        open={patternImagePreview !== null}
+        onOpenChange={(open) => {
+          if (!open) setPatternImagePreview(null);
+        }}
+        imageUrl={patternImagePreview?.url ?? null}
+        title={patternImagePreview?.title ?? ""}
+      />
 
       <DisplayNameDialog
         open={nameDialogOpen}

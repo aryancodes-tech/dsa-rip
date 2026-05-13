@@ -13,6 +13,8 @@ export interface Problem {
   articleLink: string | null;
   /** Canonical YouTube explainer merged from scrape (`webArchive.json`), when present. */
   youtubeLink: string | null;
+  /** Optional preview image (e.g. pattern diagram) shown beside the title in the sheet grid. */
+  imageUrl: string | null;
   others: { label: string; url: string }[];
   stepNo: number;
   subStepNo: number;
@@ -59,6 +61,7 @@ export const SHEET: Step[] = DSA_SHEET.map((step: any) => ({
         lcLink: p.lcLink || null,
         articleLink: p.articleLink ?? extra.articleLink,
         youtubeLink: p.youtubeLink ?? extra.youtubeLink,
+        imageUrl: p.imageUrl ?? null,
         others,
         stepNo: step.stepNo,
         subStepNo: sub.subStepNo,
