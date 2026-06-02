@@ -571,7 +571,7 @@ const DSA_SHEET: any[] = [
             title: "Longest subarray with given sum K(positives)",
             difficulty: "Medium",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=longest-sub-array-with-sum-k",
+            gfgLink: "https://www.naukri.com/code360/problems/longest-subarray-with-sum-k_6682399",
           },
           {
             title: "Longest subarray with sum K (Positives + Negatives)",
