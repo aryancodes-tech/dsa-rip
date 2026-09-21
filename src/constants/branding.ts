@@ -1,4 +1,4 @@
-import type { AppTheme } from "@/constants/theme";
+import type { ResolvedTheme } from "@/constants/theme";
 
 /**
  * Google Fonts stylesheet for the UI body/display family (loaded from document head; not via CSS `@import`
@@ -19,10 +19,10 @@ export const LOGO_GEEKSFORGEEKS_PATH = "/logos/geeksforgeeks.png";
 export const LOGO_YOUTUBE_PATH = "/logos/youtube.png";
 
 /**
- * Which LeetCode raster to show for the tracker theme (`useTheme`).
+ * Which LeetCode raster to show for the resolved tracker theme.
  * Lavender uses the light artwork (lavender shell is a light palette).
  */
-export function leetCodeLogoPublicPath(theme: AppTheme): string {
+export function leetCodeLogoPublicPath(theme: ResolvedTheme): string {
   if (theme === "dark") return LOGO_LEETCODE_DARK_PATH;
   return LOGO_LEETCODE_LIGHT_PATH;
 }
@@ -30,7 +30,7 @@ export function leetCodeLogoPublicPath(theme: AppTheme): string {
 /** Square edge length (px) for LC / GFG raster logos in the problem grid (~10% under the prior 32px size). */
 export const SHEET_PLATFORM_LOGO_PX = 29;
 
-/** Lucide “other” fallback (e.g. Globe) — intentionally smaller than {@link SHEET_PLATFORM_LOGO_PX}. */
+/** Lucide “other” fallback (e.g. Globe) - intentionally smaller than {@link SHEET_PLATFORM_LOGO_PX}. */
 export const SHEET_FALLBACK_ICON_PX = 22;
 
 /**
@@ -41,7 +41,7 @@ export const SHEET_PLATFORM_ICON_LINK_BASE_CLASSES =
   "cursor-pointer inline-flex items-center justify-center rounded-md p-1 hover:bg-muted";
 
 /**
- * Shortener hosts where the final destination is opaque — we infer GFG from {@link resourceLabelMatchesGfg}.
+ * Shortener hosts where the final destination is opaque - we infer GFG from {@link resourceLabelMatchesGfg}.
  */
 const GFG_AMBIGUOUS_SHORTENER_HOSTS: ReadonlySet<string> = new Set([
   "bit.ly",

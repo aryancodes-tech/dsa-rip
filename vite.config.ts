@@ -1,11 +1,15 @@
-// @lovable.dev/vite-tanstack-config already includes the following — do NOT add them manually
-// or the app will break with duplicate plugins:
-//   - tanstackStart, viteReact, tailwindcss, tsConfigPaths, cloudflare (build-only),
-//     componentTagger (dev-only), VITE_* env injection, @ path alias, React/TanStack dedupe,
-//     error logger plugins, and sandbox detection (port/host/strictPort).
-// You can pass additional config via defineConfig({ vite: { ... } }) if needed.
+/**
+ * Vite config for TanStack Start (Cloudflare Worker or Vercel via Nitro).
+ *
+ * Intentionally does not use Lovable wrappers - keeps deploy/source free of that tooling.
+ */
+import path from "node:path";
+import { defineConfig, loadEnv, mergeConfig, type PluginOption, type UserConfig } from "vite";
 import { nitro } from "nitro/vite";
-import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import tailwindcss from "@tailwindcss/vite";
+import tsConfigPaths from "vite-tsconfig-paths";
+import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import viteReact from "@vitejs/plugin-react";
 
 /**
  * Cloudflare deploys use wrangler + `src/server.ts`. Vercel sets `VERCEL=1` during build;
@@ -14,17 +18,64 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
  */
 const deployTargetVercel = process.env.VERCEL === "1";
 
-export default defineConfig({
-  cloudflare: deployTargetVercel ? false : undefined,
-  tanstackStart: deployTargetVercel
-    ? {}
-    : {
-        /** SSR error wrapper for Cloudflare Worker entry (`wrangler.jsonc` `main`). */
-        server: { entry: "server" },
+export default defineConfig(async ({ command, mode }) => {
+  const plugins: PluginOption[] = [
+    tailwindcss(),
+    tsConfigPaths({ projects: ["./tsconfig.json"] }),
+  ];
+
+  if (!deployTargetVercel && command === "build") {
+    const { cloudflare } = await import("@cloudflare/vite-plugin");
+    plugins.push(cloudflare({ viteEnvironment: { name: "ssr" } }));
+  }
+
+  plugins.push(
+    tanstackStart(
+      deployTargetVercel
+        ? {}
+        : {
+            /** SSR error wrapper for Cloudflare Worker entry (`wrangler.jsonc` `main`). */
+            server: { entry: "server" },
+            importProtection: {
+              behavior: "error",
+              client: {
+                files: ["**/server/**"],
+                specifiers: ["server-only"],
+              },
+            },
+          },
+    ),
+    viteReact(),
+  );
+
+  if (deployTargetVercel) {
+    plugins.push(nitro({ preset: "vercel" }));
+  }
+
+  const envDefine: Record<string, string> = {};
+  const loadedEnv = loadEnv(mode, process.cwd(), "VITE_");
+  for (const [key, value] of Object.entries(loadedEnv)) {
+    envDefine[`import.meta.env.${key}`] = JSON.stringify(value);
+  }
+
+  const config: UserConfig = {
+    define: envDefine,
+    resolve: {
+      alias: {
+        "@": path.resolve(process.cwd(), "src"),
       },
-  vite: deployTargetVercel
-    ? {
-        plugins: [nitro({ preset: "vercel" })],
-      }
-    : {},
+      dedupe: [
+        "react",
+        "react-dom",
+        "react/jsx-runtime",
+        "react/jsx-dev-runtime",
+        "@tanstack/react-query",
+        "@tanstack/query-core",
+      ],
+    },
+    server: { host: "127.0.0.1", port: 8080, strictPort: true },
+    plugins,
+  };
+
+  return mergeConfig(config, {});
 });

@@ -12,6 +12,7 @@ import { Analytics } from "@vercel/analytics/react";
 import appCss from "../styles.css?url";
 
 import { POPPINS_GOOGLE_FONTS_STYLESHEET_HREF } from "@/constants/branding";
+import { CREATOR_DISPLAY_NAME, CREATOR_TWITTER_HANDLE } from "@/constants/creator";
 import { useHydratePersistedTracker } from "@/lib/tracker-store";
 
 function NotFoundComponent() {
@@ -77,17 +78,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "DSA Tracker" },
-      { name: "description", content: "Track and master Data Structures & Algorithms with an interactive practice tracker." },
-      { name: "author", content: "Lovable" },
+      { name: "description", content: "Local DSA sheet tracker - mark solved, revise, and practice. Progress stays in your browser." },
+      { name: "author", content: CREATOR_DISPLAY_NAME },
       { property: "og:title", content: "DSA Tracker" },
-      { property: "og:description", content: "Track and master Data Structures & Algorithms with an interactive practice tracker." },
+      { property: "og:description", content: "Local DSA sheet tracker - mark solved, revise, and practice. Progress stays in your browser." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:site", content: CREATOR_TWITTER_HANDLE },
       { name: "twitter:title", content: "DSA Tracker" },
-      { name: "twitter:description", content: "Track and master Data Structures & Algorithms with an interactive practice tracker." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d97cee15-6401-41ca-bf7c-3f38271e03aa/id-preview-9a620a6c--e10d6d2f-e003-48d0-b94f-fb77390b9211.lovable.app-1778696970503.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d97cee15-6401-41ca-bf7c-3f38271e03aa/id-preview-9a620a6c--e10d6d2f-e003-48d0-b94f-fb77390b9211.lovable.app-1778696970503.png" },
+      { name: "twitter:description", content: "Local DSA sheet tracker - mark solved, revise, and practice. Progress stays in your browser." },
     ],
     links: [
       {

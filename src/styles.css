@@ -197,7 +197,7 @@
     transition: background-color 0.4s ease, color 0.4s ease;
   }
 
-  /** Headings and hero titles — same family, heavier weights for hierarchy. */
+  /** Headings and hero titles - same family, heavier weights for hierarchy. */
   .font-display {
     font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
     letter-spacing: -0.02em;

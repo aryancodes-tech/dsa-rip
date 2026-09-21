@@ -1,0 +1,10 @@
+# Keep scrape / Lovable / local tooling out of Vercel upload context
+.lovable
+scripts/raw
+.wrangler
+.dev.vars
+node_modules
+dist
+.output
+.tanstack
+.nitro

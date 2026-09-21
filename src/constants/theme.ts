@@ -1,20 +1,57 @@
 /**
- * Visual theme for the tracker shell (background, primary, cards). Persisted under `DSA_LS_KEYS.theme`.
+ * Theme preference (what the user picks) vs resolved visual theme (what `<html>` classes use).
+ * Persisted under `DSA_LS_KEYS.theme`.
  */
-export type AppTheme = "light" | "dark" | "lavender";
 
-/** Default when nothing valid is stored. */
-export const DSA_THEME_DEFAULT: AppTheme = "light";
+/** Stored / menu selection - default is follow OS. */
+export type ThemePreference = "system" | "light" | "dark" | "lavender";
+
+/** Concrete palette applied to the document (`dark` / `lavender` classes, or neither for light). */
+export type ResolvedTheme = "light" | "dark" | "lavender";
 
 /**
- * Single-letter wire format in `localStorage` (`l` | `d` | `v`).
- * @see themeToWire in tracker-store
+ * @deprecated Prefer {@link ResolvedTheme} for visuals and {@link ThemePreference} for storage.
+ * Kept as an alias so existing imports that mean “resolved palette” keep compiling.
  */
-export const DSA_THEME_WIRE: Record<AppTheme, string> = {
+export type AppTheme = ResolvedTheme;
+
+/** Default preference when nothing valid is stored. */
+export const DSA_THEME_DEFAULT: ThemePreference = "system";
+
+/**
+ * Single-letter wire format in `localStorage` (`s` | `l` | `d` | `v`).
+ */
+export const DSA_THEME_WIRE: Record<ThemePreference, string> = {
+  system: "s",
   light: "l",
   dark: "d",
   lavender: "v",
 } as const;
 
-/** Order used by the header “cycle theme” control. */
-export const APP_THEME_CYCLE_ORDER: readonly AppTheme[] = ["light", "dark", "lavender"];
+/** Menu order for the custom theme dropdown. */
+export const THEME_PREFERENCE_OPTIONS: readonly ThemePreference[] = [
+  "system",
+  "light",
+  "dark",
+  "lavender",
+] as const;
+
+/** Human labels for {@link THEME_PREFERENCE_OPTIONS}. */
+export const THEME_PREFERENCE_LABEL: Record<ThemePreference, string> = {
+  system: "System",
+  light: "Light",
+  dark: "Dark",
+  lavender: "Lavender",
+};
+
+/**
+ * Maps a stored preference to the palette that should paint the UI.
+ * `systemDark` comes from `prefers-color-scheme: dark`.
+ */
+export function resolveThemePreference(
+  preference: ThemePreference,
+  systemDark: boolean,
+): ResolvedTheme {
+  if (preference === "system") return systemDark ? "dark" : "light";
+  return preference;
+}

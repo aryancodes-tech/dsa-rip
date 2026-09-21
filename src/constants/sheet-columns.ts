@@ -1,6 +1,6 @@
 /**
  * Optional problem-grid columns (fixed order when visible: YouTube → Article → Note → Revision → Difficulty).
- * LeetCode & Others are always shown — see {@link DEFAULT_OPTIONAL_SHEET_COLUMN_VISIBILITY}.
+ * LeetCode & Others are always shown - see {@link DEFAULT_OPTIONAL_SHEET_COLUMN_VISIBILITY}.
  */
 
 export type OptionalSheetColumnKey = "youtube" | "article" | "note" | "revision" | "difficulty";
@@ -71,22 +71,22 @@ export function computeProblemTitleColSpanSm(vis: OptionalSheetColumnVisibility)
   return Math.max(2, 12 - used);
 }
 
-/** Tailwind `sm:col-span-*` for title cell (avoid dynamic template strings — JIT sees full class names). */
-const TITLE_COL_SPAN_SM_CLASS: Record<number, string> = {
-  2: "sm:col-span-2",
-  3: "sm:col-span-3",
-  4: "sm:col-span-4",
-  5: "sm:col-span-5",
-  6: "sm:col-span-6",
-  7: "sm:col-span-7",
-  8: "sm:col-span-8",
-  9: "sm:col-span-9",
+/** Tailwind `col-span-*` for title cell (avoid dynamic template strings - JIT sees full class names). */
+const TITLE_COL_SPAN_CLASS: Record<number, string> = {
+  2: "col-span-2",
+  3: "col-span-3",
+  4: "col-span-4",
+  5: "col-span-5",
+  6: "col-span-6",
+  7: "col-span-7",
+  8: "col-span-8",
+  9: "col-span-9",
 };
 
 /**
- * Problem title column classes: full width on xs, fixed `sm:col-span-*` from {@link computeProblemTitleColSpanSm}.
+ * Problem title column classes for the sheet grid (same on mobile + desktop; narrow viewports scroll horizontally).
  */
 export function problemTitleGridClassName(titleColSpanSm: number): string {
-  const sm = TITLE_COL_SPAN_SM_CLASS[titleColSpanSm] ?? "sm:col-span-4";
-  return `col-span-12 text-sm font-normal leading-snug ${sm}`;
+  const span = TITLE_COL_SPAN_CLASS[titleColSpanSm] ?? "col-span-4";
+  return `text-sm font-normal leading-snug ${span}`;
 }
