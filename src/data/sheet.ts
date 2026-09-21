@@ -1,8 +1,8 @@
-// @ts-nocheck
 import DSA_SHEET from "./dataSheet";
 import { getProblemExtraLinks } from "./problem-extra-links";
+import type { RawDifficulty, RawPlatformLink } from "./raw-sheet";
 
-export type Difficulty = "Easy" | "Medium" | "Hard";
+export type Difficulty = RawDifficulty;
 
 export interface Problem {
   id: string;
@@ -32,22 +32,27 @@ export interface Step {
   subSteps: SubStep[];
 }
 
-function flattenLinks(value: any, label: string): { label: string; url: string }[] {
-  if (!value) return [];
-  if (typeof value === "string") return [{ label, url: value }];
-  if (typeof value === "object") {
-    return Object.entries(value).map(([k, v]) => ({ label: `${label} (${k})`, url: v as string }));
+function flattenLinks(
+  value: RawPlatformLink | undefined,
+  label: string,
+): { label: string; url: string }[] {
+  if (value === null || value === undefined) return [];
+  if (typeof value === "string") {
+    if (value.length === 0) return [];
+    return [{ label, url: value }];
   }
-  return [];
+  return Object.entries(value)
+    .filter(([, url]) => typeof url === "string" && url.length > 0)
+    .map(([k, url]) => ({ label: `${label} (${k})`, url }));
 }
 
-export const SHEET: Step[] = DSA_SHEET.map((step: any) => ({
+export const SHEET: Step[] = DSA_SHEET.map((step) => ({
   stepNo: step.stepNo,
   stepTitle: step.stepTitle,
-  subSteps: step.subSteps.map((sub: any) => ({
+  subSteps: step.subSteps.map((sub) => ({
     subStepNo: sub.subStepNo,
     subStepTitle: sub.subStepTitle,
-    problems: sub.problems.map((p: any, idx: number) => {
+    problems: sub.problems.map((p, idx) => {
       const others = [
         ...flattenLinks(p.gfgLink, "GFG"),
         ...flattenLinks(p.cnLink, "Coding Ninjas"),
@@ -57,8 +62,8 @@ export const SHEET: Step[] = DSA_SHEET.map((step: any) => ({
       return {
         id: `s${step.stepNo}-ss${sub.subStepNo}-${idx}-${p.title}`.replace(/\s+/g, "_"),
         title: p.title,
-        difficulty: (p.difficulty || "Easy") as Difficulty,
-        lcLink: p.lcLink || null,
+        difficulty: p.difficulty,
+        lcLink: p.lcLink ?? null,
         articleLink: p.articleLink ?? extra.articleLink,
         youtubeLink: p.youtubeLink ?? extra.youtubeLink,
         imageUrl: p.imageUrl ?? null,
@@ -71,23 +76,24 @@ export const SHEET: Step[] = DSA_SHEET.map((step: any) => ({
 }));
 
 export const ALL_PROBLEMS: Problem[] = SHEET.flatMap((s) =>
-  s.subSteps.flatMap((ss) => ss.problems)
+  s.subSteps.flatMap((ss) => ss.problems),
 );
 
 /**
  * Step and sub-step titles keyed by {@link Problem.id}; used when searching sheet scope (not problem title alone).
  */
-export const PROBLEM_TOPIC_LABELS_BY_ID: Record<string, { stepTitle: string; subStepTitle: string }> =
-  Object.fromEntries(
-    SHEET.flatMap((step) =>
-      step.subSteps.flatMap((sub) =>
-        sub.problems.map((p) => [
-          p.id,
-          { stepTitle: step.stepTitle, subStepTitle: sub.subStepTitle },
-        ] as const),
+export const PROBLEM_TOPIC_LABELS_BY_ID: Record<
+  string,
+  { stepTitle: string; subStepTitle: string }
+> = Object.fromEntries(
+  SHEET.flatMap((step) =>
+    step.subSteps.flatMap((sub) =>
+      sub.problems.map(
+        (p) => [p.id, { stepTitle: step.stepTitle, subStepTitle: sub.subStepTitle }] as const,
       ),
     ),
-  );
+  ),
+);
 
 export const TOTAL = ALL_PROBLEMS.length;
 export const TOTAL_BY_DIFF = {

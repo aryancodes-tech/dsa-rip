@@ -20,9 +20,6 @@ dist-ssr
 .wrangler/
 .dev.vars
 
-# Local IDE / generator metadata
-.lovable/
-
 # Local-only scrape inputs (never commit / deploy)
 scripts/
 scripts/raw/

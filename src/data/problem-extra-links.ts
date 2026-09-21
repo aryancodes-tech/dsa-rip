@@ -3,26 +3,39 @@
  *
  * Data lives in {@link ./extra-links.gen.ts} (committed generated map).
  */
+import { z } from "zod";
 import EXTRA_LINKS from "./extra-links.gen";
 
-type ExtraLinkRow = {
-  articleLink?: string;
-  youtubeLink?: string;
-};
+const ExtraLinkRowSchema = z
+  .object({
+    articleLink: z.string().min(1).optional(),
+    youtubeLink: z.string().min(1).optional(),
+  })
+  .strict();
 
-type ExtraLinksFile = {
-  byCoord: Record<string, ExtraLinkRow>;
-  byTitle: Record<string, ExtraLinkRow>;
-};
+const ExtraLinksFileSchema = z
+  .object({
+    byCoord: z.record(z.string(), ExtraLinkRowSchema),
+    byTitle: z.record(z.string(), ExtraLinkRowSchema),
+  })
+  .strict();
+
+export type ExtraLinkRow = z.infer<typeof ExtraLinkRowSchema>;
+export type ExtraLinksFile = z.infer<typeof ExtraLinksFileSchema>;
+
+/** Parses and validates the generated extra-links map. Throws if the committed file drifts. */
+export function parseExtraLinksFile(input: unknown): ExtraLinksFile {
+  return ExtraLinksFileSchema.parse(input);
+}
 
 /** Collapse whitespace + lowercase for coordinate keys. */
-function normalizeCoordTitle(rawTitle: string): string {
+export function normalizeCoordTitle(rawTitle: string): string {
   if (rawTitle.length === 0) return "";
   return rawTitle.replace(/\s+/g, " ").trim().toLowerCase();
 }
 
 /** Strip punctuation for title-map keys. */
-function normalizeTitleKey(rawTitle: string): string {
+export function normalizeTitleKey(rawTitle: string): string {
   if (rawTitle.length === 0) return "";
   return rawTitle
     .toLowerCase()
@@ -31,7 +44,11 @@ function normalizeTitleKey(rawTitle: string): string {
     .trim();
 }
 
-function composeCoordKey(stepNo: number, subStepNo: number, normalizedTitle: string): string {
+export function composeCoordKey(
+  stepNo: number,
+  subStepNo: number,
+  normalizedTitle: string,
+): string {
   return `${stepNo}|${subStepNo}|${normalizedTitle}`;
 }
 
@@ -40,7 +57,7 @@ export type ProblemExtraLinks = {
   youtubeLink: string | null;
 };
 
-const EXTRA = EXTRA_LINKS as ExtraLinksFile;
+const EXTRA = parseExtraLinksFile(EXTRA_LINKS);
 
 /**
  * Resolves optional article + YouTube URLs for one sheet problem.

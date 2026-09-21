@@ -1,10 +1,10 @@
-// @ts-nocheck
+import type { RawSheetStep } from "./raw-sheet";
+
 /**
  * Optional `articleLink` / `youtubeLink` may be inlined here; otherwise they are merged at runtime from
  * `extra-links.gen.ts` (see `problem-extra-links.ts`).
  */
-
-const DSA_SHEET: any[] = [
+const DSA_SHEET: RawSheetStep[] = [
   { // Step 1
     stepNo: 1,
     stepTitle: "Learn the basics",
