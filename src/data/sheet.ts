@@ -9,9 +9,9 @@ export interface Problem {
   title: string;
   difficulty: Difficulty;
   lcLink: string | null;
-  /** TakeUForward article/blog URL merged from scrape (`webArchive.json`), when present. */
+  /** TakeUForward free blog URL (live A2Z syllabus `/blogs/...`, else remapped archive). */
   articleLink: string | null;
-  /** Canonical YouTube explainer merged from scrape (`webArchive.json`), when present. */
+  /** Canonical YouTube explainer merged from archive / live syllabus, when present. */
   youtubeLink: string | null;
   /** Optional preview image (e.g. pattern diagram) shown beside the title in the sheet grid. */
   imageUrl: string | null;
