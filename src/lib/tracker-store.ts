@@ -27,10 +27,10 @@ export const DSA_LS_KEYS = {
   rev: "dsa.rev",
   notes: "dsa.notes",
   theme: "dsa.theme",
-  /** Legacy greeting name key; unused after the compact home strip (safe to ignore if present). */
-  displayName: "dsa.ui.displayName",
-  /** Bitmask 0–31: optional columns YouTube, Article, Note, Revision, Difficulty (see `sheet-columns.ts`). */
+  /** Bitmask 0–31: columns YouTube, Article, Note, Revision, Difficulty (see `sheet-columns.ts`). */
   optionalColumnMask: "dsa.ui.colm",
+  /** `"1"` once the product tour was completed or skipped. */
+  tourDone: "dsa.ui.tour",
 } as const;
 
 type Listener = () => void;

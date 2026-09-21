@@ -54,6 +54,11 @@ export function SheetToolbar({
   optionalColumnVisibility,
   onOptionalColumnChange,
   onRequestReset,
+  onStartTour,
+  settingsOpen,
+  onSettingsOpenChange,
+  tourDemoArticleOff,
+  columnTogglesDisabled,
   diffFilter,
   onDiffFilterChange,
   statusFilter,
@@ -75,6 +80,18 @@ export function SheetToolbar({
   optionalColumnVisibility: OptionalSheetColumnVisibility;
   onOptionalColumnChange: (key: OptionalSheetColumnKey, checked: boolean) => void;
   onRequestReset: () => void;
+  /** Replay the product coachmark tour. */
+  onStartTour: () => void;
+  /** Controlled Settings menu (opened during the settings coachmark). */
+  settingsOpen: boolean;
+  onSettingsOpenChange: (open: boolean) => void;
+  /**
+   * When true, the Article column checkbox is shown unchecked for the tour demo only
+   * (does not write localStorage / user prefs).
+   */
+  tourDemoArticleOff: boolean;
+  /** Disable column toggles while the settings coachmark is active. */
+  columnTogglesDisabled: boolean;
   diffFilter: string;
   onDiffFilterChange: (value: string) => void;
   statusFilter: string;
@@ -92,7 +109,7 @@ export function SheetToolbar({
     <section className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm sm:rounded-3xl">
       <div className="space-y-5 p-4 sm:space-y-6 sm:p-6 lg:p-7">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex min-w-0 items-center gap-3">
+          <div className="flex min-w-0 items-center gap-3" data-tour="progress">
             <div className="flex size-12 shrink-0 items-center justify-center rounded-xl border border-border bg-muted text-foreground sm:size-14">
               <Code2 className="size-7 sm:size-8" strokeWidth={1.75} aria-hidden />
             </div>
@@ -116,6 +133,7 @@ export function SheetToolbar({
               <DropdownMenuTrigger asChild>
                 <button
                   type="button"
+                  data-tour="theme"
                   aria-label={`Theme: ${THEME_PREFERENCE_LABEL[preference]}`}
                   className={FILTER_TRIGGER_CLASS}
                 >
@@ -167,21 +185,44 @@ export function SheetToolbar({
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <DropdownMenu>
+            <DropdownMenu
+              open={settingsOpen}
+              onOpenChange={onSettingsOpenChange}
+              modal={!tourDemoArticleOff}
+            >
               <DropdownMenuTrigger asChild>
                 <button type="button" aria-label="Settings" className={TOOLBAR_ICON_BTN_CLASS}>
                   <Settings className="size-3.5" aria-hidden />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent
+                data-tour="settings"
                 align={isMobile ? "start" : "end"}
+                side="bottom"
                 sideOffset={8}
                 collisionPadding={12}
-                className="w-64 max-w-[calc(100vw-1.5rem)]"
+                className={cn(
+                  "w-64 max-w-[calc(100vw-1.5rem)]",
+                  /** Above tour dim (z-100), below coachmark card (z-120). */
+                  settingsOpen && tourDemoArticleOff && "!z-[110]",
+                  tourDemoArticleOff && "pointer-events-none",
+                  /** Keep the menu compact so the coachmark can sit just below it. */
+                  tourDemoArticleOff && isMobile && "max-h-[min(18rem,calc(100vh-14rem))]",
+                )}
+                onCloseAutoFocus={(e) => {
+                  if (tourDemoArticleOff) e.preventDefault();
+                }}
               >
                 <DropdownMenuLabel className="text-xs font-normal text-muted-foreground">
                   Preferences
                 </DropdownMenuLabel>
+                <DropdownMenuItem
+                  className="cursor-pointer gap-2 text-sm"
+                  onSelect={onStartTour}
+                >
+                  <Sparkles className="size-4 shrink-0" aria-hidden />
+                  Take a tour…
+                </DropdownMenuItem>
                 <DropdownMenuItem
                   className="cursor-pointer gap-2 text-sm"
                   onSelect={onRequestReset}
@@ -198,22 +239,34 @@ export function SheetToolbar({
                   Choose which optional columns appear in the problem sheet. LeetCode and Others
                   always stay on.
                 </p>
-                {OPTIONAL_SHEET_COLUMNS_IN_ORDER.map((key) => (
-                  <DropdownMenuCheckboxItem
-                    key={key}
-                    className="text-sm"
-                    checked={optionalColumnVisibility[key]}
-                    onCheckedChange={(checked) => onOptionalColumnChange(key, checked === true)}
-                  >
-                    {OPTIONAL_SHEET_COLUMN_LABEL[key]}
-                  </DropdownMenuCheckboxItem>
-                ))}
+                {OPTIONAL_SHEET_COLUMNS_IN_ORDER.map((key) => {
+                  const checked =
+                    tourDemoArticleOff && key === "article"
+                      ? false
+                      : optionalColumnVisibility[key];
+                  return (
+                    <DropdownMenuCheckboxItem
+                      key={key}
+                      className="cursor-pointer text-sm"
+                      checked={checked}
+                      onCheckedChange={(next) => {
+                        if (columnTogglesDisabled) return;
+                        onOptionalColumnChange(key, next === true);
+                      }}
+                      onSelect={(e) => {
+                        if (columnTogglesDisabled) e.preventDefault();
+                      }}
+                    >
+                      {OPTIONAL_SHEET_COLUMN_LABEL[key]}
+                    </DropdownMenuCheckboxItem>
+                  );
+                })}
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-2 sm:gap-3">
+        <div className="grid grid-cols-3 gap-2 sm:gap-3" data-tour="difficulty">
           {difficultyBreakdown.map(({ key, solved, pool }) => (
             <div
               key={key}
@@ -254,7 +307,7 @@ export function SheetToolbar({
           ref={flashRef}
           className="flex flex-col gap-2.5 border-t border-border/50 pt-4 sm:flex-row sm:flex-wrap sm:items-center"
         >
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2" data-tour="filters">
             <FilterMenu
               value={diffFilter}
               onChange={onDiffFilterChange}
@@ -313,7 +366,7 @@ export function SheetToolbar({
               <FilterX className="size-3.5" /> Reset filters
             </button>
           </div>
-          <div className="relative w-full sm:ml-auto sm:max-w-md sm:flex-1">
+          <div className="relative w-full sm:ml-auto sm:max-w-md sm:flex-1" data-tour="search">
             <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
             <input
               ref={searchInputRef}

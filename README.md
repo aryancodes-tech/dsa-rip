@@ -1,6 +1,6 @@
 # DSA Mastery Suite
 
-Local-first DSA sheet tracker (solved / revision / notes, practice links). Progress is stored in the browser only — there is no account or server sync.
+Local-first DSA sheet tracker (solved / revision / notes, practice links). Progress is stored in the browser only - there is no account or server sync.
 
 ## Prerequisites
 
@@ -68,7 +68,7 @@ src/
 ```
 
 - Routes stay thin. Edit tracker screens in `src/features/sheet/`.
-- Hardcoded product strings and URLs belong in `src/constants/` (`branding.ts`, `creator.ts`, `theme.ts`, `sheet-columns.ts`, `layout.ts`) — not in JSX.
+- Hardcoded product strings and URLs belong in `src/constants/` (`branding.ts`, `creator.ts`, `theme.ts`, `sheet-columns.ts`, `layout.ts`) - not in JSX.
 - Empty-string checks: use `.length === 0` (same convention as the rest of the data layer).
 
 ## Sheet data
@@ -85,7 +85,7 @@ Problems are **not** fetched at runtime. They ship in the client bundle.
 
 When adding a problem: update `dataSheet.ts` to match `RawProblem`. Optional `articleLink` / `youtubeLink` can be inlined on the row, or they merge from `extra-links.gen.ts` at adapter time.
 
-`extra-links.gen.ts` is committed output. Changing its *shape* (not just values) will fail Zod parse on import — update `problem-extra-links.ts` and its tests together.
+`extra-links.gen.ts` is committed output. Changing its *shape* (not just values) will fail Zod parse on import - update `problem-extra-links.ts` and its tests together.
 
 Do **not** commit scrape tooling or raw archive JSON. `scripts/` and `scripts/raw/` are gitignored and vercel-ignored on purpose.
 

@@ -40,7 +40,7 @@ export function ProblemRow({
   hasNote: boolean;
   /** Raster URL for LeetCode (light vs dark artwork). Lavender uses the light asset. */
   leetcodeLogoSrc: string;
-  /** Which optional columns (YouTube / article / …) are visible. */
+  /** Which columns (YouTube / article / …) are visible. */
   columnVisibility: OptionalSheetColumnVisibility;
   /** `sm:` grid span for title from {@link computeProblemTitleColSpanSm}. */
   problemTitleSpanSm: number;

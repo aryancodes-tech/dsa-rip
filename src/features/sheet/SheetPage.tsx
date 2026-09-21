@@ -33,6 +33,8 @@ import { NoteModal } from "./components/NoteModal";
 import { PatternDiagramDialog } from "./components/PatternDiagramDialog";
 import { SheetGrid } from "./components/SheetGrid";
 import { SheetToolbar } from "./components/SheetToolbar";
+import { SheetTour } from "./tour/SheetTour";
+import { useSheetTour } from "./tour/useSheetTour";
 
 export function SheetPage() {
   const isMobile = useIsMobile();
@@ -41,7 +43,11 @@ export function SheetPage() {
   const done = useSetStore(doneStore);
   const rev = useSetStore(revStore);
   const notes = useNotesStore();
-
+  const { active: tourActive, startTour, endTour } = useSheetTour();
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [tourSettingsDemo, setTourSettingsDemo] = useState(false);
+  /** Sync lock so Radix onOpenChange cannot re-open the menu after leaving the settings step. */
+  const settingsTourLockRef = useRef(false);
   const [search, setSearch] = useState("");
   const [diffFilter, setDiffFilter] = useState<string>("All");
   const [statusFilter, setStatusFilter] = useState<string>("All");
@@ -59,6 +65,35 @@ export function SheetPage() {
   const openStepsInitialized = useRef(false);
   const [optionalColumnVisibility, setOptionalColumnVisibility] =
     useState<OptionalSheetColumnVisibility>(DEFAULT_OPTIONAL_SHEET_COLUMN_VISIBILITY);
+
+  const handleStartTour = useCallback(() => {
+    settingsTourLockRef.current = false;
+    setSettingsOpen(false);
+    setTourSettingsDemo(false);
+    startTour();
+  }, [startTour]);
+
+  const handleTourStepChange = useCallback((stepId: string | null) => {
+    const onSettings = stepId === "settings";
+    settingsTourLockRef.current = onSettings;
+    setTourSettingsDemo(onSettings);
+    setSettingsOpen(onSettings);
+  }, []);
+
+  const handleTourClose = useCallback(() => {
+    settingsTourLockRef.current = false;
+    setTourSettingsDemo(false);
+    setSettingsOpen(false);
+    endTour();
+  }, [endTour]);
+
+  const handleSettingsOpenChange = useCallback((open: boolean) => {
+    if (settingsTourLockRef.current) {
+      setSettingsOpen(true);
+      return;
+    }
+    setSettingsOpen(open);
+  }, []);
 
   const problemTitleSpanSm = useMemo(
     () => computeProblemTitleColSpanSm(optionalColumnVisibility),
@@ -218,6 +253,11 @@ export function SheetPage() {
           optionalColumnVisibility={optionalColumnVisibility}
           onOptionalColumnChange={updateOptionalColumn}
           onRequestReset={() => setConfirmReset(true)}
+          onStartTour={handleStartTour}
+          settingsOpen={settingsOpen}
+          onSettingsOpenChange={handleSettingsOpenChange}
+          tourDemoArticleOff={tourSettingsDemo}
+          columnTogglesDisabled={tourSettingsDemo}
           diffFilter={diffFilter}
           onDiffFilterChange={setDiffFilter}
           statusFilter={statusFilter}
@@ -302,6 +342,8 @@ export function SheetPage() {
           <ConfirmResetDialog onClose={() => setConfirmReset(false)} onConfirm={doReset} />
         )}
       </AnimatePresence>
+
+      <SheetTour open={tourActive} onClose={handleTourClose} onStepChange={handleTourStepChange} />
     </div>
   );
 }
