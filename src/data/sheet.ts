@@ -9,9 +9,9 @@ export interface Problem {
   title: string;
   difficulty: Difficulty;
   lcLink: string | null;
-  /** TakeUForward free blog URL (live A2Z syllabus `/blogs/...`, else remapped archive). */
+  /** Free blog URL from precomputed `extra-links.gen.ts`, when present. */
   articleLink: string | null;
-  /** Canonical YouTube explainer merged from archive / live syllabus, when present. */
+  /** Canonical YouTube explainer from precomputed `extra-links.gen.ts`, when present. */
   youtubeLink: string | null;
   /** Optional preview image (e.g. pattern diagram) shown beside the title in the sheet grid. */
   imageUrl: string | null;

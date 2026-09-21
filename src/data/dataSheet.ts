@@ -1,8 +1,7 @@
 // @ts-nocheck
 /**
  * Optional `articleLink` / `youtubeLink` may be inlined here; otherwise they are merged at runtime from
- * live TUF free blogs (`tuf-article-links.json`) and remapped `webArchive.json` rows
- * (see `web-archive-links.ts`, `@/constants/tuf`, `@/constants/url-sanitize`).
+ * `extra-links.gen.ts` (see `web-archive-links.ts`).
  */
 
 const DSA_SHEET: any[] = [
