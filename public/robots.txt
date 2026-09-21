@@ -27,7 +27,7 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://dsa.rip/sitemap.xml
+Sitemap: https://www.dsa.rip/sitemap.xml
 
 # Machine-readable site summary for AI assistants
-# https://dsa.rip/llms.txt
+# https://www.dsa.rip/llms.txt

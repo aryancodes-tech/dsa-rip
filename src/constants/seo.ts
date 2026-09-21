@@ -14,8 +14,8 @@ import {
 } from "@/constants/creator";
 import { SHEET, TOTAL, TOTAL_BY_DIFF } from "@/data/sheet";
 
-/** Canonical production origin (no trailing slash). */
-export const DSA_SITE_ORIGIN = "https://dsa.rip";
+/** Canonical production origin (no trailing slash). Prefer www — apex redirects here. */
+export const DSA_SITE_ORIGIN = "https://www.dsa.rip";
 
 /** Home / app path. */
 export const DSA_SITE_PATH = "/";
@@ -24,16 +24,17 @@ export const DSA_SITE_PATH = "/";
 export const DSA_CANONICAL_URL = `${DSA_SITE_ORIGIN}${DSA_SITE_PATH}`;
 
 /**
- * Social share card under `public/og-twitter.png` (landscape OG / Twitter large image).
+ * Social share card under `public/og-twitter.jpg`.
+ * JPEG ~1200×630 under 300KB — WhatsApp/Twitter reject oversized PNGs and some redirect chains.
  */
-export const DSA_OG_IMAGE_PATH = "/og-twitter.png";
+export const DSA_OG_IMAGE_PATH = "/og-twitter.jpg";
 
 export const DSA_OG_IMAGE_URL = `${DSA_SITE_ORIGIN}${DSA_OG_IMAGE_PATH}`;
 
 /** OG image pixel size for `og:image:width` / `og:image:height`. */
-export const DSA_OG_IMAGE_WIDTH = 1672;
+export const DSA_OG_IMAGE_WIDTH = 1200;
 
-export const DSA_OG_IMAGE_HEIGHT = 941;
+export const DSA_OG_IMAGE_HEIGHT = 630;
 
 /** Short alt text for social preview images. */
 export const DSA_OG_IMAGE_ALT = `${DSA_PRODUCT_DISPLAY_NAME} - Practice DSA with curated LeetCode and GeeksforGeeks problems`;

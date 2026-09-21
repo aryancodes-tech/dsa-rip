@@ -35,9 +35,16 @@
       ]
     },
     {
+      "source": "/og-twitter.jpg",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400" },
+        { "key": "Content-Type", "value": "image/jpeg" }
+      ]
+    },
+    {
       "source": "/og-twitter.png",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" },
+        { "key": "Cache-Control", "value": "public, max-age=86400" },
         { "key": "Content-Type", "value": "image/png" }
       ]
     },

@@ -17,8 +17,12 @@
 /site.webmanifest
   Content-Type: application/manifest+json
 
+/og-twitter.jpg
+  Cache-Control: public, max-age=86400
+  Content-Type: image/jpeg
+
 /og-twitter.png
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=86400
   Content-Type: image/png
 
 /logos/*

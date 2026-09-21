@@ -119,7 +119,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: DSA_OG_DESCRIPTION },
       { property: "og:image", content: DSA_OG_IMAGE_URL },
       { property: "og:image:secure_url", content: DSA_OG_IMAGE_URL },
-      { property: "og:image:type", content: "image/png" },
+      { property: "og:image:type", content: "image/jpeg" },
       { property: "og:image:width", content: String(DSA_OG_IMAGE_WIDTH) },
       { property: "og:image:height", content: String(DSA_OG_IMAGE_HEIGHT) },
       { property: "og:image:alt", content: DSA_OG_IMAGE_ALT },
