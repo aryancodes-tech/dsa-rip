@@ -2,7 +2,6 @@ import type { Dispatch, RefObject, SetStateAction } from "react";
 import {
   ChevronDown,
   Clock,
-  Code2,
   FilterX,
   LayoutGrid,
   ListFilter,
@@ -23,6 +22,7 @@ import {
   type OptionalSheetColumnVisibility,
 } from "@/constants/sheet-columns";
 import { DSA_PRODUCT_DISPLAY_NAME } from "@/constants/creator";
+import { LOGO_DSA_RIP_HEADER_CLASS, LOGO_DSA_RIP_PATH } from "@/constants/branding";
 import {
   THEME_PREFERENCE_LABEL,
   THEME_PREFERENCE_OPTIONS,
@@ -110,9 +110,7 @@ export function SheetToolbar({
       <div className="space-y-5 p-4 sm:space-y-6 sm:p-6 lg:p-7">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex min-w-0 items-center gap-3" data-tour="progress">
-            <div className="flex size-12 shrink-0 items-center justify-center rounded-xl border border-border bg-muted text-foreground sm:size-14">
-              <Code2 className="size-7 sm:size-8" strokeWidth={1.75} aria-hidden />
-            </div>
+            <img src={LOGO_DSA_RIP_PATH} alt="" className={LOGO_DSA_RIP_HEADER_CLASS} />
             <div className="min-w-0">
               <h1 className="font-display text-xl font-semibold leading-tight tracking-tight sm:text-2xl">
                 {DSA_PRODUCT_DISPLAY_NAME}

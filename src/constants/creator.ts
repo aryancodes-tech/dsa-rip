@@ -4,7 +4,7 @@
  */
 
 /** Short product name in the compact top bar. */
-export const DSA_PRODUCT_DISPLAY_NAME = "DSA Tracker";
+export const DSA_PRODUCT_DISPLAY_NAME = "dsa.rip";
 
 /**
  * Privacy notice for the footer: progress is browser-local (no account / server sync).

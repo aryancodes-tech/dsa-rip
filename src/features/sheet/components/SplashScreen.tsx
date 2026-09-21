@@ -1,9 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, type CSSProperties } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { Code2 } from "lucide-react";
 import { DSA_PRODUCT_DISPLAY_NAME } from "@/constants/creator";
-import { DSA_SPLASH_EXIT_MS, DSA_SPLASH_TAGLINE, splashHoldMs } from "@/constants/splash";
+import { LOGO_DSA_RIP_SPLASH_CLASS, LOGO_DSA_RIP_SPLASH_PATH } from "@/constants/branding";
+import {
+  DSA_SPLASH_DARK_LOGO_MAT_BG,
+  DSA_SPLASH_DARK_LOGO_MAT_CLASS,
+  DSA_SPLASH_EXIT_MS,
+  DSA_SPLASH_TAGLINE,
+  splashHoldMs,
+} from "@/constants/splash";
 import { DIFFICULTY_DOT_CLASS } from "../lib/difficulty-styles";
+
+const SPLASH_DARK_LOGO_MAT_STYLE = {
+  "--dsa-splash-dark-logo-mat": DSA_SPLASH_DARK_LOGO_MAT_BG,
+} as CSSProperties;
 
 const DIFFICULTY_KEYS = ["Easy", "Medium", "Hard"] as const;
 
@@ -46,28 +56,24 @@ export function SplashScreen({ open, onDismiss }: { open: boolean; onDismiss: ()
           onClick={onDismiss}
         >
           <motion.div
-            className="flex size-16 items-center justify-center rounded-2xl border border-border bg-card text-foreground shadow-sm sm:size-[4.5rem]"
-            initial={instant ? false : { scale: 0.82, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={instant ? { duration: 0 } : { type: "spring", stiffness: 380, damping: 22 }}
+            className={DSA_SPLASH_DARK_LOGO_MAT_CLASS}
+            style={SPLASH_DARK_LOGO_MAT_STYLE}
+            initial={instant ? false : { scale: 0.94 }}
+            animate={{ scale: 1 }}
+            transition={instant ? { duration: 0 } : { type: "spring", stiffness: 320, damping: 24 }}
           >
-            <Code2 className="size-8 sm:size-9" strokeWidth={1.75} aria-hidden />
+            <img
+              src={LOGO_DSA_RIP_SPLASH_PATH}
+              alt={DSA_PRODUCT_DISPLAY_NAME}
+              className={LOGO_DSA_RIP_SPLASH_CLASS}
+            />
           </motion.div>
 
-          <motion.h1
-            className="font-display mt-5 text-2xl font-semibold tracking-tight sm:text-3xl"
-            initial={instant ? false : { y: 8, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={instant ? { duration: 0 } : { delay: 0.12, duration: 0.35 }}
-          >
-            {DSA_PRODUCT_DISPLAY_NAME}
-          </motion.h1>
-
           <motion.p
-            className="mt-1.5 max-w-xs text-center text-sm text-muted-foreground"
+            className="mt-4 max-w-xs text-center text-sm text-muted-foreground"
             initial={instant ? false : { y: 6, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={instant ? { duration: 0 } : { delay: 0.22, duration: 0.35 }}
+            transition={instant ? { duration: 0 } : { delay: 0.18, duration: 0.35 }}
           >
             {DSA_SPLASH_TAGLINE}
           </motion.p>
@@ -77,7 +83,7 @@ export function SplashScreen({ open, onDismiss }: { open: boolean; onDismiss: ()
             aria-hidden
             initial={instant ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={instant ? { duration: 0 } : { delay: 0.32, duration: 0.3 }}
+            transition={instant ? { duration: 0 } : { delay: 0.28, duration: 0.3 }}
           >
             {DIFFICULTY_KEYS.map((key, i) => (
               <motion.span
@@ -88,7 +94,7 @@ export function SplashScreen({ open, onDismiss }: { open: boolean; onDismiss: ()
                 transition={
                   instant
                     ? { duration: 0 }
-                    : { delay: 0.38 + i * 0.1, type: "spring", stiffness: 420, damping: 18 }
+                    : { delay: 0.34 + i * 0.1, type: "spring", stiffness: 420, damping: 18 }
                 }
               />
             ))}

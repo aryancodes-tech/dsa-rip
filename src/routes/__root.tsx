@@ -77,15 +77,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "DSA Tracker" },
+      { title: "dsa.rip" },
       { name: "description", content: "Local DSA sheet tracker - mark solved, revise, and practice. Progress stays in your browser." },
       { name: "author", content: CREATOR_DISPLAY_NAME },
-      { property: "og:title", content: "DSA Tracker" },
+      { property: "og:title", content: "dsa.rip" },
       { property: "og:description", content: "Local DSA sheet tracker - mark solved, revise, and practice. Progress stays in your browser." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: CREATOR_TWITTER_HANDLE },
-      { name: "twitter:title", content: "DSA Tracker" },
+      { name: "twitter:title", content: "dsa.rip" },
       { name: "twitter:description", content: "Local DSA sheet tracker - mark solved, revise, and practice. Progress stays in your browser." },
     ],
     links: [

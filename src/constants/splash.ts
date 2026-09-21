@@ -15,6 +15,19 @@ export const DSA_SPLASH_EXIT_MS = 380;
 export const DSA_SPLASH_TAGLINE = "Your sheet. This browser. That’s it.";
 
 /**
+ * Cream mat behind the transparent splash lockup in dark mode (`html.dark`).
+ * Light/lavender already sit on a light `bg-background`, so they skip the plate.
+ */
+export const DSA_SPLASH_DARK_LOGO_MAT_BG = "#f7f6f2";
+
+/**
+ * Padded rounded square around the splash lockup. Background is `--dsa-splash-dark-logo-mat`
+ * (set from {@link DSA_SPLASH_DARK_LOGO_MAT_BG}) and only paints under `.dark`.
+ */
+export const DSA_SPLASH_DARK_LOGO_MAT_CLASS =
+  "flex items-center justify-center dark:rounded-3xl dark:p-5 sm:dark:p-6 dark:bg-[var(--dsa-splash-dark-logo-mat)]";
+
+/**
  * Returns how long the splash stays up before auto-dismiss.
  */
 export function splashHoldMs(prefersReducedMotion: boolean): number {

@@ -18,6 +18,20 @@ export const LOGO_GEEKSFORGEEKS_PATH = "/logos/geeksforgeeks.png";
 
 export const LOGO_YOUTUBE_PATH = "/logos/youtube.png";
 
+/** Compact product lockup for the header (tombstone + dsa.rip wordmark). */
+export const LOGO_DSA_RIP_PATH = "/logos/dsa-rip-logo.jpg";
+
+/** Full-bleed splash lockup (tombstone + dsa.rip wordmark, transparent PNG). */
+export const LOGO_DSA_RIP_SPLASH_PATH = "/logos/dsa-rip-logo-splash.png";
+
+/** Header brand image classes (full lockup; pair with a visually hidden product name). */
+export const LOGO_DSA_RIP_HEADER_CLASS =
+  "h-14 w-auto shrink-0 rounded-lg object-contain sm:h-16";
+
+/** Splash hero image classes (square lockup). */
+export const LOGO_DSA_RIP_SPLASH_CLASS =
+  "h-56 w-auto max-w-[min(20rem,85vw)] object-contain sm:h-72";
+
 /**
  * Which LeetCode raster to show for the resolved tracker theme.
  * Lavender uses the light artwork (lavender shell is a light palette).
