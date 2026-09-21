@@ -20,19 +20,22 @@ function writeTourDone() {
 
 /**
  * Controls the sheet product tour: auto-starts once for new visitors; Settings can replay.
+ * Pass `ready` false while a splash (or similar) is covering the UI so the tour does not start underneath.
  */
-export function useSheetTour() {
+export function useSheetTour(options?: { ready?: boolean }) {
+  const ready = options?.ready ?? true;
   const [active, setActive] = useState(false);
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
-    const done = readTourDone();
     setHydrated(true);
-    if (!done) {
-      const t = window.setTimeout(() => setActive(true), 450);
-      return () => window.clearTimeout(t);
-    }
   }, []);
+
+  useEffect(() => {
+    if (!ready) return;
+    const done = readTourDone();
+    if (!done) setActive(true);
+  }, [ready]);
 
   const startTour = useCallback(() => {
     setActive(true);

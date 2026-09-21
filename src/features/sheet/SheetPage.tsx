@@ -33,6 +33,7 @@ import { NoteModal } from "./components/NoteModal";
 import { PatternDiagramDialog } from "./components/PatternDiagramDialog";
 import { SheetGrid } from "./components/SheetGrid";
 import { SheetToolbar } from "./components/SheetToolbar";
+import { SplashScreen } from "./components/SplashScreen";
 import { SheetTour } from "./tour/SheetTour";
 import { useSheetTour } from "./tour/useSheetTour";
 
@@ -43,7 +44,9 @@ export function SheetPage() {
   const done = useSetStore(doneStore);
   const rev = useSetStore(revStore);
   const notes = useNotesStore();
-  const { active: tourActive, startTour, endTour } = useSheetTour();
+  const [splashOpen, setSplashOpen] = useState(true);
+  const dismissSplash = useCallback(() => setSplashOpen(false), []);
+  const { active: tourActive, startTour, endTour } = useSheetTour({ ready: !splashOpen });
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [tourSettingsDemo, setTourSettingsDemo] = useState(false);
   /** Sync lock so Radix onOpenChange cannot re-open the menu after leaving the settings step. */
@@ -73,12 +76,17 @@ export function SheetPage() {
     startTour();
   }, [startTour]);
 
-  const handleTourStepChange = useCallback((stepId: string | null) => {
-    const onSettings = stepId === "settings";
-    settingsTourLockRef.current = onSettings;
-    setTourSettingsDemo(onSettings);
-    setSettingsOpen(onSettings);
-  }, []);
+  const handleTourStepChange = useCallback(
+    (stepId: string | null) => {
+      const onSettings = stepId === "settings";
+      /** On mobile, spotlight the gear icon only — do not open the Preferences menu. */
+      const openMenuForTour = onSettings && !isMobile;
+      settingsTourLockRef.current = openMenuForTour;
+      setTourSettingsDemo(openMenuForTour);
+      setSettingsOpen(openMenuForTour);
+    },
+    [isMobile],
+  );
 
   const handleTourClose = useCallback(() => {
     settingsTourLockRef.current = false;
@@ -344,6 +352,7 @@ export function SheetPage() {
       </AnimatePresence>
 
       <SheetTour open={tourActive} onClose={handleTourClose} onStepChange={handleTourStepChange} />
+      <SplashScreen open={splashOpen} onDismiss={dismissSplash} />
     </div>
   );
 }

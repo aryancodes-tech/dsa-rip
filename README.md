@@ -89,6 +89,8 @@ When adding a problem: update `dataSheet.ts` to match `RawProblem`. Optional `ar
 
 Do **not** commit scrape tooling or raw archive JSON. `scripts/` and `scripts/raw/` are gitignored and vercel-ignored on purpose.
 
+The home page opens with a short branded splash (`src/constants/splash.ts`). Click, tap, or Escape skips it. `prefers-reduced-motion` shortens the hold. The product tour waits until the splash dismisses.
+
 ## Persistence
 
 All progress is `localStorage` in this browser. Keys live in `DSA_LS_KEYS` (`src/lib/tracker-store.ts`):

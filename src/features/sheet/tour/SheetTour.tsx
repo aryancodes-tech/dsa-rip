@@ -28,8 +28,7 @@ function measure(el: HTMLElement): Rect {
 
 /**
  * Positions the coachmark card relative to the spotlight target.
- * On narrow screens (especially Settings), docks to the bottom so it never
- * collides with an open dropdown.
+ * Left/right placement falls back to bottom on narrow viewports.
  */
 function computePopoverStyle(rect: Rect | null, step: SheetTourStep): CSSProperties {
   const vw = window.innerWidth;
@@ -41,26 +40,11 @@ function computePopoverStyle(rect: Rect | null, step: SheetTourStep): CSSPropert
     return { top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: popW };
   }
 
-  /** Settings on phones: sit the card just under the open menu (not at the screen bottom). */
-  if (narrow && step.id === "settings") {
-    const gap = 10;
-    let top = rect.top + rect.height + gap;
-    if (top + POPOVER_APPROX_HEIGHT_PX > vh - 8) {
-      top = Math.max(8, rect.top - gap - POPOVER_APPROX_HEIGHT_PX);
-    }
-    return {
-      top,
-      left: 12,
-      width: vw - 24,
-      transform: "none",
-    };
-  }
-
   const gap = 12;
   let placement = step.placement;
   if (
     (placement === "left" || placement === "right") &&
-    vw < popW + rect.width + gap + 24
+    (narrow || vw < popW + rect.width + gap + 24)
   ) {
     placement = "bottom";
   }
@@ -85,6 +69,11 @@ function computePopoverStyle(rect: Rect | null, step: SheetTourStep): CSSPropert
     top = Math.min(vh - POPOVER_APPROX_HEIGHT_PX, rect.top + rect.height + gap);
   }
   left = Math.max(12, Math.min(left, vw - popW - 12));
+
+  /** Full-width card under the target on phones for easier reading. */
+  if (narrow) {
+    return { top, left: 12, width: vw - 24, transform: "none" };
+  }
 
   return { top, left, width: popW };
 }
@@ -123,8 +112,8 @@ export function SheetTour({
       return;
     }
     const narrow = window.innerWidth < NARROW_VIEWPORT_PX;
-    /** Avoid jumping the tall settings menu to center on phones. */
-    if (!(narrow && step.id === "settings")) {
+    /** Avoid jumping a tall open settings menu on desktop; icon targets are fine to center. */
+    if (!(step.id === "settings" && !narrow)) {
       el.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
     }
     window.requestAnimationFrame(() => {

@@ -191,12 +191,17 @@ export function SheetToolbar({
               modal={!tourDemoArticleOff}
             >
               <DropdownMenuTrigger asChild>
-                <button type="button" aria-label="Settings" className={TOOLBAR_ICON_BTN_CLASS}>
+                <button
+                  type="button"
+                  aria-label="Settings"
+                  data-tour={isMobile ? "settings" : undefined}
+                  className={TOOLBAR_ICON_BTN_CLASS}
+                >
                   <Settings className="size-3.5" aria-hidden />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent
-                data-tour="settings"
+                data-tour={isMobile ? undefined : "settings"}
                 align={isMobile ? "start" : "end"}
                 side="bottom"
                 sideOffset={8}
@@ -206,8 +211,6 @@ export function SheetToolbar({
                   /** Above tour dim (z-100), below coachmark card (z-120). */
                   settingsOpen && tourDemoArticleOff && "!z-[110]",
                   tourDemoArticleOff && "pointer-events-none",
-                  /** Keep the menu compact so the coachmark can sit just below it. */
-                  tourDemoArticleOff && isMobile && "max-h-[min(18rem,calc(100vh-14rem))]",
                 )}
                 onCloseAutoFocus={(e) => {
                   if (tourDemoArticleOff) e.preventDefault();
