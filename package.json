@@ -7,10 +7,7 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "links:build": "node scripts/build-extra-links.mjs",
-    "predev": "node scripts/build-extra-links.mjs",
     "dev": "vite dev",
-    "prebuild": "node scripts/build-extra-links.mjs",
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",

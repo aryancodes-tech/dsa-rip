@@ -1,7 +1,7 @@
 // @ts-nocheck
 /**
  * Optional `articleLink` / `youtubeLink` may be inlined here; otherwise they are merged at runtime from
- * `extra-links.gen.ts` (see `web-archive-links.ts`).
+ * `extra-links.gen.ts` (see `problem-extra-links.ts`).
  */
 
 const DSA_SHEET: any[] = [
@@ -111,7 +111,7 @@ const DSA_SHEET: any[] = [
             lcLink: null,
             articleLink: null,
             youtubeLink: "https://youtu.be/tNm_NNSB3_w?t=1198",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/triangle-number-1661428795/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=pattern_4",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/triangle-number-1661428795/1",
             imageUrl: "https://static.takeuforward.org/wp/uploads/2022/08/P4.png",
           },
           {
@@ -129,7 +129,7 @@ const DSA_SHEET: any[] = [
             lcLink: null,
             articleLink: null,
             youtubeLink: "https://youtu.be/tNm_NNSB3_w?t=1419",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/triangle-number-1661489840/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=pattern_6",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/triangle-number-1661489840/1",
             imageUrl: "https://static.takeuforward.org/wp/uploads/2022/08/P6.png",
           },
           {
@@ -147,7 +147,7 @@ const DSA_SHEET: any[] = [
             lcLink: null,
             articleLink: null,
             youtubeLink: "https://youtu.be/tNm_NNSB3_w?t=1870",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/triangle-pattern-1661493231/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=pattern_8",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/triangle-pattern-1661493231/1",
             imageUrl: "https://static.takeuforward.org/wp/uploads/2022/08/P8.png",
           },
           {
@@ -156,7 +156,7 @@ const DSA_SHEET: any[] = [
             lcLink: null,
             articleLink: null,
             youtubeLink: "https://youtu.be/tNm_NNSB3_w?t=2056",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/pattern/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=pattern_9",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/pattern/1",
             imageUrl: "https://static.takeuforward.org/wp/uploads/2022/08/P9.png",
           },
           {
@@ -165,7 +165,7 @@ const DSA_SHEET: any[] = [
             lcLink: null,
             articleLink: null,
             youtubeLink: "https://youtu.be/tNm_NNSB3_w?t=2112",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/triangle-pattern-1661718013/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=pattern_10",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/triangle-pattern-1661718013/1",
             imageUrl: "https://static.takeuforward.org/wp/uploads/2022/08/P10.png",
           },
           {
@@ -174,7 +174,7 @@ const DSA_SHEET: any[] = [
             lcLink: null,
             articleLink: null,
             youtubeLink: "https://youtu.be/tNm_NNSB3_w?t=2362",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/triangle-pattern-1661718455/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=pattern_11",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/triangle-pattern-1661718455/1",
             imageUrl: "https://static.takeuforward.org/wp/uploads/2022/08/P11.png",
           },
           {
@@ -183,7 +183,7 @@ const DSA_SHEET: any[] = [
             lcLink: null,
             articleLink: null,
             youtubeLink: "https://youtu.be/tNm_NNSB3_w?t=2535",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/double-triangle-pattern-1662664259/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=pattern_12",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/double-triangle-pattern-1662664259/1",
             imageUrl: "https://static.takeuforward.org/wp/uploads/2022/08/P12.png",
           },
           {
@@ -192,7 +192,7 @@ const DSA_SHEET: any[] = [
             lcLink: null,
             articleLink: null,
             youtubeLink: "https://youtu.be/tNm_NNSB3_w?t=2812",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/triangle-pattern-1661718712/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=pattern_13",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/triangle-pattern-1661718712/1",
             imageUrl: "https://static.takeuforward.org/wp/uploads/2022/08/P13.png",
           },
           {
@@ -201,7 +201,7 @@ const DSA_SHEET: any[] = [
             lcLink: null,
             articleLink: null,
             youtubeLink: "https://youtu.be/tNm_NNSB3_w?t=2922",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/triangle-pattern-1662284916/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=pattern_14",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/triangle-pattern-1662284916/1",
             imageUrl: "https://static.takeuforward.org/wp/uploads/2022/08/P14.png",
           },
           {
@@ -210,7 +210,7 @@ const DSA_SHEET: any[] = [
             lcLink: null,
             articleLink: null,
             youtubeLink: "https://youtu.be/tNm_NNSB3_w?t=3057",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/triangle-pattern-1662285196/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=pattern_15",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/triangle-pattern-1662285196/1",
             imageUrl: "https://static.takeuforward.org/wp/uploads/2022/08/P15.png",
           },
           {
@@ -219,7 +219,7 @@ const DSA_SHEET: any[] = [
             lcLink: null,
             articleLink: null,
             youtubeLink: "https://youtu.be/tNm_NNSB3_w?t=3183",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/triangle-pattern-1662285334/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=pattern_16",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/triangle-pattern-1662285334/1",
             imageUrl: "https://static.takeuforward.org/wp/uploads/2022/08/P16.png",
           },
           {
@@ -228,7 +228,7 @@ const DSA_SHEET: any[] = [
             lcLink: null,
             articleLink: null,
             youtubeLink: "https://youtu.be/tNm_NNSB3_w?t=3282",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/triangle-pattern-1662285911/1/?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=pattern_17",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/triangle-pattern-1662285911/1/",
             imageUrl: "https://static.takeuforward.org/wp/uploads/2022/08/P17.png",
           },
           {
@@ -255,7 +255,7 @@ const DSA_SHEET: any[] = [
             lcLink: null,
             articleLink: null,
             youtubeLink: "https://youtu.be/tNm_NNSB3_w?t=3996",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/double-triangle-pattern-1662287416/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=pattern_20",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/double-triangle-pattern-1662287416/1",
             imageUrl: "https://static.takeuforward.org/wp/uploads/2022/08/P20.png",
           },
           {
@@ -264,7 +264,7 @@ const DSA_SHEET: any[] = [
             lcLink: null,
             articleLink: null,
             youtubeLink: "https://youtu.be/tNm_NNSB3_w?t=4349",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/square-pattern-1662287714/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=pattern_21",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/square-pattern-1662287714/1",
             imageUrl: "https://static.takeuforward.org/wp/uploads/2023/01/Screenshot-2023-01-02-at-1.54.55-PM-1.jpg",
           },
           {
@@ -273,7 +273,7 @@ const DSA_SHEET: any[] = [
             lcLink: null,
             articleLink: null,
             youtubeLink: "https://youtu.be/tNm_NNSB3_w?t=4541",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/square-pattern-1662666141/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=pattern_22",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/square-pattern-1662666141/1",
             imageUrl: "https://static.takeuforward.org/wp/uploads/2022/08/P22.png",
           },
         ],
@@ -509,13 +509,13 @@ const DSA_SHEET: any[] = [
           {
             title: "Check if the array is sorted",
             difficulty: "Easy",
-            lcLink: "https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/#:~:text=Input%3A%20nums%20%3D%20%5B2%2C,no%20rotation)%20to%20make%20nums.",
+            lcLink: "https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/#:~:text=Input: nums = [2,,no rotation) to make nums.",
             gfgLink: "https://bit.ly/3Ap9U6F",
           },
           {
             title: "Remove duplicates from Sorted array",
             difficulty: "Easy",
-            lcLink: "https://leetcode.com/problems/remove-duplicates-from-sorted-array/#:~:text=Input%3A%20nums%20%3D%20%5B0%2C,%2C%203%2C%20and%204%20respectively.",
+            lcLink: "https://leetcode.com/problems/remove-duplicates-from-sorted-array/#:~:text=Input: nums = [0,,, 3, and 4 respectively.",
             gfgLink: "https://bit.ly/3w7b6ck",
           },
           {
@@ -576,7 +576,7 @@ const DSA_SHEET: any[] = [
             title: "Longest subarray with sum K (Positives + Negatives)",
             difficulty: "Medium",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=longest-sub-array-with-sum-k",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1",
           },
         ],
       },
@@ -666,7 +666,7 @@ const DSA_SHEET: any[] = [
             title: "Count subarrays with given sum",
             difficulty: "Easy",
             lcLink: "https://leetcode.com/problems/subarray-sum-equals-k/",
-            gfgLink: "https://www.codingninjas.com/codestudio/problems/subarray-sums-i_1467103?utm_source=youtube&utm_medium=affiliate&utm_campaign=aryan_Arrayproblems",
+            gfgLink: "https://www.codingninjas.com/codestudio/problems/subarray-sums-i_1467103",
           },
         ],
       },
@@ -779,7 +779,7 @@ const DSA_SHEET: any[] = [
           {
             title: "Search Insert Position",
             difficulty: "Easy",
-            lcLink: "https://leetcode.com/problems/search-insert-position/#:~:text=Search%20Insert%20Position%20%2D%20LeetCode&text=Given%20a%20sorted%20array%20of,(log%20n)%20runtime%20complexity.",
+            lcLink: "https://leetcode.com/problems/search-insert-position/#:~:text=Search Insert Position - LeetCode&text=Given a sorted array of,(log n) runtime complexity.",
             gfgLink: "https://bit.ly/3pFDbUN",
           },
           {
@@ -833,7 +833,7 @@ const DSA_SHEET: any[] = [
           {
             title: "Find peak element",
             difficulty: "Hard",
-            lcLink: "https://leetcode.com/problems/find-peak-element/#:~:text=Find%20Peak%20Element%20%2D%20LeetCode&text=A%20peak%20element%20is%20an,to%20any%20of%20the%20peaks.",
+            lcLink: "https://leetcode.com/problems/find-peak-element/#:~:text=Find Peak Element - LeetCode&text=A peak element is an,to any of the peaks.",
             gfgLink: "https://bit.ly/3Apsuf3",
           },
         ],
@@ -881,7 +881,7 @@ const DSA_SHEET: any[] = [
           {
             title: "Kth Missing Positive Number",
             difficulty: "Easy",
-            lcLink: "https://leetcode.com/problems/kth-missing-positive-number/#:~:text=Given%20an%20array%20arr%20of,13%2C...%5D.",
+            lcLink: "https://leetcode.com/problems/kth-missing-positive-number/#:~:text=Given an array arr of,13,...].",
             gfgLink: "https://bit.ly/3bUFY9l",
           },
           {
@@ -1013,7 +1013,7 @@ const DSA_SHEET: any[] = [
           {
             title: "Check if two strings are anagram of each other",
             difficulty: "Medium",
-            lcLink: "https://leetcode.com/problems/valid-anagram/#:~:text=Given%20two%20strings%20s%20and,the%20original%20letters%20exactly%20once.&text=Constraints%3A,.length%20%3C%3D%205%20*%2010",
+            lcLink: "https://leetcode.com/problems/valid-anagram/#:~:text=Given two strings s and,the original letters exactly once.&text=Constraints:,.length <= 5 * 10",
             gfgLink: "https://bit.ly/3CcQTWs",
           },
         ],
@@ -1241,7 +1241,7 @@ const DSA_SHEET: any[] = [
           {
             title: "Delete the middle node of LL",
             difficulty: "Medium",
-            lcLink: "https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/#:~:text=You%20are%20given%20the%20head,than%20or%20equal%20to%20x%20.",
+            lcLink: "https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/#:~:text=You are given the head,than or equal to x .",
             gfgLink: "https://bit.ly/3QzoU7W",
           },
           {
@@ -1614,7 +1614,7 @@ const DSA_SHEET: any[] = [
             title: "All Divisors of a Number",
             difficulty: "Easy",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/all-divisors-of-a-number/1?utm_source=youtube&amp;utm_medium=collab_aryan_ytdescription&amp;utm_campaign=all-divisors-of-a-number",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/all-divisors-of-a-number/1",
           },
           {
             title: "Sieve of Eratosthenes",
@@ -1632,7 +1632,7 @@ const DSA_SHEET: any[] = [
             title: "Power(n, x)",
             difficulty: "Medium",
             lcLink: "https://leetcode.com/problems/powx-n/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/power-of-numbers-1587115620/1?utm_source=youtube&amp;utm_medium=collab_aryan_ytdescription&amp;utm_campaign=power-of-numbers",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/power-of-numbers-1587115620/1",
           },
         ],
       },
@@ -1829,7 +1829,7 @@ const DSA_SHEET: any[] = [
           {
             title: "The Celebrity Problem",
             difficulty: "Hard",
-            lcLink: "https://leetcode.com/accounts/login/?next=/problems/find-the-celebrity/",
+            lcLink: "https://leetcode.com/accounts/login/?next=%2Fproblems%2Ffind-the-celebrity%2F",
             gfgLink: "https://bit.ly/3dC9IIB",
           },
           {
@@ -2039,7 +2039,7 @@ const DSA_SHEET: any[] = [
           {
             title: "Kth largest element in a stream of running integers",
             difficulty: "Easy",
-            lcLink: "https://leetcode.com/problems/kth-largest-element-in-a-stream/#:~:text=Implement%20KthLargest%20class%3A,largest%20element%20in%20the%20stream.",
+            lcLink: "https://leetcode.com/problems/kth-largest-element-in-a-stream/#:~:text=Implement KthLargest class:,largest element in the stream.",
             gfgLink: "https://bit.ly/3JZPqEV",
           },
           {
@@ -2496,7 +2496,7 @@ const DSA_SHEET: any[] = [
             title: "Find K-th smallest/largest element in BST",
             difficulty: "Medium",
             lcLink: "https://leetcode.com/problems/kth-smallest-element-in-a-bst/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/find-k-th-smallest-element-in-bst/1#:~:text=Find%20the%20Kth%20Smallest%20element%20in%20the%20BST.&text=Your%20Task%3A,such%20element%20exists%20return%20%2D1.",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/find-k-th-smallest-element-in-bst/1#:~:text=Find the Kth Smallest element in the BST.&text=Your Task:,such element exists return -1.",
           },
           {
             title: "Check if a tree is a BST or BT",
@@ -2586,13 +2586,13 @@ const DSA_SHEET: any[] = [
             title: "BFS",
             difficulty: "Medium",
             lcLink: "https://practice.geeksforgeeks.org/problems/bfs-traversal-of-graph/1",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/bfs-traversal-of-graph/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=bfs_of_graph",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/bfs-traversal-of-graph/1",
           },
           {
             title: "DFS",
             difficulty: "Hard",
             lcLink: "https://practice.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=dfs_of_graph",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1",
           },
         ],
       },
@@ -2603,8 +2603,8 @@ const DSA_SHEET: any[] = [
           {
             title: "Number of provinces (leetcode)",
             difficulty: "Medium",
-            lcLink: "https://leetcode.com/problems/number-of-provinces/#:~:text=A%20province%20is%20a%20group,the%20total%20number%20of%20provinces.",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/number-of-provinces/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=number_of_provinces",
+            lcLink: "https://leetcode.com/problems/number-of-provinces/#:~:text=A province is a group,the total number of provinces.",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/number-of-provinces/1",
           },
           {
             title: "Connected Components Problem in Matrix",
@@ -2622,19 +2622,19 @@ const DSA_SHEET: any[] = [
             title: "Flood fill",
             difficulty: "Hard",
             lcLink: "https://leetcode.com/problems/flood-fill/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/flood-fill-algorithm1856/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=flood-fill-algorithm",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/flood-fill-algorithm1856/1",
           },
           {
             title: "Cycle Detection in unirected Graph (bfs)",
             difficulty: "Hard",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=detect-cycle-in-an-undirected-graph",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1",
           },
           {
             title: "Cycle Detection in undirected Graph (dfs)",
             difficulty: "Hard",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1?utm_source=youtube&utm_medium=collab_aryan_ytdescription&utm_campaign=detect-cycle-in-an-undirected-graph",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1",
           },
           {
             title: "0/1 Matrix (Bfs Problem)",
@@ -2814,7 +2814,7 @@ const DSA_SHEET: any[] = [
             title: "Find the city with the smallest number of neighbors in a threshold distance",
             difficulty: "Hard",
             lcLink: "https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/0/?category[]=Shortest%20Path&category[]=Shortest%20Path&page=1&query=category[]Shortest%20Pathpage1category[]Shortest%20Path",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/0/?category%5B%5D=Shortest+Path&category%5B%5D=Shortest+Path&page=1&query=category%5B%5DShortest+Pathpage1category%5B%5DShortest+Path",
           },
         ],
       },
@@ -3401,7 +3401,7 @@ const DSA_SHEET: any[] = [
           {
             title: "Rabin Karp",
             difficulty: "Hard",
-            lcLink: "https://leetcode.com/problems/repeated-string-match/discuss/416144/Rabin-Karp-algorithm-C%2B%2B-implementation",
+            lcLink: "https://leetcode.com/problems/repeated-string-match/discuss/416144/Rabin-Karp-algorithm-C++-implementation",
             gfgLink: "https://practice.geeksforgeeks.org/problems/31272eef104840f7430ad9fd1d43b434a4b9596b/1",
           },
           {
@@ -3432,7 +3432,7 @@ const DSA_SHEET: any[] = [
             title: "Count palindromic subsequence in given string",
             difficulty: "Hard",
             lcLink: null,
-            gfgLink: "https://practice.geeksforgeeks.org/problems/count-palindromic-subsequences/1#:~:text=Given%20a%20string%20str%20of,formed%20from%20the%20string%20str.&text=Your%20Task%3A,read%20input%20or%20print%20anything.",
+            gfgLink: "https://practice.geeksforgeeks.org/problems/count-palindromic-subsequences/1#:~:text=Given a string str of,formed from the string str.&text=Your Task:,read input or print anything.",
           },
         ],
       },

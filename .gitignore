@@ -20,10 +20,11 @@ dist-ssr
 .wrangler/
 .dev.vars
 
-# Lovable local project metadata (not for public GitHub / deploy)
+# Local IDE / generator metadata
 .lovable/
 
-# Local scrape / Wayback raw inputs + regeneration tooling (not for public GitHub / deploy)
+# Local-only scrape inputs (never commit / deploy)
+scripts/
 scripts/raw/
 
 # Editor directories and files

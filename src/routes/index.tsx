@@ -200,7 +200,7 @@ function NoteModal({ problem, onClose }: { problem: Problem; onClose: () => void
   );
 }
 
-/** Enlarged view for sheet row preview images (e.g. Striver pattern diagrams). */
+/** Enlarged view for sheet row preview images (e.g. pattern diagrams). */
 function PatternDiagramDialog({
   open,
   onOpenChange,
@@ -467,8 +467,8 @@ function ProblemRow({
         target="_blank"
         rel="noreferrer"
         className={cn(SHEET_PLATFORM_ICON_LINK_BASE_CLASSES, "text-primary")}
-        title="TakeUForward article"
-        aria-label="Open TakeUForward article"
+        title="Article"
+        aria-label="Open article"
       >
         <FileText className="size-5 shrink-0" aria-hidden />
       </a>

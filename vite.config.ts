@@ -1,7 +1,5 @@
 /**
  * Vite config for TanStack Start (Cloudflare Worker or Vercel via Nitro).
- *
- * Intentionally does not use Lovable wrappers - keeps deploy/source free of that tooling.
  */
 import path from "node:path";
 import { defineConfig, loadEnv, mergeConfig, type PluginOption, type UserConfig } from "vite";

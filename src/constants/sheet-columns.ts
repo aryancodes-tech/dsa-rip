@@ -26,7 +26,7 @@ export const DEFAULT_OPTIONAL_SHEET_COLUMN_VISIBILITY: OptionalSheetColumnVisibi
 
 export const OPTIONAL_SHEET_COLUMN_LABEL: Record<OptionalSheetColumnKey, string> = {
   youtube: "YouTube",
-  article: "Article (TUF)",
+  article: "Article",
   note: "Note",
   revision: "Revision",
   difficulty: "Difficulty",

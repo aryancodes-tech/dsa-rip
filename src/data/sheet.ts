@@ -1,6 +1,6 @@
 // @ts-nocheck
 import DSA_SHEET from "./dataSheet";
-import { getArchiveExtraLinksForProblem } from "./web-archive-links";
+import { getProblemExtraLinks } from "./problem-extra-links";
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
 
@@ -9,9 +9,9 @@ export interface Problem {
   title: string;
   difficulty: Difficulty;
   lcLink: string | null;
-  /** Free blog URL from precomputed `extra-links.gen.ts`, when present. */
+  /** Optional article URL from `extra-links.gen.ts`, when present. */
   articleLink: string | null;
-  /** Canonical YouTube explainer from precomputed `extra-links.gen.ts`, when present. */
+  /** Optional YouTube explainer from `extra-links.gen.ts`, when present. */
   youtubeLink: string | null;
   /** Optional preview image (e.g. pattern diagram) shown beside the title in the sheet grid. */
   imageUrl: string | null;
@@ -53,7 +53,7 @@ export const SHEET: Step[] = DSA_SHEET.map((step: any) => ({
         ...flattenLinks(p.cnLink, "Coding Ninjas"),
         ...flattenLinks(p.ibLink, "InterviewBit"),
       ];
-      const extra = getArchiveExtraLinksForProblem(step.stepNo, sub.subStepNo, p.title);
+      const extra = getProblemExtraLinks(step.stepNo, sub.subStepNo, p.title);
       return {
         id: `s${step.stepNo}-ss${sub.subStepNo}-${idx}-${p.title}`.replace(/\s+/g, "_"),
         title: p.title,
