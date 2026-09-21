@@ -35,6 +35,13 @@
       ]
     },
     {
+      "source": "/og-twitter.png",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" },
+        { "key": "Content-Type", "value": "image/png" }
+      ]
+    },
+    {
       "source": "/logos/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }

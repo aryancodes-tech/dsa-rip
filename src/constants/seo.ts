@@ -12,7 +12,6 @@ import {
   DSA_LEETCODE_LINKS_PITCH_SHORT,
   DSA_PRODUCT_DISPLAY_NAME,
 } from "@/constants/creator";
-import { LOGO_DSA_RIP_SPLASH_PATH } from "@/constants/branding";
 import { SHEET, TOTAL, TOTAL_BY_DIFF } from "@/data/sheet";
 
 /** Canonical production origin (no trailing slash). */
@@ -24,18 +23,20 @@ export const DSA_SITE_PATH = "/";
 /** Absolute canonical URL for the tracker home page. */
 export const DSA_CANONICAL_URL = `${DSA_SITE_ORIGIN}${DSA_SITE_PATH}`;
 
-/** Absolute Open Graph / Twitter share image (square lockup; served from `public/`). */
-export const DSA_OG_IMAGE_PATH = LOGO_DSA_RIP_SPLASH_PATH;
+/**
+ * Social share card under `public/og-twitter.png` (landscape OG / Twitter large image).
+ */
+export const DSA_OG_IMAGE_PATH = "/og-twitter.png";
 
 export const DSA_OG_IMAGE_URL = `${DSA_SITE_ORIGIN}${DSA_OG_IMAGE_PATH}`;
 
-/** OG image dimensions for the splash lockup PNG. */
-export const DSA_OG_IMAGE_WIDTH = 1254;
+/** OG image pixel size for `og:image:width` / `og:image:height`. */
+export const DSA_OG_IMAGE_WIDTH = 1672;
 
-export const DSA_OG_IMAGE_HEIGHT = 1254;
+export const DSA_OG_IMAGE_HEIGHT = 941;
 
 /** Short alt text for social preview images. */
-export const DSA_OG_IMAGE_ALT = `${DSA_PRODUCT_DISPLAY_NAME} - A2Z DSA sheet with public LeetCode links`;
+export const DSA_OG_IMAGE_ALT = `${DSA_PRODUCT_DISPLAY_NAME} - Practice DSA with curated LeetCode and GeeksforGeeks problems`;
 
 /**
  * Primary SERP title (~50–60 chars). Keyword-led; brand at the end.
