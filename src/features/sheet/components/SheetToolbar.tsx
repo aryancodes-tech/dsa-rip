@@ -173,7 +173,12 @@ export function SheetToolbar({
                   <Settings className="size-3.5" aria-hidden />
                 </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" sideOffset={8} className="w-[min(92vw,18rem)]">
+              <DropdownMenuContent
+                align={isMobile ? "start" : "end"}
+                sideOffset={8}
+                collisionPadding={12}
+                className="w-64 max-w-[calc(100vw-1.5rem)]"
+              >
                 <DropdownMenuLabel className="text-xs font-normal text-muted-foreground">
                   Preferences
                 </DropdownMenuLabel>
