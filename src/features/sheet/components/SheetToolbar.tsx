@@ -114,6 +114,10 @@ export function SheetToolbar({
             <div className="min-w-0">
               <h1 className="font-display text-xl font-semibold leading-tight tracking-tight sm:text-2xl">
                 {DSA_PRODUCT_DISPLAY_NAME}
+                <span className="sr-only">
+                  {" "}
+                  - A2Z DSA sheet with public LeetCode links; track solved, revision, and notes
+                </span>
               </h1>
               <p className="mt-0.5 text-sm leading-snug tabular-nums text-muted-foreground">
                 <span className="font-medium text-foreground">{stats.solved}</span>

@@ -1,0 +1,25 @@
+{
+  "name": "dsa.rip",
+  "short_name": "dsa.rip",
+  "description": "A2Z DSA sheet tracker with public LeetCode links - solved, revision, notes.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f5f0e8",
+  "theme_color": "#f5f0e8",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/logos/dsa-rip-logo-splash.png",
+      "sizes": "1254x1254",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logos/dsa-rip-logo.jpg",
+      "sizes": "2400x2400",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}

@@ -11,13 +11,6 @@ import {
 } from "@/lib/tracker-store";
 import { leetCodeLogoPublicPath } from "@/constants/branding";
 import {
-  CREATOR_DISPLAY_NAME,
-  CREATOR_PORTFOLIO_URL,
-  CREATOR_TWITTER_HANDLE,
-  CREATOR_TWITTER_URL,
-  DSA_LOCAL_PROGRESS_NOTICE,
-} from "@/constants/creator";
-import {
   computeProblemTitleColSpanSm,
   DEFAULT_OPTIONAL_SHEET_COLUMN_VISIBILITY,
   optionalColumnMaskToVisibility,
@@ -32,6 +25,7 @@ import { ConfirmResetDialog } from "./components/ConfirmResetDialog";
 import { NoteModal } from "./components/NoteModal";
 import { PatternDiagramDialog } from "./components/PatternDiagramDialog";
 import { SheetGrid } from "./components/SheetGrid";
+import { SheetSeoContent } from "./components/SheetSeoContent";
 import { SheetToolbar } from "./components/SheetToolbar";
 import { SplashScreen } from "./components/SplashScreen";
 import { SheetTour } from "./tour/SheetTour";
@@ -79,7 +73,7 @@ export function SheetPage() {
   const handleTourStepChange = useCallback(
     (stepId: string | null) => {
       const onSettings = stepId === "settings";
-      /** On mobile, spotlight the gear icon only — do not open the Preferences menu. */
+      /** On mobile, spotlight the gear icon only - do not open the Preferences menu. */
       const openMenuForTour = onSettings && !isMobile;
       settingsTourLockRef.current = openMenuForTour;
       setTourSettingsDemo(openMenuForTour);
@@ -306,33 +300,7 @@ export function SheetPage() {
           }}
         />
 
-        <footer className="mt-10 border-t border-border/60 pt-5 pb-2 text-center text-xs text-muted-foreground sm:mt-12 sm:pt-6">
-          <p className="px-2">{DSA_LOCAL_PROGRESS_NOTICE}</p>
-          <p className="mt-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 px-2">
-            <span>
-              Built by{" "}
-              <a
-                href={CREATOR_PORTFOLIO_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="font-medium text-foreground underline-offset-2 hover:underline"
-              >
-                {CREATOR_DISPLAY_NAME}
-              </a>
-            </span>
-            <span className="text-border" aria-hidden>
-              ·
-            </span>
-            <a
-              href={CREATOR_TWITTER_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium text-foreground underline-offset-2 hover:underline"
-            >
-              {CREATOR_TWITTER_HANDLE}
-            </a>
-          </p>
-        </footer>
+        <SheetSeoContent />
       </div>
 
       <PatternDiagramDialog

@@ -12,7 +12,7 @@ export const DSA_SPLASH_REDUCED_MOTION_MS = 200;
 export const DSA_SPLASH_EXIT_MS = 380;
 
 /** Line under the product name. */
-export const DSA_SPLASH_TAGLINE = "Your sheet. This browser. That’s it.";
+export const DSA_SPLASH_TAGLINE = "A2Z sheet. Public LeetCode links. This browser.";
 
 /**
  * Cream mat behind the transparent splash lockup in dark mode (`html.dark`).

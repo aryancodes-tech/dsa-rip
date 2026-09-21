@@ -1,0 +1,33 @@
+# dsa.rip - allow full crawl; sitemap for discovery
+User-agent: *
+Allow: /
+
+# AI / answer-engine crawlers (explicit allow for GEO/AEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://dsa.rip/sitemap.xml
+
+# Machine-readable site summary for AI assistants
+# https://dsa.rip/llms.txt
