@@ -1,4 +1,10 @@
-# DSA Mastery Suite
+## Quick Look
+
+<video src="./public/videos/dsa-rip-showreel.mp4" controls width="100%"></video>
+
+[Watch the showreel](./public/videos/dsa-rip-showreel.mp4)
+
+# DSA Rip
 
 Local-first DSA sheet tracker (solved / revision / notes, practice links). Progress is stored in the browser only - there is no account or server sync.
 
