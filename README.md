@@ -1,8 +1,8 @@
 ## Quick Look
 
-<video src="./public/videos/dsa-rip-showreel.mp4" controls width="100%"></video>
+![DSA Rip showreel](./public/videos/dsa-rip-showreel.gif)
 
-[Watch the showreel](./public/videos/dsa-rip-showreel.mp4)
+<!-- [Full video (MP4)](./public/videos/dsa-rip-showreel.mp4) -->
 
 # DSA Rip
 
