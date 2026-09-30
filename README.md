@@ -1,12 +1,8 @@
-## Quick Look
-
-![DSA Rip showreel](./public/videos/dsa-rip-showreel.gif)
-
-<!-- [Full video (MP4)](./public/videos/dsa-rip-showreel.mp4) -->
-
 # DSA Rip
 
-Local-first DSA sheet tracker (solved / revision / notes, practice links). Progress is stored in the browser only - there is no account or server sync.
+Striver A2Z DSA sheet with classic old UI and public Leetcode and GFG links. Progress is stored in the browser only, there is no account or server sync.
+
+<img src="./public/videos/dsa-rip-showreel.gif" alt="DSA Rip showreel" width="100%" />
 
 ## Prerequisites
 
