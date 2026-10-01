@@ -3,6 +3,9 @@ import {
   SHEET_RESET_SOLVED_CONFIRM_ACTION,
   SHEET_RESET_SOLVED_CONFIRM_BODY,
   SHEET_RESET_SOLVED_TOOLTIP,
+  formatSheetProgressPercent,
+  formatSheetSolvedCount,
+  sheetProgressSummaryAriaLabel,
   sheetResetStepSolvedAriaLabel,
   sheetResetSubStepSolvedAriaLabel,
 } from "@/constants/sheet-progress";
@@ -24,6 +27,20 @@ describe("sheetResetStepSolvedAriaLabel", () => {
   it("includes the step title", () => {
     expect(sheetResetStepSolvedAriaLabel(1, "Learn the basics")).toBe(
       "Reset solved status for step 1: Learn the basics",
+    );
+  });
+});
+
+describe("toolbar progress copy", () => {
+  it("formats the solved count and percent with spaces", () => {
+    expect(formatSheetSolvedCount(0, 557)).toBe("0 of 557 solved");
+    expect(formatSheetProgressPercent(0)).toBe("0%");
+    expect(formatSheetProgressPercent(12.6)).toBe("13%");
+  });
+
+  it("builds an accessible overall summary", () => {
+    expect(sheetProgressSummaryAriaLabel(3, 557, 0.5)).toBe(
+      "3 of 557 solved, 1 percent complete",
     );
   });
 });

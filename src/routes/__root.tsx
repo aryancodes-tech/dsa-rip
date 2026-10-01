@@ -16,7 +16,11 @@ import {
   LOGO_DSA_RIP_SPLASH_PATH,
   POPPINS_GOOGLE_FONTS_STYLESHEET_HREF,
 } from "@/constants/branding";
-import { CREATOR_DISPLAY_NAME } from "@/constants/creator";
+import {
+  CREATOR_DISPLAY_NAME,
+  CREATOR_TWITTER_HANDLE,
+  CREATOR_TWITTER_URL,
+} from "@/constants/creator";
 import {
   DSA_APP_NAME,
   DSA_CANONICAL_URL,
@@ -35,6 +39,15 @@ import {
   buildDsaTopicListJsonLd,
   buildDsaWebApplicationJsonLd,
 } from "@/constants/seo";
+import {
+  ERROR_PAGE_BODY,
+  ERROR_PAGE_CONTACT_BTN_CLASS,
+  ERROR_PAGE_CONTACT_LABEL,
+  ERROR_PAGE_RETRY_BTN_CLASS,
+  ERROR_PAGE_RETRY_LABEL,
+  ERROR_PAGE_TITLE,
+} from "@/constants/error-page";
+import { XLogo } from "@/components/XLogo";
 import { useHydratePersistedTracker } from "@/lib/tracker-store";
 
 function NotFoundComponent() {
@@ -67,27 +80,31 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
+          {ERROR_PAGE_TITLE}
         </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end.
-        </p>
+        <p className="mt-2 text-sm text-muted-foreground">{ERROR_PAGE_BODY}</p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className={ERROR_PAGE_RETRY_BTN_CLASS}
           >
-            Try again
+            {ERROR_PAGE_RETRY_LABEL}
           </button>
-          <a
-            href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-          >
-            Go home
-          </a>
+          {CREATOR_TWITTER_URL.length > 0 ? (
+            <a
+              href={CREATOR_TWITTER_URL}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`${ERROR_PAGE_CONTACT_LABEL}: ${CREATOR_TWITTER_HANDLE}`}
+              className={ERROR_PAGE_CONTACT_BTN_CLASS}
+            >
+              <XLogo className="size-3.5 shrink-0" />
+              {ERROR_PAGE_CONTACT_LABEL}
+            </a>
+          ) : null}
         </div>
       </div>
     </div>

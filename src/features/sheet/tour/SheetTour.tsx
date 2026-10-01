@@ -80,6 +80,8 @@ function computePopoverStyle(rect: Rect | null, step: SheetTourStep): CSSPropert
 
 /**
  * Full-screen coachmark tour: spotlight cutout + popover synced to `data-tour` targets.
+ * Clicks on the dim/spotlight (anywhere outside the coachmark card) skip the tour,
+ * matching the Skip button and Escape.
  */
 export function SheetTour({
   open,
@@ -192,7 +194,7 @@ export function SheetTour({
           aria-labelledby="sheet-tour-title"
           aria-describedby="sheet-tour-body"
         >
-          <div className="absolute inset-0" aria-hidden>
+          <div className="absolute inset-0" aria-hidden onClick={onClose}>
             {rect ? (
               <div
                 className="absolute rounded-xl transition-[top,left,width,height] duration-200 ease-out"

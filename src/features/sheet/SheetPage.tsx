@@ -18,8 +18,13 @@ import {
   type OptionalSheetColumnKey,
   type OptionalSheetColumnVisibility,
 } from "@/constants/sheet-columns";
+import {
+  SHEET_SEARCH_ACCORDION_MS,
+  SHEET_SEARCH_FLASH_MS,
+  sheetSearchRevealDelayMs,
+} from "@/constants/sheet-search";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { problemMatchesSearchQuery } from "./lib/search";
+import type { SheetSearchSuggestion } from "./lib/search";
 import type { DifficultyBreakdownRow } from "./lib/types";
 import { ConfirmResetDialog } from "./components/ConfirmResetDialog";
 import { NoteModal } from "./components/NoteModal";
@@ -58,8 +63,11 @@ export function SheetPage() {
     title: string;
   } | null>(null);
   const [confirmReset, setConfirmReset] = useState(false);
+  const [flashProblemId, setFlashProblemId] = useState<string | null>(null);
+  const [pinnedProblemId, setPinnedProblemId] = useState<string | null>(null);
   const flashRef = useRef<HTMLDivElement | null>(null);
   const searchInputRef = useRef<HTMLInputElement | null>(null);
+  const jumpScrollTimerRef = useRef<number | null>(null);
   const openStepsInitialized = useRef(false);
   const [optionalColumnVisibility, setOptionalColumnVisibility] =
     useState<OptionalSheetColumnVisibility>(DEFAULT_OPTIONAL_SHEET_COLUMN_VISIBILITY);
@@ -178,21 +186,87 @@ export function SheetPage() {
   }, [done]);
 
   const filtered = useMemo(() => {
-    const q = search.trim().toLowerCase();
     return ALL_PROBLEMS.filter((p) => {
-      if (!problemMatchesSearchQuery(p, q)) return false;
+      if (pinnedProblemId !== null && pinnedProblemId.length > 0 && p.id === pinnedProblemId) {
+        return true;
+      }
       if (diffFilter !== "All" && p.difficulty !== diffFilter) return false;
       if (statusFilter === "Solved" && !done.has(p.id)) return false;
       if (statusFilter === "Unsolved" && done.has(p.id)) return false;
       if (revOnly && !rev.has(p.id)) return false;
       return true;
     });
-  }, [search, diffFilter, statusFilter, revOnly, done, rev]);
+  }, [diffFilter, statusFilter, revOnly, done, rev, pinnedProblemId]);
 
   const filteredIds = useMemo(() => new Set(filtered.map((p) => p.id)), [filtered]);
 
   const hasActiveProblemFilters =
-    diffFilter !== "All" || statusFilter !== "All" || revOnly || search.trim().length > 0;
+    diffFilter !== "All" || statusFilter !== "All" || revOnly;
+
+  const handleSearchSelect = useCallback(
+    (suggestion: SheetSearchSuggestion) => {
+      const problem = suggestion.problem;
+      const subKey = `${problem.stepNo}-${problem.subStepNo}`;
+      const delay = sheetSearchRevealDelayMs(openSteps.has(problem.stepNo), openSubs.has(subKey));
+      setOpenSteps((s) => {
+        const next = new Set(s);
+        next.add(problem.stepNo);
+        return next;
+      });
+      setOpenSubs((s) => {
+        const next = new Set(s);
+        next.add(subKey);
+        return next;
+      });
+      setPinnedProblemId(problem.id);
+      setSearch("");
+      setFlashProblemId(null);
+
+      if (jumpScrollTimerRef.current !== null) {
+        window.clearTimeout(jumpScrollTimerRef.current);
+      }
+      jumpScrollTimerRef.current = window.setTimeout(() => {
+        jumpScrollTimerRef.current = null;
+        const el = document.getElementById(problem.id);
+        if (el !== null) {
+          el.scrollIntoView({
+            behavior: "auto",
+            block: "center",
+            inline: "nearest",
+          });
+          setFlashProblemId(problem.id);
+          return;
+        }
+        jumpScrollTimerRef.current = window.setTimeout(() => {
+          jumpScrollTimerRef.current = null;
+          document.getElementById(problem.id)?.scrollIntoView({
+            behavior: "auto",
+            block: "center",
+            inline: "nearest",
+          });
+          setFlashProblemId(problem.id);
+        }, SHEET_SEARCH_ACCORDION_MS);
+      }, delay);
+    },
+    [openSteps, openSubs],
+  );
+
+  useEffect(() => {
+    if (flashProblemId === null || flashProblemId.length === 0) return;
+    const t = window.setTimeout(() => {
+      setFlashProblemId(null);
+      setPinnedProblemId(null);
+    }, SHEET_SEARCH_FLASH_MS);
+    return () => window.clearTimeout(t);
+  }, [flashProblemId]);
+
+  useEffect(() => {
+    return () => {
+      if (jumpScrollTimerRef.current !== null) {
+        window.clearTimeout(jumpScrollTimerRef.current);
+      }
+    };
+  }, []);
 
   const stats = useMemo(() => {
     const solvedList = ALL_PROBLEMS.filter((p) => done.has(p.id));
@@ -272,10 +346,10 @@ export function SheetPage() {
             setDiffFilter("All");
             setStatusFilter("All");
             setRevOnly(false);
-            setSearch("");
           }}
           search={search}
           onSearchChange={setSearch}
+          onSearchSelect={handleSearchSelect}
           searchInputRef={searchInputRef}
           flashRef={flashRef}
         />
@@ -283,6 +357,7 @@ export function SheetPage() {
         <SheetGrid
           filteredIds={filteredIds}
           filteredCount={filtered.length}
+          flashProblemId={flashProblemId}
           done={done}
           rev={rev}
           notes={notes}

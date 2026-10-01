@@ -1,4 +1,4 @@
-import type { Dispatch, RefObject, SetStateAction } from "react";
+import type { RefObject } from "react";
 import {
   ChevronDown,
   Clock,
@@ -7,7 +7,6 @@ import {
   ListFilter,
   Moon,
   RotateCcw,
-  Search,
   Settings,
   Sparkles,
   Star,
@@ -22,6 +21,13 @@ import {
 } from "@/constants/sheet-columns";
 import { DSA_PRODUCT_DISPLAY_NAME } from "@/constants/creator";
 import { LOGO_DSA_RIP_HEADER_CLASS, LOGO_DSA_RIP_PATH } from "@/constants/branding";
+import {
+  SHEET_PROGRESS_COMPLETE_LABEL,
+  SHEET_PROGRESS_OF_LABEL,
+  SHEET_PROGRESS_SOLVED_LABEL,
+  formatSheetProgressPercent,
+  sheetProgressSummaryAriaLabel,
+} from "@/constants/sheet-progress";
 import {
   THEME_PREFERENCE_LABEL,
   THEME_PREFERENCE_OPTIONS,
@@ -39,10 +45,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { DIFFICULTY_DOT_CLASS } from "../lib/difficulty-styles";
-import { FILTER_TRIGGER_CLASS, TOOLBAR_ICON_BTN_CLASS } from "../lib/toolbar-classes";
+import { FILTER_TRIGGER_CLASS, THEME_TRIGGER_CLASS, TOOLBAR_ICON_BTN_CLASS } from "../lib/toolbar-classes";
 import type { DifficultyBreakdownRow, SheetStats } from "../lib/types";
 import { FilterMenu } from "./FilterMenu";
 import { ProgressBar } from "./ProgressBar";
+import { SearchProblemCombobox } from "./SearchProblemCombobox";
+import type { SheetSearchSuggestion } from "../lib/search";
 
 /** Icon for a selectable theme in the toolbar trigger and menu. */
 function ThemePreferenceIcon({
@@ -81,6 +89,7 @@ export function SheetToolbar({
   onClearFilters,
   search,
   onSearchChange,
+  onSearchSelect,
   searchInputRef,
   flashRef,
 }: {
@@ -113,51 +122,53 @@ export function SheetToolbar({
   hasActiveProblemFilters: boolean;
   onClearFilters: () => void;
   search: string;
-  onSearchChange: Dispatch<SetStateAction<string>>;
+  onSearchChange: (value: string) => void;
+  onSearchSelect: (suggestion: SheetSearchSuggestion) => void;
   searchInputRef: RefObject<HTMLInputElement | null>;
   flashRef: RefObject<HTMLDivElement | null>;
 }) {
   return (
-    <section className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm sm:rounded-3xl">
-      <div className="space-y-5 p-4 sm:space-y-6 sm:p-6 lg:p-7">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex min-w-0 items-center gap-3" data-tour="progress">
-            <img src={LOGO_DSA_RIP_PATH} alt="" className={LOGO_DSA_RIP_HEADER_CLASS} />
-            <div className="min-w-0">
-              <h1 className="font-display text-xl font-semibold leading-tight tracking-tight sm:text-2xl">
-                {DSA_PRODUCT_DISPLAY_NAME}
-                <span className="sr-only">
-                  {" "}
-                  - A2Z DSA sheet with public LeetCode links; track solved, revision, and notes
-                </span>
-              </h1>
-              <p className="mt-0.5 text-sm leading-snug tabular-nums text-muted-foreground">
-                <span className="font-medium text-foreground">{stats.solved}</span>
-                {" of "}
-                {stats.total}
-                {" solved"}
-                <span className="mx-1.5 text-border">•</span>
-                {Math.round(stats.pct)}% complete
-              </p>
+    <section className="relative z-20 overflow-visible rounded-2xl border border-border bg-card shadow-sm sm:rounded-3xl">
+      <div className="space-y-4 p-4 sm:space-y-6 sm:p-6 lg:p-7">
+        <div data-tour="progress" className="space-y-3.5 sm:space-y-0">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
+              <img src={LOGO_DSA_RIP_PATH} alt="" className={LOGO_DSA_RIP_HEADER_CLASS} />
+              <div className="min-w-0">
+                <h1 className="font-display text-xl font-semibold leading-tight tracking-tight sm:text-2xl">
+                  {DSA_PRODUCT_DISPLAY_NAME}
+                  <span className="sr-only">
+                    {" "}
+                    - A2Z DSA sheet with public LeetCode links; track solved, revision, and notes
+                  </span>
+                </h1>
+                <p className="mt-0.5 hidden text-sm leading-snug tabular-nums text-muted-foreground sm:block">
+                  <span className="font-medium text-foreground">{stats.solved}</span>
+                  {` ${SHEET_PROGRESS_OF_LABEL} `}
+                  {stats.total}
+                  {` ${SHEET_PROGRESS_SOLVED_LABEL}`}
+                  <span className="mx-1.5 text-border">•</span>
+                  {formatSheetProgressPercent(stats.pct)} {SHEET_PROGRESS_COMPLETE_LABEL}
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div className="flex shrink-0 flex-wrap items-center gap-2 sm:justify-end">
+            <div className="flex shrink-0 items-center gap-2">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button
                   type="button"
                   data-tour="theme"
                   aria-label={`Theme: ${THEME_PREFERENCE_LABEL[preference]}`}
-                  className={FILTER_TRIGGER_CLASS}
+                  className={THEME_TRIGGER_CLASS}
                 >
                   <ThemePreferenceIcon preference={preference} className="size-3.5" />
                   <span className="hidden sm:inline">{THEME_PREFERENCE_LABEL[preference]}</span>
-                  <ChevronDown className="size-3.5 text-muted-foreground" aria-hidden />
+                  <ChevronDown className="hidden size-3.5 text-muted-foreground sm:inline" aria-hidden />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent
-                align={isMobile ? "start" : "end"}
+                align="end"
                 sideOffset={8}
                 collisionPadding={12}
                 className="min-w-[10.5rem] p-1.5"
@@ -203,7 +214,7 @@ export function SheetToolbar({
               </DropdownMenuTrigger>
               <DropdownMenuContent
                 data-tour={isMobile ? undefined : "settings"}
-                align={isMobile ? "start" : "end"}
+                align="end"
                 side="bottom"
                 sideOffset={8}
                 collisionPadding={12}
@@ -267,6 +278,23 @@ export function SheetToolbar({
                 })}
               </DropdownMenuContent>
             </DropdownMenu>
+            </div>
+          </div>
+
+          <div
+            className="sm:hidden"
+            aria-label={sheetProgressSummaryAriaLabel(stats.solved, stats.total, stats.pct)}
+          >
+            <div className="flex items-baseline justify-between gap-3">
+              <p className="text-sm tabular-nums text-muted-foreground">
+                <span className="font-semibold text-foreground">{stats.solved}</span>
+                {` ${SHEET_PROGRESS_OF_LABEL} ${stats.total} ${SHEET_PROGRESS_SOLVED_LABEL}`}
+              </p>
+              <p className="text-sm font-semibold tabular-nums text-foreground">
+                {formatSheetProgressPercent(stats.pct)}
+              </p>
+            </div>
+            <ProgressBar value={stats.pct} className="mt-2 h-1.5" />
           </div>
         </div>
 
@@ -275,7 +303,7 @@ export function SheetToolbar({
             <div
               key={key}
               className={cn(
-                "min-w-0 rounded-2xl border px-3.5 py-3 sm:px-4 sm:py-3.5",
+                "min-w-0 rounded-xl border px-2.5 py-2.5 sm:rounded-2xl sm:px-4 sm:py-3.5",
                 key === "Easy" && "border-[color:var(--easy)]/35 bg-[color:var(--easy)]/12",
                 key === "Medium" && "border-[color:var(--medium)]/35 bg-[color:var(--medium)]/12",
                 key === "Hard" && "border-[color:var(--hard)]/35 bg-[color:var(--hard)]/12",
@@ -311,7 +339,8 @@ export function SheetToolbar({
           ref={flashRef}
           className="flex flex-col gap-2.5 border-t border-border/50 pt-4 sm:flex-row sm:flex-wrap sm:items-center"
         >
-          <div className="flex flex-wrap items-center gap-2" data-tour="filters">
+          <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center" data-tour="filters">
+            <div className="grid grid-cols-2 gap-2 sm:contents">
             <FilterMenu
               value={diffFilter}
               onChange={onDiffFilterChange}
@@ -326,6 +355,8 @@ export function SheetToolbar({
               allLabel="All Status"
               icon={<Clock className="size-3.5 shrink-0 text-muted-foreground" aria-hidden />}
             />
+            </div>
+            <div className="flex flex-wrap items-center gap-2 sm:contents">
             <button
               type="button"
               onClick={onRevOnlyToggle}
@@ -363,26 +394,20 @@ export function SheetToolbar({
               )}
               title={
                 hasActiveProblemFilters
-                  ? "Clear difficulty, status, revision-only, and search"
+                  ? "Clear difficulty, status, and revision-only"
                   : "No filters applied"
               }
             >
               <FilterX className="size-3.5" /> Reset filters
             </button>
+            </div>
           </div>
-          <div className="relative w-full sm:ml-auto sm:max-w-md sm:flex-1" data-tour="search">
-            <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-            <input
-              ref={searchInputRef}
-              value={search}
-              onChange={(e) => onSearchChange(e.target.value)}
-              placeholder="Search topics, subtopics & problems…"
-              className="min-h-10 w-full cursor-text rounded-xl border border-border/80 bg-background/80 py-2 pl-9 pr-14 text-base shadow-sm sm:min-h-0 sm:text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-            />
-            <kbd className="pointer-events-none absolute right-2.5 top-1/2 hidden -translate-y-1/2 select-none rounded-md border border-border bg-muted/80 px-1.5 py-0.5 font-sans text-[10px] font-medium text-muted-foreground sm:inline-block">
-              ⌘ K
-            </kbd>
-          </div>
+          <SearchProblemCombobox
+            query={search}
+            onQueryChange={onSearchChange}
+            onSelect={onSearchSelect}
+            inputRef={searchInputRef}
+          />
         </div>
       </div>
     </section>

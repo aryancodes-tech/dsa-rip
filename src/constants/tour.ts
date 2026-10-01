@@ -57,7 +57,7 @@ export const SHEET_TOUR_STEPS: readonly SheetTourStep[] = [
   {
     id: "search",
     title: "Search",
-    body: "Jump to topics or problem titles. On desktop, press ⌘ K (Ctrl K) to focus search instantly.",
+    body: "Search problem titles, then pick a result to jump there. On desktop, press ⌘ K (Ctrl K) to focus search.",
     placement: "bottom",
   },
 ] as const;

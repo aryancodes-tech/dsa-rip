@@ -98,7 +98,7 @@ const DSA_SHEET: RawSheetStep[] = [
       },
       {
         subStepNo: 2,
-        subStepTitle: "Build-up Logical Thinking",
+        subStepTitle: "Build-up Logical Thinking (Patterns)",
         problems: [
           {
             title: "Easy and Medium",
@@ -318,7 +318,7 @@ const DSA_SHEET: RawSheetStep[] = [
       },
       {
         subStepNo: 3,
-        subStepTitle: "Learn STL/Java-Collections or similar thing in your\n            language",
+        subStepTitle: "Learn STL/Java-Collections or similar thing in your language",
         problems: [
           {
             title: "C++ STL",

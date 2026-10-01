@@ -8,7 +8,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { FILTER_TRIGGER_CLASS } from "../lib/toolbar-classes";
+import { FILTER_MENU_TRIGGER_WIDTH_CLASS, FILTER_TRIGGER_CLASS } from "../lib/toolbar-classes";
 
 /**
  * Styled filter menu (replaces native `<select>` so Difficulty / Status match the rest of the UI).
@@ -34,7 +34,11 @@ export function FilterMenu({
       <DropdownMenuTrigger asChild>
         <button
           type="button"
-          className={cn(FILTER_TRIGGER_CLASS, "min-w-[9.5rem] justify-between gap-2")}
+          className={cn(
+            FILTER_TRIGGER_CLASS,
+            FILTER_MENU_TRIGGER_WIDTH_CLASS,
+            "justify-between gap-2",
+          )}
         >
           <span className="flex min-w-0 items-center gap-1.5">
             {icon}
