@@ -84,6 +84,8 @@
   --border: oklch(0.88 0.018 75);
   --input: oklch(0.9 0.014 75);
   --ring: oklch(0.65 0.08 60);
+  --selection: oklch(0.88 0.02 72);
+  --selection-foreground: oklch(0.28 0.02 60);
   --easy: oklch(0.62 0.11 145);
   --medium: oklch(0.72 0.13 75);
   --hard: oklch(0.62 0.13 25);
@@ -124,6 +126,8 @@
   --border: oklch(0.32 0.012 65);
   --input: oklch(0.3 0.012 65);
   --ring: oklch(0.6 0.07 70);
+  --selection: oklch(0.32 0.016 65);
+  --selection-foreground: oklch(0.93 0.012 80);
   --easy: oklch(0.7 0.1 150);
   --medium: oklch(0.78 0.12 80);
   --hard: oklch(0.68 0.13 25);
@@ -164,6 +168,8 @@
   --border: oklch(0.88 0.045 302);
   --input: oklch(0.9 0.04 300);
   --ring: oklch(0.62 0.14 292);
+  --selection: oklch(0.88 0.03 300);
+  --selection-foreground: oklch(0.3 0.055 292);
   --easy: oklch(0.6 0.12 155);
   --medium: oklch(0.68 0.14 78);
   --hard: oklch(0.58 0.14 25);
@@ -186,6 +192,28 @@
 @layer base {
   * {
     border-color: var(--color-border);
+  }
+
+  :root {
+    color-scheme: light;
+  }
+
+  .dark {
+    color-scheme: dark;
+  }
+
+  .lavender {
+    color-scheme: light;
+  }
+
+  ::selection {
+    background-color: var(--selection);
+    color: var(--selection-foreground);
+  }
+
+  ::-moz-selection {
+    background-color: var(--selection);
+    color: var(--selection-foreground);
   }
 
   body {

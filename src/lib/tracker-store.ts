@@ -17,6 +17,7 @@ import {
   type ThemePreference,
   type ResolvedTheme,
   DSA_THEME_DEFAULT,
+  THEME_COLOR_SCHEME,
   migrateStoredTheme,
   themeToWire,
 } from "@/constants/theme";
@@ -48,12 +49,13 @@ const SSR_SNAPSHOT_NOTES = Object.freeze({}) as Record<string, string>;
 /** Per-store hydrate callbacks registered below; invoked from {@link hydratePersistedTrackerShell}. */
 const trackerHydrationTasks: Array<() => void> = [];
 
-/** Applies `dark` / `lavender` classes on `<html>` from a resolved palette. */
+/** Applies `dark` / `lavender` classes and native `color-scheme` on `<html>`. */
 function applyThemeClassToDocument(mode: ResolvedTheme) {
   if (typeof document === "undefined") return;
   const root = document.documentElement;
   root.classList.toggle("dark", mode === "dark");
   root.classList.toggle("lavender", mode === "lavender");
+  root.style.colorScheme = THEME_COLOR_SCHEME[mode];
 }
 
 /**
