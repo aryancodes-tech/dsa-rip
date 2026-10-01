@@ -101,22 +101,6 @@ const DSA_SHEET: RawSheetStep[] = [
         subStepTitle: "Build-up Logical Thinking (Patterns)",
         problems: [
           {
-            title: "Easy and Medium",
-            difficulty: "Easy",
-            lcLink: null,
-            youtubeLink: "https://www.youtube.com/watch?v=tNm_NNSB3_w&list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz&index=3",
-            tufLink: composeTufLearningUrl("easy-and-medium"),
-            gfgLink: null,
-          },
-          {
-            title: "Hard",
-            difficulty: "Hard",
-            lcLink: null,
-            youtubeLink: "https://www.youtube.com/watch?v=tNm_NNSB3_w&list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz&index=3",
-            tufLink: composeTufLearningUrl("hard"),
-            gfgLink: null,
-          },
-          {
             title: "Pattern 1: Rectangular star pattern",
             difficulty: "Easy",
             lcLink: null,
@@ -352,13 +336,6 @@ const DSA_SHEET: RawSheetStep[] = [
         subStepNo: 4,
         subStepTitle: "Know Basic Maths",
         problems: [
-          {
-            title: "Basic Maths",
-            difficulty: "Easy",
-            lcLink: null,
-            tufLink: composeTufLearningUrl("basic-maths"),
-            gfgLink: null,
-          },
           {
             title: "Count Digits",
             difficulty: "Easy",

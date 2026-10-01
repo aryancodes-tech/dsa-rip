@@ -244,7 +244,7 @@ export function SheetGrid({
                                           )}
                                           {optionalColumnVisibility.note && (
                                             <div className="col-span-1 text-center whitespace-nowrap">
-                                              Note
+                                              Notes
                                             </div>
                                           )}
                                           {optionalColumnVisibility.revision && (

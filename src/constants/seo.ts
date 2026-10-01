@@ -37,7 +37,7 @@ export const DSA_OG_IMAGE_WIDTH = 1200;
 export const DSA_OG_IMAGE_HEIGHT = 630;
 
 /** Short alt text for social preview images. */
-export const DSA_OG_IMAGE_ALT = `${DSA_PRODUCT_DISPLAY_NAME} - Practice DSA with curated LeetCode and GeeksforGeeks problems`;
+export const DSA_OG_IMAGE_ALT = `${DSA_PRODUCT_DISPLAY_NAME} - The A2Z sheet with every LeetCode, GFG, and TUF link in the grid`;
 
 /**
  * Primary SERP title (~50–60 chars). Keyword-led; brand at the end.
