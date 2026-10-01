@@ -3,6 +3,40 @@
  * These actions uncheck Status only; revision stars and notes stay as they are.
  */
 
+/** Word between the solved count and the sheet total in the toolbar summary. */
+export const SHEET_PROGRESS_OF_LABEL = "of";
+
+/** Noun after the solved/total counts in the toolbar summary. */
+export const SHEET_PROGRESS_SOLVED_LABEL = "solved";
+
+/** Noun after the percentage on desktop (e.g. "12% complete"). */
+export const SHEET_PROGRESS_COMPLETE_LABEL = "complete";
+
+/**
+ * Formats the solved/total clause shown in the toolbar (e.g. "12 of 557 solved").
+ */
+export function formatSheetSolvedCount(solved: number, total: number): string {
+  return `${solved} ${SHEET_PROGRESS_OF_LABEL} ${total} ${SHEET_PROGRESS_SOLVED_LABEL}`;
+}
+
+/**
+ * Formats the overall completion percent with a trailing % sign.
+ */
+export function formatSheetProgressPercent(pct: number): string {
+  return `${Math.round(pct)}%`;
+}
+
+/**
+ * Accessible name for the overall solved summary (count + percent).
+ */
+export function sheetProgressSummaryAriaLabel(
+  solved: number,
+  total: number,
+  pct: number,
+): string {
+  return `${formatSheetSolvedCount(solved, total)}, ${Math.round(pct)} percent ${SHEET_PROGRESS_COMPLETE_LABEL}`;
+}
+
 /** Hover tooltip on the small header reset control. */
 export const SHEET_RESET_SOLVED_TOOLTIP = "Reset Progress";
 

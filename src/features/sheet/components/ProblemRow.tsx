@@ -11,6 +11,7 @@ import {
   SHEET_PLATFORM_ICON_LINK_BASE_CLASSES,
   SHEET_PLATFORM_LOGO_PX,
 } from "@/constants/branding";
+import { SHEET_SEARCH_FLASH_CLASS } from "@/constants/sheet-search";
 import {
   problemTitleGridClassName,
   SHEET_TUF_LINK_ARIA_LABEL,
@@ -27,6 +28,7 @@ export function ProblemRow({
   isDone,
   isRev,
   hasNote,
+  isFlashed = false,
   leetcodeLogoSrc,
   tufLogoSrc,
   columnVisibility,
@@ -40,6 +42,8 @@ export function ProblemRow({
   isDone: boolean;
   isRev: boolean;
   hasNote: boolean;
+  /** True while this row is the search-jump highlight. */
+  isFlashed?: boolean;
   /** Raster URL for LeetCode (light vs dark artwork). Lavender uses the light asset. */
   leetcodeLogoSrc: string;
   /** Raster URL for the takeUforward F-mark (light vs dark artwork). */
@@ -308,7 +312,12 @@ export function ProblemRow({
   ) : null;
 
   return (
-    <div className="grid grid-cols-12 items-center gap-2 border-t border-border/60 px-3 py-3 transition-colors hover:bg-muted/40 sm:gap-3 sm:px-6">
+    <div
+      className={cn(
+        "grid grid-cols-12 items-center gap-2 border-t border-border/60 px-3 py-3 sm:gap-3 sm:px-6",
+        isFlashed ? SHEET_SEARCH_FLASH_CLASS : "transition-colors hover:bg-muted/40",
+      )}
+    >
       <div className="col-span-1 flex justify-center self-center">{solvedToggle}</div>
       <div className={problemTitleCls}>{titleBlock}</div>
       {columnVisibility.youtube && <div className={deskCell}>{youtubeAction}</div>}

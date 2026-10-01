@@ -25,3 +25,10 @@ export const DSA_PROBLEM_GRID_MIN_WIDTH_REM = 56;
  * Full class so JIT sees it (no dynamic `min-w-[${n}rem]`).
  */
 export const DSA_PROBLEM_GRID_MIN_WIDTH_CLASS = "min-w-[56rem]";
+
+/**
+ * Phone-only fade on the right edge of the problem-grid scroller, so the
+ * clipped columns read as "scroll for more" instead of a broken table.
+ */
+export const DSA_SHEET_HSCROLL_EDGE_FADE_CLASS =
+  "pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-card to-transparent sm:hidden";

@@ -40,12 +40,12 @@ export function NoteModal({ problem, onClose }: { problem: Problem; onClose: () 
         <div className="flex items-start justify-between mb-3">
           <div>
             <p className="text-xs uppercase tracking-wider text-muted-foreground">Note</p>
-            <h3 className="font-display text-xl mt-1">{problem.title}</h3>
+            <h3 className="font-display mt-1 pr-2 text-lg leading-snug sm:text-xl">{problem.title}</h3>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="cursor-pointer rounded-md p-1 hover:bg-muted"
+            className="inline-flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-md touch-manipulation hover:bg-muted"
           >
             <X className="size-4" />
           </button>

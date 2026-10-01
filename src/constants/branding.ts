@@ -30,9 +30,9 @@ export const LOGO_DSA_RIP_PATH = "/logos/dsa-rip-logo.jpg";
 /** Full-bleed splash lockup (tombstone + dsa.rip wordmark, transparent PNG). */
 export const LOGO_DSA_RIP_SPLASH_PATH = "/logos/dsa-rip-logo-splash.png";
 
-/** Header brand image classes (full lockup; pair with a visually hidden product name). */
+/** Header brand image classes (full lockup; pair with the visible product name). */
 export const LOGO_DSA_RIP_HEADER_CLASS =
-  "h-14 w-auto shrink-0 rounded-lg object-contain sm:h-16";
+  "h-11 w-auto shrink-0 rounded-lg object-contain sm:h-16";
 
 /** Splash hero image classes (square lockup). */
 export const LOGO_DSA_RIP_SPLASH_CLASS =

@@ -2,7 +2,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { SHEET, type Problem } from "@/data/sheet";
 import { cn } from "@/lib/utils";
-import { DSA_PROBLEM_GRID_MIN_WIDTH_CLASS } from "@/constants/layout";
+import {
+  DSA_PROBLEM_GRID_MIN_WIDTH_CLASS,
+  DSA_SHEET_HSCROLL_EDGE_FADE_CLASS,
+} from "@/constants/layout";
 import {
   problemTitleGridClassName,
   SHEET_GFG_COLUMN_LABEL,
@@ -20,6 +23,7 @@ import {
 export function SheetGrid({
   filteredIds,
   filteredCount,
+  flashProblemId,
   done,
   rev,
   notes,
@@ -39,6 +43,8 @@ export function SheetGrid({
 }: {
   filteredIds: Set<string>;
   filteredCount: number;
+  /** Problem id to briefly highlight after a search jump. */
+  flashProblemId: string | null;
   done: ReadonlySet<string>;
   rev: ReadonlySet<string>;
   notes: Record<string, string>;
@@ -84,9 +90,9 @@ export function SheetGrid({
               <button
                 type="button"
                 onClick={() => onToggleStep(step.stepNo)}
-                className="cursor-pointer min-w-0 flex-1 flex items-center gap-3 px-4 py-4 text-left hover:bg-muted/40 transition-colors sm:gap-4 sm:px-7 sm:py-5"
+                className="cursor-pointer min-w-0 flex-1 flex items-start gap-3 px-4 py-4 text-left hover:bg-muted/40 transition-colors sm:items-center sm:gap-4 sm:px-7 sm:py-5"
               >
-                <span className="min-w-0 text-sm leading-snug">
+                <span className="min-w-0 break-words text-sm leading-snug">
                   <span className="font-normal text-muted-foreground">Step {step.stepNo}:</span>{" "}
                   <span className="font-display text-base sm:text-lg font-medium text-foreground">
                     {step.stepTitle}
@@ -97,11 +103,11 @@ export function SheetGrid({
                     </span>
                   ) : null}
                 </span>
-                <div className="ml-auto flex items-center gap-3 shrink-0 sm:gap-4">
+                <div className="ml-auto flex shrink-0 items-center gap-2 pt-0.5 sm:gap-4 sm:pt-0">
                   <span className="text-xs font-medium tabular-nums text-muted-foreground hidden sm:inline">
                     {stepDoneInFilter} / {stepFilteredTotal}
                   </span>
-                  <span className="text-xs font-medium tabular-nums text-primary w-9 text-right">
+                  <span className="w-9 text-right text-xs font-medium tabular-nums text-primary">
                     {Math.round(stepPct)}%
                   </span>
                   <ChevronDown
@@ -155,9 +161,9 @@ export function SheetGrid({
                             <button
                               type="button"
                               onClick={() => onToggleSub(k)}
-                              className="cursor-pointer min-w-0 flex-1 flex items-center gap-3 px-4 py-3.5 text-left hover:bg-muted/40 transition-colors sm:px-6 sm:py-4"
+                              className="cursor-pointer min-w-0 flex-1 flex items-start gap-3 px-4 py-3.5 text-left hover:bg-muted/40 transition-colors sm:items-center sm:px-6 sm:py-4"
                             >
-                              <span className="min-w-0 text-sm leading-snug">
+                              <span className="min-w-0 break-words text-sm leading-snug">
                                 <span className="font-medium text-muted-foreground tabular-nums">
                                   {step.stepNo}.{sub.subStepNo}
                                 </span>{" "}
@@ -165,11 +171,11 @@ export function SheetGrid({
                                   {sub.subStepTitle}
                                 </span>
                               </span>
-                              <div className="ml-auto flex items-center gap-3 shrink-0">
-                                <span className="text-xs font-medium tabular-nums text-muted-foreground">
+                              <div className="ml-auto flex shrink-0 items-center gap-2 pt-0.5 sm:gap-3 sm:pt-0">
+                                <span className="hidden text-xs font-medium tabular-nums text-muted-foreground sm:inline">
                                   {subDoneInFilter} / {subFilteredTotal}
                                 </span>
-                                <span className="text-xs font-semibold tabular-nums text-primary w-9 text-right">
+                                <span className="w-9 text-right text-xs font-semibold tabular-nums text-primary">
                                   {Math.round(subPct)}%
                                 </span>
                                 <ChevronDown
@@ -252,9 +258,21 @@ export function SheetGrid({
                                           )}
                                         </div>
                                         {visible.map((p) => (
-                                          <div id={p.id} key={p.id}>
+                                          <div
+                                            id={p.id}
+                                            key={p.id}
+                                            className={cn(
+                                              flashProblemId !== null &&
+                                                flashProblemId.length > 0 &&
+                                                flashProblemId === p.id &&
+                                                "rounded-lg",
+                                            )}
+                                          >
                                             <ProblemRow
                                               problem={p}
+                                              isFlashed={
+                                                flashProblemId !== null && flashProblemId === p.id
+                                              }
                                               isDone={done.has(p.id)}
                                               isRev={rev.has(p.id)}
                                               hasNote={!!notes[p.id]}
@@ -275,6 +293,7 @@ export function SheetGrid({
                                         ))}
                                       </div>
                                     </div>
+                                    <div className={DSA_SHEET_HSCROLL_EDGE_FADE_CLASS} aria-hidden />
                                   </div>
                                 </div>
                               </motion.div>
