@@ -5,6 +5,14 @@
 /** localStorage flag value when the user has finished or skipped the tour. */
 export const DSA_TOUR_DONE_VALUE = "1";
 
+/**
+ * True when `stored` is the completed-tour flag.
+ */
+export function isTourCompleted(stored: string | null): boolean {
+  if (stored === null || stored.length === 0) return false;
+  return stored === DSA_TOUR_DONE_VALUE;
+}
+
 export type SheetTourStepId =
   | "progress"
   | "difficulty"

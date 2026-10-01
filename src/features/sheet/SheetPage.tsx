@@ -23,6 +23,7 @@ import {
   SHEET_SEARCH_FLASH_MS,
   sheetSearchRevealDelayMs,
 } from "@/constants/sheet-search";
+import { DSA_WHATS_NEW_VERSION, shouldOfferWhatsNew } from "@/constants/whats-new";
 import { useIsMobile } from "@/hooks/use-mobile";
 import type { SheetSearchSuggestion } from "./lib/search";
 import type { DifficultyBreakdownRow } from "./lib/types";
@@ -33,6 +34,7 @@ import { SheetGrid } from "./components/SheetGrid";
 import { SheetSeoContent } from "./components/SheetSeoContent";
 import { SheetToolbar } from "./components/SheetToolbar";
 import { SplashScreen } from "./components/SplashScreen";
+import { WhatsNewDialog } from "./components/WhatsNewDialog";
 import { SheetTour } from "./tour/SheetTour";
 import { useSheetTour } from "./tour/useSheetTour";
 
@@ -46,6 +48,7 @@ export function SheetPage() {
   const notes = useNotesStore();
   const [splashOpen, setSplashOpen] = useState(true);
   const dismissSplash = useCallback(() => setSplashOpen(false), []);
+  const [whatsNewOpen, setWhatsNewOpen] = useState(false);
   const { active: tourActive, startTour, endTour } = useSheetTour({ ready: !splashOpen });
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [tourSettingsDemo, setTourSettingsDemo] = useState(false);
@@ -71,6 +74,30 @@ export function SheetPage() {
   const openStepsInitialized = useRef(false);
   const [optionalColumnVisibility, setOptionalColumnVisibility] =
     useState<OptionalSheetColumnVisibility>(DEFAULT_OPTIONAL_SHEET_COLUMN_VISIBILITY);
+
+  useEffect(() => {
+    if (splashOpen) return;
+    let offer = false;
+    try {
+      offer = shouldOfferWhatsNew(
+        localStorage.getItem(DSA_LS_KEYS.whatsNewSeen),
+        localStorage.getItem(DSA_LS_KEYS.tourDone),
+      );
+    } catch {
+      offer = false;
+    }
+    setWhatsNewOpen(offer);
+  }, [splashOpen]);
+
+  const handleWhatsNewOpenChange = useCallback((open: boolean) => {
+    setWhatsNewOpen(open);
+    if (open) return;
+    try {
+      localStorage.setItem(DSA_LS_KEYS.whatsNewSeen, DSA_WHATS_NEW_VERSION);
+    } catch {
+      /** ignore quota / private mode */
+    }
+  }, []);
 
   const handleStartTour = useCallback(() => {
     settingsTourLockRef.current = false;
@@ -397,6 +424,7 @@ export function SheetPage() {
         )}
       </AnimatePresence>
 
+      <WhatsNewDialog open={whatsNewOpen} onOpenChange={handleWhatsNewOpenChange} />
       <SheetTour open={tourActive} onClose={handleTourClose} onStepChange={handleTourStepChange} />
       <SplashScreen open={splashOpen} onDismiss={dismissSplash} />
     </div>
