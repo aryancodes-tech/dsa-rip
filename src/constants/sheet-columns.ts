@@ -1,5 +1,5 @@
 /**
- * Optional problem-grid columns (fixed order when visible: YouTube → Article → Note → Revision → Difficulty).
+ * Optional problem-grid columns (fixed order when visible: YouTube → Article → Notes → Revision → Difficulty).
  * LeetCode, GFG, and TUF are always shown - see {@link DEFAULT_OPTIONAL_SHEET_COLUMN_VISIBILITY}.
  */
 
@@ -27,7 +27,7 @@ export const DEFAULT_OPTIONAL_SHEET_COLUMN_VISIBILITY: OptionalSheetColumnVisibi
 export const OPTIONAL_SHEET_COLUMN_LABEL: Record<OptionalSheetColumnKey, string> = {
   youtube: "YouTube",
   article: "Article",
-  note: "Note",
+  note: "Notes",
   revision: "Revision",
   difficulty: "Difficulty",
 };

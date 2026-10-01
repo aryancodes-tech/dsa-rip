@@ -28,7 +28,7 @@ export const DSA_LS_KEYS = {
   rev: "dsa.rev",
   notes: "dsa.notes",
   theme: "dsa.theme",
-  /** Bitmask 0–31: columns YouTube, Article, Note, Revision, Difficulty (see `sheet-columns.ts`). */
+  /** Bitmask 0–31: columns YouTube, Article, Notes, Revision, Difficulty (see `sheet-columns.ts`). */
   optionalColumnMask: "dsa.ui.colm",
   /** `"1"` once the product tour was completed or skipped. */
   tourDone: "dsa.ui.tour",

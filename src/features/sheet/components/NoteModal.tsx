@@ -39,7 +39,7 @@ export function NoteModal({ problem, onClose }: { problem: Problem; onClose: () 
       >
         <div className="flex items-start justify-between mb-3">
           <div>
-            <p className="text-xs uppercase tracking-wider text-muted-foreground">Note</p>
+            <p className="text-xs uppercase tracking-wider text-muted-foreground">Notes</p>
             <h3 className="font-display mt-1 pr-2 text-lg leading-snug sm:text-xl">{problem.title}</h3>
           </div>
           <button
