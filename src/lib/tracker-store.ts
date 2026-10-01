@@ -32,6 +32,8 @@ export const DSA_LS_KEYS = {
   optionalColumnMask: "dsa.ui.colm",
   /** `"1"` once the product tour was completed or skipped. */
   tourDone: "dsa.ui.tour",
+  /** Changelog id from {@link DSA_WHATS_NEW_VERSION} after the visitor dismisses “What changed”. */
+  whatsNewSeen: "dsa.ui.whatsnew",
 } as const;
 
 type Listener = () => void;
