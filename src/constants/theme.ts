@@ -55,6 +55,16 @@ export const THEME_PREFERENCE_LABEL: Record<ThemePreference, string> = {
 };
 
 /**
+ * CSS `color-scheme` for native controls and text selection.
+ * Lavender is a light palette, so it uses the light native scheme.
+ */
+export const THEME_COLOR_SCHEME: Record<ResolvedTheme, "light" | "dark"> = {
+  light: "light",
+  dark: "dark",
+  lavender: "light",
+};
+
+/**
  * Trims a stored theme token. Empty after trim is treated as missing.
  */
 export function canonicalStoredThemeToken(value: string | null): string {

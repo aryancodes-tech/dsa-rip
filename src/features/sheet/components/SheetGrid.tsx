@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import {
   DSA_PROBLEM_GRID_MIN_WIDTH_CLASS,
   DSA_SHEET_HSCROLL_EDGE_FADE_CLASS,
+  SHEET_HEADER_ROW_HOVER_CLASS,
 } from "@/constants/layout";
 import {
   problemTitleGridClassName,
@@ -86,11 +87,11 @@ export function SheetGrid({
               className="h-1.5 rounded-none"
               fillClassName="rounded-none"
             />
-            <div className="flex items-center">
+            <div className={cn("flex items-center", SHEET_HEADER_ROW_HOVER_CLASS)}>
               <button
                 type="button"
                 onClick={() => onToggleStep(step.stepNo)}
-                className="cursor-pointer min-w-0 flex-1 flex items-start gap-3 px-4 py-4 text-left hover:bg-muted/40 transition-colors sm:items-center sm:gap-4 sm:px-7 sm:py-5"
+                className="cursor-pointer min-w-0 flex-1 flex items-start gap-3 px-4 py-4 text-left sm:items-center sm:gap-4 sm:px-7 sm:py-5"
               >
                 <span className="min-w-0 break-words text-sm leading-snug">
                   <span className="font-normal text-muted-foreground">Step {step.stepNo}:</span>{" "}
@@ -157,11 +158,11 @@ export function SheetGrid({
                             className="h-1 rounded-none bg-muted/60"
                             fillClassName="rounded-none"
                           />
-                          <div className="flex items-center">
+                          <div className={cn("flex items-center", SHEET_HEADER_ROW_HOVER_CLASS)}>
                             <button
                               type="button"
                               onClick={() => onToggleSub(k)}
-                              className="cursor-pointer min-w-0 flex-1 flex items-start gap-3 px-4 py-3.5 text-left hover:bg-muted/40 transition-colors sm:items-center sm:px-6 sm:py-4"
+                              className="cursor-pointer min-w-0 flex-1 flex items-start gap-3 px-4 py-3.5 text-left sm:items-center sm:px-6 sm:py-4"
                             >
                               <span className="min-w-0 break-words text-sm leading-snug">
                                 <span className="font-medium text-muted-foreground tabular-nums">

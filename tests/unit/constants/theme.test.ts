@@ -5,6 +5,7 @@ import {
   DSA_THEME_LEGACY_SYSTEM_NAME,
   DSA_THEME_LEGACY_SYSTEM_WIRE,
   DSA_THEME_WIRE,
+  THEME_COLOR_SCHEME,
   THEME_PREFERENCE_OPTIONS,
   isLegacySystemThemeStored,
   migrateStoredTheme,
@@ -16,6 +17,14 @@ import {
 describe("DSA_THEME_DEFAULT", () => {
   it("is Light for new visitors", () => {
     expect(DSA_THEME_DEFAULT).toBe("light");
+  });
+});
+
+describe("THEME_COLOR_SCHEME", () => {
+  it("uses the light native scheme for cream and lavender palettes", () => {
+    expect(THEME_COLOR_SCHEME.light).toBe("light");
+    expect(THEME_COLOR_SCHEME.lavender).toBe("light");
+    expect(THEME_COLOR_SCHEME.dark).toBe("dark");
   });
 });
 

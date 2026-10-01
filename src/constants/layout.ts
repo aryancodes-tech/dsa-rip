@@ -32,3 +32,9 @@ export const DSA_PROBLEM_GRID_MIN_WIDTH_CLASS = "min-w-[56rem]";
  */
 export const DSA_SHEET_HSCROLL_EDGE_FADE_CLASS =
   "pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-card to-transparent sm:hidden";
+
+/**
+ * Hover wash on a step or subsection header row.
+ * Applied on the row wrapper so the reset control is inside the highlight.
+ */
+export const SHEET_HEADER_ROW_HOVER_CLASS = "hover:bg-muted/40 transition-colors";
