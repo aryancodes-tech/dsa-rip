@@ -39,13 +39,13 @@ export const SHEET_TOUR_STEPS: readonly SheetTourStep[] = [
   {
     id: "theme",
     title: "Theme",
-    body: "Switch between System, Light, Dark, and Lavender anytime.",
+    body: "Switch between Light, Dark, and Lavender anytime.",
     placement: "bottom",
   },
   {
     id: "settings",
     title: "Settings",
-    body: "Reset progress, or choose which columns appear in the sheet. Check a column to show it - LeetCode and Others always stay on.",
+    body: "Reset progress, or choose which columns appear in the sheet. Check a column to show it - LeetCode, GFG, and TUF always stay on.",
     placement: "left",
   },
   {

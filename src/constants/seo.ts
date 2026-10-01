@@ -142,7 +142,7 @@ export function buildDsaWebApplicationJsonLd(): Record<string, unknown> {
     alternateName: [
       "DSA rip",
       "DSA A2Z Tracker",
-      "A2Z sheet with public LeetCode links",
+      "A2Z sheet with LeetCode, GFG, and TUF links",
       "Local DSA sheet tracker",
     ],
     url: DSA_CANONICAL_URL,
@@ -158,7 +158,7 @@ export function buildDsaWebApplicationJsonLd(): Record<string, unknown> {
     },
     featureList: [
       "Striver A2Z DSA sheet progress tracking",
-      "Public LeetCode links in an always-on sheet column",
+      "Public LeetCode, GFG, and TUF links in always-on sheet columns",
       "Mark problems solved",
       "Revision starring",
       "Per-problem notes",

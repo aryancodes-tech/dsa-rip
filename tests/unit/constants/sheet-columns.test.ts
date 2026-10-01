@@ -26,7 +26,13 @@ describe("optional sheet column mask", () => {
       revision: true,
       difficulty: true,
     };
-    expect(computeProblemTitleColSpanSm(allOn)).toBe(3);
-    expect(computeProblemTitleColSpanSm(DEFAULT_OPTIONAL_SHEET_COLUMN_VISIBILITY)).toBe(4);
+    expect(computeProblemTitleColSpanSm(allOn)).toBe(2);
+    expect(computeProblemTitleColSpanSm(DEFAULT_OPTIONAL_SHEET_COLUMN_VISIBILITY)).toBe(2);
+    expect(
+      computeProblemTitleColSpanSm({
+        ...DEFAULT_OPTIONAL_SHEET_COLUMN_VISIBILITY,
+        article: false,
+      }),
+    ).toBe(3);
   });
 });

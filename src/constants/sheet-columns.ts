@@ -1,11 +1,11 @@
 /**
  * Optional problem-grid columns (fixed order when visible: YouTube → Article → Note → Revision → Difficulty).
- * LeetCode & Others are always shown - see {@link DEFAULT_OPTIONAL_SHEET_COLUMN_VISIBILITY}.
+ * LeetCode, GFG, and TUF are always shown - see {@link DEFAULT_OPTIONAL_SHEET_COLUMN_VISIBILITY}.
  */
 
 export type OptionalSheetColumnKey = "youtube" | "article" | "note" | "revision" | "difficulty";
 
-/** Runtime order after the problem title: YouTube, LeetCode (locked on), Others (locked on), then these toggles in this sequence. */
+/** Runtime order after the problem title: YouTube, LeetCode (locked on), GFG (locked on), TUF (locked on), then these toggles in this sequence. */
 export const OPTIONAL_SHEET_COLUMNS_IN_ORDER: readonly OptionalSheetColumnKey[] = [
   "youtube",
   "article",
@@ -18,7 +18,7 @@ export type OptionalSheetColumnVisibility = Record<OptionalSheetColumnKey, boole
 
 export const DEFAULT_OPTIONAL_SHEET_COLUMN_VISIBILITY: OptionalSheetColumnVisibility = {
   youtube: true,
-  article: false,
+  article: true,
   note: true,
   revision: true,
   difficulty: true,
@@ -58,11 +58,20 @@ export function visibilityToOptionalColumnMask(vis: OptionalSheetColumnVisibilit
   return n;
 }
 
+/** Locked (always-on) platform column header after LeetCode. */
+export const SHEET_GFG_COLUMN_LABEL = "GFG";
+
+/** Locked (always-on) takeUforward practice column header after GFG. */
+export const SHEET_TUF_COLUMN_LABEL = "TUF";
+
+/** Accessible name for the TUF practice icon link. */
+export const SHEET_TUF_LINK_ARIA_LABEL = "Open on takeUforward";
+
 /**
- * `sm` grid: status (1) + LeetCode (1) + Others (1) + each optional 1 col, difficulty 2 cols.
+ * `sm` grid: status (1) + LeetCode (1) + GFG (1) + TUF (1) + each optional 1 col, difficulty 2 cols.
  */
 export function computeProblemTitleColSpanSm(vis: OptionalSheetColumnVisibility): number {
-  let used = 1 + 1 + 1;
+  let used = 1 + 1 + 1 + 1;
   if (vis.youtube) used += 1;
   if (vis.article) used += 1;
   if (vis.note) used += 1;

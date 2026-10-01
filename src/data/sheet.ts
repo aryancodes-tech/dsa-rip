@@ -13,6 +13,8 @@ export interface Problem {
   articleLink: string | null;
   /** Optional YouTube explainer from `extra-links.gen.ts`, when present. */
   youtubeLink: string | null;
+  /** takeUforward practice URL from extra-links, when matched. */
+  tufLink: string | null;
   /** Optional preview image (e.g. pattern diagram) shown beside the title in the sheet grid. */
   imageUrl: string | null;
   others: { label: string; url: string }[];
@@ -66,6 +68,7 @@ export const SHEET: Step[] = DSA_SHEET.map((step) => ({
         lcLink: p.lcLink ?? null,
         articleLink: p.articleLink ?? extra.articleLink,
         youtubeLink: p.youtubeLink ?? extra.youtubeLink,
+        tufLink: p.tufLink ?? extra.tufLink,
         imageUrl: p.imageUrl ?? null,
         others,
         stepNo: step.stepNo,

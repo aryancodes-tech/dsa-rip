@@ -17,11 +17,11 @@ export const DSA_LOCAL_PROGRESS_NOTICE =
  * Pitch visibility of links (always-on column), not that every row has an LC URL.
  */
 export const DSA_LEETCODE_LINKS_PITCH =
-  "LeetCode and GFG links sit in an always-on column next to each problem - open and obvious, not buried in hard-to-find UI.";
+  "LeetCode, GFG, and TUF links sit in always-on columns next to each problem - open and obvious, not buried in hard-to-find UI.";
 
 /** Short marketing line for SERP / social when space is tight. */
 export const DSA_LEETCODE_LINKS_PITCH_SHORT =
-  "A2Z sheet with public LeetCode links - right in the grid, not hidden.";
+  "A2Z sheet with LeetCode, GFG, and TUF links - right in the grid, not hidden.";
 
 /** Public X/Twitter profile for feedback and contact. */
 export const CREATOR_TWITTER_URL = "https://x.com/aryancodes_tech";
@@ -42,6 +42,6 @@ export const CREATOR_DISPLAY_NAME = "Aryan Gupta";
 
 /**
  * Max characters per problem note. Generous for approach notes; keeps full-sheet
- * notes well within typical ~5 MB localStorage budgets (~3 k × 481 ≈ safe).
+ * notes well within typical ~5 MB localStorage budgets (~3 k × 550 ≈ safe).
  */
 export const DSA_NOTE_MAX_CHARS = 3000;

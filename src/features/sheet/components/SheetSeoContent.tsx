@@ -15,6 +15,7 @@ import {
 } from "@/constants/creator";
 import { DSA_SEO_FAQS } from "@/constants/seo";
 import { TOTAL, TOTAL_BY_DIFF } from "@/data/sheet";
+import { VisitorStats } from "./VisitorStats";
 
 /** Compact X (Twitter) mark for the feedback link. */
 function XLogo({ className }: { className?: string }) {
@@ -102,6 +103,8 @@ export function SheetSeoContent() {
       >
         {DSA_LOCAL_PROGRESS_NOTICE}
       </p>
+
+      <VisitorStats />
     </footer>
   );
 }

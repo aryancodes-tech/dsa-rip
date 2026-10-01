@@ -17,8 +17,8 @@ import {
   type ThemePreference,
   type ResolvedTheme,
   DSA_THEME_DEFAULT,
-  DSA_THEME_WIRE,
-  resolveThemePreference,
+  migrateStoredTheme,
+  themeToWire,
 } from "@/constants/theme";
 
 /** localStorage keys; export for deliberate clears (e.g. reset flows). */
@@ -48,31 +48,25 @@ const SSR_SNAPSHOT_NOTES = Object.freeze({}) as Record<string, string>;
 /** Per-store hydrate callbacks registered below; invoked from {@link hydratePersistedTrackerShell}. */
 const trackerHydrationTasks: Array<() => void> = [];
 
-/** Reads OS dark-mode preference (false during SSR). */
-function getSystemPrefersDark(): boolean {
-  if (typeof window === "undefined" || typeof window.matchMedia !== "function") return false;
-  return window.matchMedia("(prefers-color-scheme: dark)").matches;
-}
-
-function normalizeThemeStored(value: string | null): ThemePreference {
-  if (value === null || value.length === 0) return DSA_THEME_DEFAULT;
-  if (value === "s" || value === "system") return "system";
-  if (value === "d" || value === "dark") return "dark";
-  if (value === "v" || value === "lavender") return "lavender";
-  if (value === "l" || value === "light") return "light";
-  return DSA_THEME_DEFAULT;
-}
-
-function themeToWire(mode: ThemePreference): string {
-  return DSA_THEME_WIRE[mode];
-}
-
 /** Applies `dark` / `lavender` classes on `<html>` from a resolved palette. */
 function applyThemeClassToDocument(mode: ResolvedTheme) {
   if (typeof document === "undefined") return;
   const root = document.documentElement;
   root.classList.toggle("dark", mode === "dark");
   root.classList.toggle("lavender", mode === "lavender");
+}
+
+/**
+ * Returns a copy of `current` with `ids` removed. Empty ids are ignored.
+ * Used to uncheck solved status for a step/sub-step without touching revision or notes.
+ */
+export function omitIdsFromSet(current: ReadonlySet<string>, ids: Iterable<string>): Set<string> {
+  const next = new Set(current);
+  for (const id of ids) {
+    if (id.length === 0) continue;
+    next.delete(id);
+  }
+  return next;
 }
 
 function createSetStore(key: string, ssrSnapshotForHook: ReadonlySet<string>) {
@@ -125,6 +119,17 @@ function createSetStore(key: string, ssrSnapshotForHook: ReadonlySet<string>) {
     },
     clear() {
       state = new Set();
+      persist();
+      emit();
+    },
+    /**
+     * Unchecks the given problem ids (no-op for ids that were not solved).
+     * Does not emit when nothing in `ids` was present.
+     */
+    removeMany(ids: Iterable<string>) {
+      const next = omitIdsFromSet(state, ids);
+      if (next.size === state.size) return;
+      state = next;
       persist();
       emit();
     },
@@ -221,9 +226,6 @@ export function useNotesStore() {
 
 export function useTheme() {
   const [preference, setPreferenceState] = useState<ThemePreference>(DSA_THEME_DEFAULT);
-  const [systemDark, setSystemDark] = useState(false);
-
-  const resolvedTheme = resolveThemePreference(preference, systemDark);
 
   const setTheme = useCallback((mode: ThemePreference) => {
     setPreferenceState(mode);
@@ -232,46 +234,39 @@ export function useTheme() {
     } catch {
       /** ignore quota / private mode */
     }
-    applyThemeClassToDocument(resolveThemePreference(mode, getSystemPrefersDark()));
+    applyThemeClassToDocument(mode);
   }, []);
 
-  useEffect(() => {
-    setSystemDark(getSystemPrefersDark());
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    const onChange = () => setSystemDark(mq.matches);
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
-
-  useEffect(() => {
-    const raw = localStorage.getItem(DSA_LS_KEYS.theme);
-    const saved = normalizeThemeStored(raw);
+  useLayoutEffect(() => {
+    let raw: string | null = null;
+    try {
+      raw = localStorage.getItem(DSA_LS_KEYS.theme);
+    } catch {
+      applyThemeClassToDocument(DSA_THEME_DEFAULT);
+      return;
+    }
+    const { preference: saved, persistWire } = migrateStoredTheme(raw);
     setPreferenceState(saved);
-    applyThemeClassToDocument(resolveThemePreference(saved, getSystemPrefersDark()));
-    /** Normalize legacy full-name tokens once to wire form (`s` / `l` / `d` / `v`). */
-    if (
-      raw === "dark" ||
-      raw === "light" ||
-      raw === "lavender" ||
-      raw === "system"
-    ) {
+    applyThemeClassToDocument(saved);
+    /** Persist Light for retired System tokens before first paint so OS theme no longer applies. */
+    if (persistWire !== null && persistWire.length > 0) {
       try {
-        localStorage.setItem(DSA_LS_KEYS.theme, themeToWire(saved));
+        localStorage.setItem(DSA_LS_KEYS.theme, persistWire);
       } catch {
-        /** ignore */
+        /** ignore quota / private mode */
       }
     }
   }, []);
 
   useEffect(() => {
-    applyThemeClassToDocument(resolvedTheme);
-  }, [resolvedTheme]);
+    applyThemeClassToDocument(preference);
+  }, [preference]);
 
   return {
-    /** Stored menu selection (includes `system`). */
+    /** Stored menu selection. */
     preference,
     /** Concrete palette for logos / class-driven UI. */
-    theme: resolvedTheme,
+    theme: preference,
     setTheme,
   };
 }
