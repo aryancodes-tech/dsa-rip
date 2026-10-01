@@ -9,7 +9,7 @@ import {
   useTheme,
   DSA_LS_KEYS,
 } from "@/lib/tracker-store";
-import { leetCodeLogoPublicPath } from "@/constants/branding";
+import { leetCodeLogoPublicPath, takeUforwardLogoPublicPath } from "@/constants/branding";
 import {
   computeProblemTitleColSpanSm,
   DEFAULT_OPTIONAL_SHEET_COLUMN_VISIBILITY,
@@ -35,6 +35,7 @@ export function SheetPage() {
   const isMobile = useIsMobile();
   const { preference, theme, setTheme } = useTheme();
   const leetcodeLogoSrc = leetCodeLogoPublicPath(theme);
+  const tufLogoSrc = takeUforwardLogoPublicPath(theme);
   const done = useSetStore(doneStore);
   const rev = useSetStore(revStore);
   const notes = useNotesStore();
@@ -290,11 +291,13 @@ export function SheetPage() {
           optionalColumnVisibility={optionalColumnVisibility}
           problemTitleSpanSm={problemTitleSpanSm}
           leetcodeLogoSrc={leetcodeLogoSrc}
+          tufLogoSrc={tufLogoSrc}
           onToggleStep={toggleStep}
           onToggleSub={toggleSub}
           onToggleDone={(id) => doneStore.toggle(id)}
           onToggleRev={(id) => revStore.toggle(id)}
           onOpenNote={setNoteFor}
+          onResetSolved={(ids) => doneStore.removeMany(ids)}
           onExpandPatternImage={(p) => {
             if (p.imageUrl) setPatternImagePreview({ url: p.imageUrl, title: p.title });
           }}

@@ -5,7 +5,6 @@ import {
   FilterX,
   LayoutGrid,
   ListFilter,
-  Monitor,
   Moon,
   RotateCcw,
   Search,
@@ -44,6 +43,19 @@ import { FILTER_TRIGGER_CLASS, TOOLBAR_ICON_BTN_CLASS } from "../lib/toolbar-cla
 import type { DifficultyBreakdownRow, SheetStats } from "../lib/types";
 import { FilterMenu } from "./FilterMenu";
 import { ProgressBar } from "./ProgressBar";
+
+/** Icon for a selectable theme in the toolbar trigger and menu. */
+function ThemePreferenceIcon({
+  preference,
+  className,
+}: {
+  preference: ThemePreference;
+  className: string;
+}) {
+  if (preference === "dark") return <Moon className={className} aria-hidden />;
+  if (preference === "lavender") return <Sparkles className={className} aria-hidden />;
+  return <Sun className={className} aria-hidden />;
+}
 
 export function SheetToolbar({
   isMobile,
@@ -139,15 +151,7 @@ export function SheetToolbar({
                   aria-label={`Theme: ${THEME_PREFERENCE_LABEL[preference]}`}
                   className={FILTER_TRIGGER_CLASS}
                 >
-                  {preference === "system" ? (
-                    <Monitor className="size-3.5" aria-hidden />
-                  ) : preference === "dark" ? (
-                    <Moon className="size-3.5" aria-hidden />
-                  ) : preference === "lavender" ? (
-                    <Sparkles className="size-3.5" aria-hidden />
-                  ) : (
-                    <Sun className="size-3.5" aria-hidden />
-                  )}
+                  <ThemePreferenceIcon preference={preference} className="size-3.5" />
                   <span className="hidden sm:inline">{THEME_PREFERENCE_LABEL[preference]}</span>
                   <ChevronDown className="size-3.5 text-muted-foreground" aria-hidden />
                 </button>
@@ -171,15 +175,10 @@ export function SheetToolbar({
                       value={opt}
                       className="cursor-pointer gap-2 text-sm"
                     >
-                      {opt === "system" ? (
-                        <Monitor className="size-3.5 shrink-0" aria-hidden />
-                      ) : opt === "dark" ? (
-                        <Moon className="size-3.5 shrink-0" aria-hidden />
-                      ) : opt === "lavender" ? (
-                        <Sparkles className="size-3.5 shrink-0" aria-hidden />
-                      ) : (
-                        <Sun className="size-3.5 shrink-0" aria-hidden />
-                      )}
+                      <ThemePreferenceIcon
+                        preference={opt}
+                        className="size-3.5 shrink-0"
+                      />
                       {THEME_PREFERENCE_LABEL[opt]}
                     </DropdownMenuRadioItem>
                   ))}
@@ -241,7 +240,7 @@ export function SheetToolbar({
                   Sheet columns
                 </DropdownMenuLabel>
                 <p className="px-2 pb-1 text-[10px] leading-snug text-muted-foreground">
-                  Choose which optional columns appear in the problem sheet. LeetCode and Others
+                  Choose which optional columns appear in the problem sheet. LeetCode, GFG, and TUF
                   always stay on.
                 </p>
                 {OPTIONAL_SHEET_COLUMNS_IN_ORDER.map((key) => {

@@ -18,6 +18,8 @@ export type RawProblem = {
   imageUrl?: string | null;
   articleLink?: string | null;
   youtubeLink?: string | null;
+  /** takeUforward practice URL (`/practice/dsa/{slug}`), when known. */
+  tufLink?: string | null;
 };
 
 export type RawSubStep = {

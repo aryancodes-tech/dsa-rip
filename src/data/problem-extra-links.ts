@@ -1,5 +1,5 @@
 /**
- * Precomputed optional article + YouTube URLs for sheet problems.
+ * Precomputed optional article, YouTube, and TUF practice URLs for sheet problems.
  *
  * Data lives in {@link ./extra-links.gen.ts} (committed generated map).
  */
@@ -10,6 +10,7 @@ const ExtraLinkRowSchema = z
   .object({
     articleLink: z.string().min(1).optional(),
     youtubeLink: z.string().min(1).optional(),
+    tufLink: z.string().min(1).optional(),
   })
   .strict();
 
@@ -55,12 +56,13 @@ export function composeCoordKey(
 export type ProblemExtraLinks = {
   articleLink: string | null;
   youtubeLink: string | null;
+  tufLink: string | null;
 };
 
 const EXTRA = parseExtraLinksFile(EXTRA_LINKS);
 
 /**
- * Resolves optional article + YouTube URLs for one sheet problem.
+ * Resolves optional article, YouTube, and TUF practice URLs for one sheet problem.
  */
 export function getProblemExtraLinks(
   stepNo: number,
@@ -74,5 +76,6 @@ export function getProblemExtraLinks(
   return {
     articleLink: byTitle?.articleLink ?? byCoord?.articleLink ?? null,
     youtubeLink: byCoord?.youtubeLink ?? byTitle?.youtubeLink ?? null,
+    tufLink: byCoord?.tufLink ?? byTitle?.tufLink ?? null,
   };
 }

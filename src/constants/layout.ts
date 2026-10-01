@@ -16,6 +16,12 @@ export const FIXED_CHROME_TO_MAIN_SHELL_RIGHT_TAILWIND =
  * headers stay readable (uppercase labels need room). Outer wrapper scrolls horizontally
  * when the viewport is narrower.
  *
- * Must stay in sync with `min-w-[52rem]` on the problem-sheet inner wrapper in `routes/index.tsx`.
+ * Must stay in sync with {@link DSA_PROBLEM_GRID_MIN_WIDTH_CLASS} on the sheet inner wrapper.
  */
-export const DSA_PROBLEM_GRID_MIN_WIDTH_REM = 52;
+export const DSA_PROBLEM_GRID_MIN_WIDTH_REM = 56;
+
+/**
+ * Tailwind min-width for the problem-sheet inner wrapper (Status + platforms + TUF).
+ * Full class so JIT sees it (no dynamic `min-w-[${n}rem]`).
+ */
+export const DSA_PROBLEM_GRID_MIN_WIDTH_CLASS = "min-w-[56rem]";

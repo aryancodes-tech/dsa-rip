@@ -13,6 +13,7 @@ import {
 } from "@/constants/branding";
 import {
   problemTitleGridClassName,
+  SHEET_TUF_LINK_ARIA_LABEL,
   type OptionalSheetColumnVisibility,
 } from "@/constants/sheet-columns";
 import { DIFFICULTY_BADGE_CLASS, DIFFICULTY_DOT_CLASS } from "../lib/difficulty-styles";
@@ -27,6 +28,7 @@ export function ProblemRow({
   isRev,
   hasNote,
   leetcodeLogoSrc,
+  tufLogoSrc,
   columnVisibility,
   problemTitleSpanSm,
   onToggleDone,
@@ -40,6 +42,8 @@ export function ProblemRow({
   hasNote: boolean;
   /** Raster URL for LeetCode (light vs dark artwork). Lavender uses the light asset. */
   leetcodeLogoSrc: string;
+  /** Raster URL for the takeUforward F-mark (light vs dark artwork). */
+  tufLogoSrc: string;
   /** Which columns (YouTube / article / …) are visible. */
   columnVisibility: OptionalSheetColumnVisibility;
   /** `sm:` grid span for title from {@link computeProblemTitleColSpanSm}. */
@@ -190,7 +194,7 @@ export function ProblemRow({
     emptyDash
   );
 
-  const otherAction = primaryOther ? (
+  const gfgAction = primaryOther ? (
     <a
       href={primaryOther.url}
       target="_blank"
@@ -214,6 +218,29 @@ export function ProblemRow({
       ) : (
         <Globe size={SHEET_FALLBACK_ICON_PX} className="shrink-0 opacity-90" aria-hidden />
       )}
+    </a>
+  ) : (
+    emptyDash
+  );
+
+  const tufAction = problem.tufLink ? (
+    <a
+      href={problem.tufLink}
+      target="_blank"
+      rel="noreferrer"
+      className={SHEET_PLATFORM_ICON_LINK_BASE_CLASSES}
+      title={SHEET_TUF_LINK_ARIA_LABEL}
+      aria-label={SHEET_TUF_LINK_ARIA_LABEL}
+    >
+      <img
+        key={tufLogoSrc}
+        src={tufLogoSrc}
+        alt=""
+        className="object-contain shrink-0"
+        width={SHEET_PLATFORM_LOGO_PX}
+        height={SHEET_PLATFORM_LOGO_PX}
+        style={{ width: SHEET_PLATFORM_LOGO_PX, height: SHEET_PLATFORM_LOGO_PX }}
+      />
     </a>
   ) : (
     emptyDash
@@ -286,7 +313,8 @@ export function ProblemRow({
       <div className={problemTitleCls}>{titleBlock}</div>
       {columnVisibility.youtube && <div className={deskCell}>{youtubeAction}</div>}
       <div className={deskCell}>{leetcodeAction}</div>
-      <div className={deskCell}>{otherAction}</div>
+      <div className={deskCell}>{gfgAction}</div>
+      <div className={deskCell}>{tufAction}</div>
       {columnVisibility.article && <div className={deskCell}>{articleAction}</div>}
       {columnVisibility.note && <div className={deskCell}>{noteAction}</div>}
       {columnVisibility.revision && <div className={deskCell}>{revisionAction}</div>}

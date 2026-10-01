@@ -18,6 +18,12 @@ export const LOGO_GEEKSFORGEEKS_PATH = "/logos/geeksforgeeks.png";
 
 export const LOGO_YOUTUBE_PATH = "/logos/youtube.png";
 
+/** takeUforward F-mark for light (and lavender) sheets — derived from official `/icon.png`. */
+export const LOGO_TAKEUFORWARD_LIGHT_PATH = "/logos/takeuforward_light_mode.png";
+
+/** takeUforward F-mark for dark sheets — derived from official `/icon.png`. */
+export const LOGO_TAKEUFORWARD_DARK_PATH = "/logos/takeuforward_dark_mode.png";
+
 /** Compact product lockup for the header (tombstone + dsa.rip wordmark). */
 export const LOGO_DSA_RIP_PATH = "/logos/dsa-rip-logo.jpg";
 
@@ -41,6 +47,15 @@ export function leetCodeLogoPublicPath(theme: ResolvedTheme): string {
   return LOGO_LEETCODE_LIGHT_PATH;
 }
 
+/**
+ * Which takeUforward F-mark to show for the resolved tracker theme.
+ * Lavender uses the light artwork (lavender shell is a light palette).
+ */
+export function takeUforwardLogoPublicPath(theme: ResolvedTheme): string {
+  if (theme === "dark") return LOGO_TAKEUFORWARD_DARK_PATH;
+  return LOGO_TAKEUFORWARD_LIGHT_PATH;
+}
+
 /** Square edge length (px) for LC / GFG raster logos in the problem grid (~10% under the prior 32px size). */
 export const SHEET_PLATFORM_LOGO_PX = 29;
 
@@ -48,7 +63,7 @@ export const SHEET_PLATFORM_LOGO_PX = 29;
 export const SHEET_FALLBACK_ICON_PX = 22;
 
 /**
- * Shared link chrome for YouTube / LeetCode / “other” platform cells in the sheet grid (`p-1` vs older `p-2`
+ * Shared link chrome for YouTube / LeetCode / GFG / TUF platform cells in the sheet grid (`p-1` vs older `p-2`
  * to keep vertical padding around rasters low).
  */
 export const SHEET_PLATFORM_ICON_LINK_BASE_CLASSES =
