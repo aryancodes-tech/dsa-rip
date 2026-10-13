@@ -429,6 +429,7 @@ const DSA_SHEET: RawSheetStep[] = [
             title: "Print 1 to N using recursion",
             difficulty: "Easy",
             lcLink: null,
+            tufLink: composeTufPracticeUrl("print-1-to-n-using-recursion"),
             gfgLink: "https://practice.geeksforgeeks.org/problems/print-1-to-n-without-using-loops-1587115620/1",
           },
           {

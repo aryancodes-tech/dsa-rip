@@ -6,6 +6,7 @@ import {
   normalizeTitleKey,
   parseExtraLinksFile,
 } from "@/data/problem-extra-links";
+import { ALL_PROBLEMS } from "@/data/sheet";
 
 describe("problem extra links", () => {
   it("looks up YouTube by sheet coordinate", () => {
@@ -107,6 +108,10 @@ describe("problem extra links", () => {
     const rootToLeaf = getProblemExtraLinks(13, 3, "Print root to leaf path in BT");
     expect(rootToLeaf.tufLink).toBe(
       "https://takeuforward.org/practice/dsa/print-root-to-leaf-path-in-bt",
+    );
+    const print1ToN = ALL_PROBLEMS.find((p) => p.title === "Print 1 to N using recursion");
+    expect(print1ToN?.tufLink).toBe(
+      "https://takeuforward.org/practice/dsa/print-1-to-n-using-recursion",
     );
   });
 
