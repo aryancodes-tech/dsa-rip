@@ -61,7 +61,7 @@ export function SheetGrid({
   onToggleRev: (problemId: string) => void;
   onOpenNote: (problem: Problem) => void;
   onExpandPatternImage: (problem: Problem) => void;
-  /** Uncheck Status for the given problem ids only — do not clear stars or notes. */
+  /** Uncheck Status for the given problem ids only - do not clear stars or notes. */
   onResetSolved: (problemIds: readonly string[]) => void;
 }) {
   return (

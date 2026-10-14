@@ -3,6 +3,9 @@ import { DSA_TOUR_DONE_VALUE } from "@/constants/tour";
 import {
   DSA_WHATS_NEW_CTA,
   DSA_WHATS_NEW_ITEMS,
+  DSA_WHATS_NEW_NOTES_PREVIEW_CODE,
+  DSA_WHATS_NEW_NOTES_PREVIEW_LANGUAGE,
+  DSA_WHATS_NEW_NOTES_PREVIEW_TEXT,
   DSA_WHATS_NEW_RELEASE_DATE,
   DSA_WHATS_NEW_TITLE,
   DSA_WHATS_NEW_VERSION,
@@ -26,11 +29,17 @@ describe("DSA_WHATS_NEW_ITEMS", () => {
     }
   });
 
-  it("leads with TUF articles", () => {
+  it("leads with the Notes editor upgrade", () => {
     const first = DSA_WHATS_NEW_ITEMS[0]?.line ?? "";
     expect(first.length).toBeGreaterThan(0);
-    expect(first.includes("TUF")).toBe(true);
-    expect(first.toLowerCase().includes("article")).toBe(true);
+    expect(first.includes("Notes")).toBe(true);
+  });
+
+  it("uses a new version id so prior dismissals show this note again", () => {
+    expect(DSA_WHATS_NEW_VERSION.length).toBeGreaterThan(0);
+    expect(DSA_WHATS_NEW_VERSION).not.toBe("2026-10-01");
+    expect(DSA_WHATS_NEW_VERSION).not.toBe("2026-10-14");
+    expect(DSA_WHATS_NEW_VERSION).not.toBe("2026-10-14-notes-ui");
   });
 });
 
@@ -38,6 +47,12 @@ describe("changelog chrome", () => {
   it("names the dialog and the dismiss control", () => {
     expect(DSA_WHATS_NEW_TITLE).toBe("Release notes");
     expect(DSA_WHATS_NEW_CTA).toBe("Continue");
+  });
+
+  it("ships sample Notes preview content for the live demo", () => {
+    expect(DSA_WHATS_NEW_NOTES_PREVIEW_TEXT.length).toBeGreaterThan(0);
+    expect(DSA_WHATS_NEW_NOTES_PREVIEW_CODE).toContain("func reverseFunc");
+    expect(DSA_WHATS_NEW_NOTES_PREVIEW_LANGUAGE).toBe("go");
   });
 });
 

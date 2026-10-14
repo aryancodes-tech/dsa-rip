@@ -251,3 +251,111 @@
   --color-hard: var(--hard);
   --color-surface-2: var(--surface-2);
 }
+
+/*
+ * Notes code-block highlight overlay (highlight.js token classes).
+ * Warm palette aligned with the sheet light/dark/lavender themes.
+ */
+.note-code-highlight {
+  color: var(--foreground);
+  white-space: pre-wrap;
+  word-break: break-word;
+  tab-size: 2;
+}
+
+.note-code-highlight .hljs-comment,
+.note-code-highlight .hljs-quote {
+  color: oklch(0.55 0.02 65);
+  font-style: italic;
+}
+
+.note-code-highlight .hljs-keyword,
+.note-code-highlight .hljs-selector-tag,
+.note-code-highlight .hljs-addition {
+  color: oklch(0.48 0.14 30);
+}
+
+.note-code-highlight .hljs-number,
+.note-code-highlight .hljs-string,
+.note-code-highlight .hljs-meta .hljs-meta-string,
+.note-code-highlight .hljs-literal,
+.note-code-highlight .hljs-doctag,
+.note-code-highlight .hljs-regexp {
+  color: oklch(0.45 0.1 145);
+}
+
+.note-code-highlight .hljs-title,
+.note-code-highlight .hljs-section,
+.note-code-highlight .hljs-attribute,
+.note-code-highlight .hljs-name,
+.note-code-highlight .hljs-variable,
+.note-code-highlight .hljs-template-variable,
+.note-code-highlight .hljs-type,
+.note-code-highlight .hljs-selector-class,
+.note-code-highlight .hljs-selector-id,
+.note-code-highlight .hljs-built_in {
+  color: oklch(0.42 0.12 250);
+}
+
+.note-code-highlight .hljs-symbol,
+.note-code-highlight .hljs-bullet,
+.note-code-highlight .hljs-link,
+.note-code-highlight .hljs-meta,
+.note-code-highlight .hljs-selector-attr,
+.note-code-highlight .hljs-selector-pseudo {
+  color: oklch(0.5 0.1 55);
+}
+
+.note-code-highlight .hljs-emphasis {
+  font-style: italic;
+}
+
+.note-code-highlight .hljs-strong {
+  font-weight: 600;
+}
+
+.dark .note-code-highlight .hljs-comment,
+.dark .note-code-highlight .hljs-quote {
+  color: oklch(0.65 0.02 65);
+}
+
+.dark .note-code-highlight .hljs-keyword,
+.dark .note-code-highlight .hljs-selector-tag,
+.dark .note-code-highlight .hljs-addition {
+  color: oklch(0.78 0.12 30);
+}
+
+.dark .note-code-highlight .hljs-number,
+.dark .note-code-highlight .hljs-string,
+.dark .note-code-highlight .hljs-meta .hljs-meta-string,
+.dark .note-code-highlight .hljs-literal,
+.dark .note-code-highlight .hljs-doctag,
+.dark .note-code-highlight .hljs-regexp {
+  color: oklch(0.78 0.1 145);
+}
+
+.dark .note-code-highlight .hljs-title,
+.dark .note-code-highlight .hljs-section,
+.dark .note-code-highlight .hljs-attribute,
+.dark .note-code-highlight .hljs-name,
+.dark .note-code-highlight .hljs-variable,
+.dark .note-code-highlight .hljs-template-variable,
+.dark .note-code-highlight .hljs-type,
+.dark .note-code-highlight .hljs-selector-class,
+.dark .note-code-highlight .hljs-selector-id,
+.dark .note-code-highlight .hljs-built_in {
+  color: oklch(0.78 0.1 250);
+}
+
+.lavender .note-code-highlight .hljs-keyword,
+.lavender .note-code-highlight .hljs-selector-tag,
+.lavender .note-code-highlight .hljs-addition {
+  color: oklch(0.45 0.16 300);
+}
+
+.lavender .note-code-highlight .hljs-title,
+.lavender .note-code-highlight .hljs-section,
+.lavender .note-code-highlight .hljs-type,
+.lavender .note-code-highlight .hljs-built_in {
+  color: oklch(0.42 0.14 280);
+}

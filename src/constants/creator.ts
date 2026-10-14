@@ -47,8 +47,5 @@ export const CREATOR_PORTFOLIO_URL = "https://aryancodes.tech/";
 /** Display name for the “built by” footer credit. */
 export const CREATOR_DISPLAY_NAME = "Aryan Gupta";
 
-/**
- * Max characters per problem note. Generous for approach notes; keeps full-sheet
- * notes well within typical ~5 MB localStorage budgets (~3 k × 550 ≈ safe).
- */
-export const DSA_NOTE_MAX_CHARS = 3000;
+/** @deprecated Import from `@/constants/notes` - re-exported for older call sites. */
+export { DSA_NOTE_MAX_CHARS } from "@/constants/notes";

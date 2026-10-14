@@ -18,28 +18,28 @@ export const ERROR_PAGE_RETRY_LABEL = "Try again";
 /** Visible label for the X/Twitter contact control. */
 export const ERROR_PAGE_CONTACT_LABEL = "Tell me on X";
 
-/** Cream page wash — matches `:root --background`. */
+/** Cream page wash - matches `:root --background`. */
 export const ERROR_PAGE_BG = "oklch(0.97 0.012 80)";
 
-/** Warm brown body text — matches `:root --foreground`. */
+/** Warm brown body text - matches `:root --foreground`. */
 export const ERROR_PAGE_FG = "oklch(0.28 0.02 60)";
 
-/** Muted supporting copy — matches `:root --muted-foreground`. */
+/** Muted supporting copy - matches `:root --muted-foreground`. */
 export const ERROR_PAGE_MUTED = "oklch(0.5 0.025 65)";
 
-/** Brownish primary fill — matches `:root --primary`. */
+/** Brownish primary fill - matches `:root --primary`. */
 export const ERROR_PAGE_PRIMARY = "oklch(0.55 0.09 55)";
 
-/** Cream text on the primary fill — matches `:root --primary-foreground`. */
+/** Cream text on the primary fill - matches `:root --primary-foreground`. */
 export const ERROR_PAGE_PRIMARY_FG = "oklch(0.98 0.01 80)";
 
-/** Soft card fill for the contact chip — matches `:root --card`. */
+/** Soft card fill for the contact chip - matches `:root --card`. */
 export const ERROR_PAGE_CARD = "oklch(0.985 0.008 80)";
 
-/** Warm hairline — matches `:root --border`. */
+/** Warm hairline - matches `:root --border`. */
 export const ERROR_PAGE_BORDER = "oklch(0.88 0.018 75)";
 
-/** Hover wash on the contact chip — matches `:root --muted`. */
+/** Hover wash on the contact chip - matches `:root --muted`. */
 export const ERROR_PAGE_MUTED_BG = "oklch(0.93 0.014 75)";
 
 /** Shared radius for error-page actions (`rounded-xl`). */

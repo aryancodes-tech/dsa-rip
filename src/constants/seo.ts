@@ -14,7 +14,7 @@ import {
 } from "@/constants/creator";
 import { SHEET, TOTAL, TOTAL_BY_DIFF } from "@/data/sheet";
 
-/** Canonical production origin (no trailing slash). Prefer www — apex redirects here. */
+/** Canonical production origin (no trailing slash). Prefer www - apex redirects here. */
 export const DSA_SITE_ORIGIN = "https://www.dsa.rip";
 
 /** Home / app path. */
@@ -25,7 +25,7 @@ export const DSA_CANONICAL_URL = `${DSA_SITE_ORIGIN}${DSA_SITE_PATH}`;
 
 /**
  * Social share card under `public/og-twitter.jpg`.
- * JPEG ~1200×630 under 300KB — WhatsApp/Twitter reject oversized PNGs and some redirect chains.
+ * JPEG ~1200×630 under 300KB - WhatsApp/Twitter reject oversized PNGs and some redirect chains.
  */
 export const DSA_OG_IMAGE_PATH = "/og-twitter.jpg";
 

@@ -18,10 +18,10 @@ export const LOGO_GEEKSFORGEEKS_PATH = "/logos/geeksforgeeks.png";
 
 export const LOGO_YOUTUBE_PATH = "/logos/youtube.png";
 
-/** takeUforward F-mark for light (and lavender) sheets — derived from official `/icon.png`. */
+/** takeUforward F-mark for light (and lavender) sheets - derived from official `/icon.png`. */
 export const LOGO_TAKEUFORWARD_LIGHT_PATH = "/logos/takeuforward_light_mode.png";
 
-/** takeUforward F-mark for dark sheets — derived from official `/icon.png`. */
+/** takeUforward F-mark for dark sheets - derived from official `/icon.png`. */
 export const LOGO_TAKEUFORWARD_DARK_PATH = "/logos/takeuforward_dark_mode.png";
 
 /** Compact product lockup for the header (tombstone + dsa.rip wordmark). */

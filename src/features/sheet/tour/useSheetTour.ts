@@ -14,7 +14,7 @@ function readTourDone(): boolean {
 function writeTourDone() {
   try {
     localStorage.setItem(DSA_LS_KEYS.tourDone, DSA_TOUR_DONE_VALUE);
-    /** First-time visitors already saw the current sheet — skip this changelog later. */
+    /** First-time visitors already saw the current sheet - skip this changelog later. */
     localStorage.setItem(DSA_LS_KEYS.whatsNewSeen, DSA_WHATS_NEW_VERSION);
   } catch {
     /** ignore quota / private mode */
