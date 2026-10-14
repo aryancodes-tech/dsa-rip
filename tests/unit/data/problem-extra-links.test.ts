@@ -113,6 +113,10 @@ describe("problem extra links", () => {
     expect(print1ToN?.tufLink).toBe(
       "https://takeuforward.org/practice/dsa/print-1-to-n-using-recursion",
     );
+    const printNTo1 = ALL_PROBLEMS.find((p) => p.title === "Print N to 1 using recursion");
+    expect(printNTo1?.tufLink).toBe(
+      "https://takeuforward.org/practice/dsa/print-n-to-1-using-recursion",
+    );
   });
 
   it("normalizes coord and title keys", () => {

@@ -436,6 +436,7 @@ const DSA_SHEET: RawSheetStep[] = [
             title: "Print N to 1 using recursion",
             difficulty: "Easy",
             lcLink: null,
+            tufLink: composeTufPracticeUrl("print-n-to-1-using-recursion"),
             gfgLink: "https://bit.ly/3LOkcBn",
           },
           {
