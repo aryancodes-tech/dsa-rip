@@ -8,6 +8,7 @@ import tailwindcss from "@tailwindcss/vite";
 import tsConfigPaths from "vite-tsconfig-paths";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
+import { suppressClientAbortConsoleErrors } from "./vite/suppress-client-abort-errors";
 
 /**
  * Cloudflare deploys use wrangler + `src/server.ts`. Vercel sets `VERCEL=1` during build;
@@ -18,6 +19,7 @@ const deployTargetVercel = process.env.VERCEL === "1";
 
 export default defineConfig(async ({ command, mode }) => {
   const plugins: PluginOption[] = [
+    suppressClientAbortConsoleErrors(),
     tailwindcss(),
     tsConfigPaths({ projects: ["./tsconfig.json"] }),
   ];
