@@ -1789,6 +1789,12 @@ const DSA_SHEET: RawSheetStep[] = [
             lcLink: null,
             gfgLink: "https://bit.ly/3podAiY",
           },
+          {
+            title: "K-th Symbol in Grammar",
+            difficulty: "Medium",
+            lcLink: "https://leetcode.com/problems/k-th-symbol-in-grammar/",
+            gfgLink: null,
+          },
         ],
       },
       {
