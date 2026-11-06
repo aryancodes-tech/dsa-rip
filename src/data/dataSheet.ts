@@ -3078,10 +3078,25 @@ const DSA_SHEET: RawSheetStep[] = [
             gfgLink: "https://practice.geeksforgeeks.org/problems/predecessor-and-successor/1",
           },
           {
+            title: "BST Iterator",
+            difficulty: "Medium",
+            lcLink: "https://leetcode.com/problems/binary-search-tree-iterator/",
+            youtubeLink: "https://www.youtube.com/watch?v=D2jMcmxU4bs",
+            articleLink: `${TUF_ORIGIN}/blogs/data-structure-and-algorithm/binary-search-tree-iterator`,
+            tufLink: composeTufPracticeUrl("bst-iterator"),
+            gfgLink: null,
+          },
+          {
             title: "Merge 2 BST's",
             difficulty: "Hard",
-            lcLink: "https://leetcode.com/problems/binary-search-tree-iterator/",
-            gfgLink: "https://practice.geeksforgeeks.org/problems/merge-two-bst-s/1",
+            lcLink: null,
+            gfgLink: "https://www.geeksforgeeks.org/problems/merge-two-bst-s/1",
+          },
+          {
+            title: "Number of Structurally Unique BSTs",
+            difficulty: "Medium",
+            lcLink: "https://leetcode.com/problems/unique-binary-search-trees/",
+            gfgLink: null,
           },
           {
             title: "Two Sum In BST | Check if there exists a pair with Sum K",
